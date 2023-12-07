@@ -1,0 +1,17 @@
+{
+  "name": "net-weaver",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.4"
+  },
+  "dependencies": {
+    "lit-html": "^3.1.0"
+  }
+}

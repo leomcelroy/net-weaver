@@ -1,0 +1,260 @@
+html, body {
+  margin: 0px;
+  width: 100vw;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Safari */
+  -khtml-user-select: none;    /* Konqueror HTML */
+  -moz-user-select: none;      /* Old versions of Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.graph-1 {
+  width: 100%;
+  height: 50%;
+}
+
+.graph-2 {
+  width: 100%;
+  height: 50%;
+}
+
+
+
+.root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu {
+  background: #3d2788;
+  color: white;
+  height: min-content;
+  width: 100%;
+  display: flex;
+  position: relative;
+  border-bottom: 1px solid black;
+}
+
+.menu-item {
+  padding: 10px 10px 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+}
+
+.menu-item:hover {
+  background: purple;
+  cursor: pointer;
+}
+
+.menu-item-no-hover {
+  padding: 10px 7px 10px 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+}
+
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-list {
+  z-index: 11;
+  background: purple;
+  position: absolute;
+  padding: 5px;
+  top: 100%;
+  left: 0;
+  box-sizing: border-box;
+  width: max-content;
+/*  opacity: 0%;*/
+/*  transition: opacity 0.2s, visibility .2s, background .2s;*/
+  visibility: hidden;
+}
+
+.node-type {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.node-type:hover {
+  opacity: .8;
+  cursor: grab;
+}
+
+.node-search {
+  padding: 5px;
+  margin: 3px;
+}
+
+.dropdown-container:hover .dropdown-list {
+/*  opacity: 100%;*/
+  visibility: visible;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.bottom-container {
+  background: blue;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.edges {
+  width: 1px;
+  height: 1px;
+  overflow: visible;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+}
+
+.edge {
+  stroke: black;
+  fill: none;
+}
+
+.nodes {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.node {
+  position: absolute;
+  min-width: 150px;
+  height: min-content;
+  background: #add8e6e6;
+  border-radius: 10px;
+  padding: 7px;
+  border: 3px solid #00000000;
+}
+
+.node:hover {
+  border: 3px solid white;
+}
+
+.selected-node {
+  border: 3px solid sandybrown;
+}
+
+.node-view {
+  padding-top: 10px;
+  height: min-content;
+}
+
+.node-title {
+  position: relative;
+  display: flex;
+  font-weight: bold;
+  justify-content: space-between;
+}
+
+.node-name {
+
+}
+
+
+.node-input {
+  display: flex;
+  align-items: center;
+}
+
+.node-input-circle {
+  width: 15px;
+  height: 15px;
+  background: grey;
+  border-radius: 50%;
+  margin-left: -14px;
+  margin-right: 5px;
+}
+
+.node-input-circle:hover,
+.node-output-circle:hover {
+  background: sandybrown;
+  cursor: default;
+}
+
+.hide-socket {
+  display: none;
+}
+
+.node-output {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end
+
+}
+
+.node-output-circle {
+  width: 15px;
+  height: 15px;
+  background: grey;
+  border-radius: 50%;
+  margin-right: -14px;
+  margin-left: 5px;
+}
+
+.socket {
+  z-index: 10;
+}
+
+.node-content {
+  display: flex;
+  justify-content: center;
+}
+
+.dataflow {
+/*  background: antiquewhite;*/
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+#background {
+  --grid-size: 50px;
+  --dot: 1px;
+
+  background-size: calc(var(--grid-size) * var(--scale, 1))
+    calc(var(--grid-size) * var(--scale, 1));
+  background-image: radial-gradient(
+    circle,
+    grey var(--dot),
+    antiquewhite var(--dot)
+  );
+  background-position: var(--offset-x, 0) var(--offset-y, 0);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.github-logo {
+  color: inherit;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  height: 100%;
+}
+
+.github-logo:hover {
+  cursor: pointer;
+  opacity: .8;
+}
