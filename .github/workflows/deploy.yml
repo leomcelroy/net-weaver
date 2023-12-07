@@ -15,7 +15,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'  # Set the Node.js version you want to use
+        node-version: '18'  # Set the Node.js version you want to use
 
     - name: Install and Build
       run: |
