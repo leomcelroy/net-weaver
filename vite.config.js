@@ -1,3 +1,3 @@
 export default { 
-  base: `/codebra/`
+  base: `/net-weaver/`
 }
