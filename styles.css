@@ -1,3 +1,9 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
 html, body {
   margin: 0px;
   width: 100vw;
@@ -15,23 +21,13 @@ html, body {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-.graph-1 {
-  width: 100%;
-  height: 50%;
-}
-
-.graph-2 {
-  width: 100%;
-  height: 50%;
-}
-
-
 
 .root {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .menu {
@@ -172,49 +168,32 @@ html, body {
 
 }
 
-
-.node-input {
-  display: flex;
-  align-items: center;
-}
-
-.node-input-circle {
+.port {
   width: 15px;
   height: 15px;
-  background: grey;
   border-radius: 50%;
-  margin-left: -14px;
-  margin-right: 5px;
+  background: grey;
+  position: absolute;
+  z-index: 99999;
 }
 
-.node-input-circle:hover,
-.node-output-circle:hover {
+.port-left {
+  left: -9px;
+  top: 26px;
+}
+
+.port-right {
+  right: -9px;
+  top: 26px;
+}
+
+.port:hover {
   background: sandybrown;
   cursor: default;
 }
 
-.hide-socket {
-  display: none;
-}
-
-.node-output {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end
-
-}
-
-.node-output-circle {
-  width: 15px;
-  height: 15px;
-  background: grey;
-  border-radius: 50%;
-  margin-right: -14px;
-  margin-left: 5px;
-}
-
-.socket {
-  z-index: 10;
+.edge-arrow:hover {
+  fill: red;
 }
 
 .node-content {
@@ -257,4 +236,9 @@ html, body {
 .github-logo:hover {
   cursor: pointer;
   opacity: .8;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
 }

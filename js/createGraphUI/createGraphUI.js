@@ -60,8 +60,8 @@ function createMutationActions(domNode, state) {
     add_connection(from, to) {
       if (state.addEdge) state.addEdge(from, to);
 
-      const [srcNode, _inOut0, srcPort ] = from.split(":");
-      const [dstNode, _inOut1, dstPort ] = to.split(":");
+      const [srcNode, srcPort ] = from.split(":");
+      const [dstNode, dstPort ] = to.split(":");
 
       state.graph.addEdge({}, srcNode, Number(srcPort), dstNode, Number(dstPort))
 
