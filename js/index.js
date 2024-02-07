@@ -39,6 +39,18 @@ const nodes = {
 };
 
 components.forEach( comp => {
+
+  if (
+    ["InternalSubcircuit", "InternalBlock"]
+    .some(x => comp.superClasses.includes(x))
+  ) {
+    return;
+  }
+
+  if (comp.is_abstract) {
+    return;
+  }
+
   const type = comp.type;
 
   nodes[type] = {
