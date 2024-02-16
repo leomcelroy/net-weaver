@@ -180,6 +180,14 @@ export function view(state) {
           const graph = state.graph.getGraph();
           const nets = generateNets(graph);
 
+          nets.forEach(net => {
+            net.forEach(port => {
+              const id = port.nodeId;
+              port.name = id;
+              port.portName = graph.nodes[id].data.ports[port.portIdx].name
+            })
+          })
+
           console.log(nets);
 
           download(

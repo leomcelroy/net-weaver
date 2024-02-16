@@ -20,3 +20,5 @@
 
 - remove
   - interalBlocks
+
+- set view window
