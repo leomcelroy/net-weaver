@@ -1,10 +1,78 @@
-import { html } from "lit-html";
-import { createGraphUI } from "./createGraphUI/createGraphUI";
+import { html, render } from "lit-html";
+import { view } from "./views/view.js";
+
 import { createGraph } from "./createGraph";
 import { topologicalSort } from "./topologicalSort";
 import { nodes } from "./nodes.js";
 
-const drawNode = (item, state) => {
+const r = () => {
+  render(view(state), document.body);
+}
+
+export const state = {
+  wireMode: "WIRES", // "WIRES" | "LABELS";
+  labels: {},
+  graph: createGraph(),
+  drawNode,
+  evaluate,
+  nodes,
+  graphUIData: {},
+  selectedNodes: new Set(),
+  tempEdge: ["", [0 ,0]],
+  dataflow: null,
+  searchTerm: "",
+  domNode: document.body,
+  mutationActions: {
+    render: r,
+    add_node(menuString) {
+      const id = addNode(menuString);
+
+      state.graphUIData[id] = {
+        x: -1000000,
+        y: -1000000
+      };
+
+      r();
+
+      state.evaluate(id);
+
+      return id;
+    },
+    delete_node(id) {
+      state.graph.removeNode(id);
+      delete state.graphUIData[id];
+      state.selectedNodes.delete(id);
+      r();
+    },
+    move_node(id, dx, dy) {
+      const node = state.graphUIData[id];
+      if (!node) return;
+      node.x += dx;
+      node.y += dy;
+
+      r();
+    },
+    add_connection(from, to) {
+      if (state.addEdge) state.addEdge(from, to);
+
+      const [srcNode, srcPort ] = from.split(":");
+      const [dstNode, dstPort ] = to.split(":");
+
+      state.graph.addEdge({}, srcNode, Number(srcPort), dstNode, Number(dstPort))
+
+      r();
+    },
+    remove_connection(index) {
+      state.graph.removeEdge(index);
+      
+      r();
+    }
+  }
+}
+
+window.STATE = state;
+
+function drawNode(item, state) {
   const [ k, node ] = item;
 
   const nodeName = node.data.name;
@@ -48,46 +116,32 @@ const drawNode = (item, state) => {
   `
 }
 
-const config = {
-  graph: createGraph(),
-  addNode,
-  evaluate,
-  nodes,
-  drawNode,
-}
-
 function evaluate(...nodeIds) {
-  return config.graph.getGraph();
+  
+  const graph = state.graph.getGraph();
+  console.log(graph);
 
-  // topo sort and run
-  // console.log(nodeIds);
+  const groups = topologicalSort(graph, nodeIds);
 
-  const graph = config.graph.getGraph();
-  const groups = topologicalSort(graph, nodeIds).flat();
+  console.log(groups);
 
-  groups.forEach(nodeId => {
-    const node = config.graph.getNode(nodeId);
-    // console.log(node);
-    const inputs = config.graph.iterateInputs(nodeId, (data, outIndex) => {
-      return data.outputValues[outIndex];
-    });
+  // groups.forEach(nodeId => {
+  //   const node = state.graph.getNode(nodeId);
+  //   // console.log(node);
+  //   const inputs = state.graph.iterateInputs(nodeId, (data, outIndex) => {
+  //     return data.outputValues[outIndex];
+  //   });
 
-    console.log("this node has these", { inputs })
-  })
+  //   console.log("this node has these", { inputs })
+  // })
 
 }
 
 function addNode(menuString) {
-  const master = config.nodes[menuString];
+  const master = state.nodes[menuString];
   const data = JSON.parse(JSON.stringify(master));
 
-  const id = config.graph.addNode(data, master.ports.length);
+  const id = state.graph.addNode(data, master.ports.length);
   return id;
 }
 
-export const state = createGraphUI(document.body, config);
-
-state.wireMode = "WIRES"; // "WIRES" | "LABELS";
-
-
-window.STATE = state;

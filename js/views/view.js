@@ -1,8 +1,8 @@
 import { render, html, svg } from 'lit-html';
 import { repeat } from 'lit-html/directives/repeat.js';
 import { map } from 'lit-html/directives/map.js';
-import { download } from "./download.js";
-import { generateNets } from "./generateNets.js";
+import { download } from "../download.js";
+import { generateNets } from "../generateNets.js";
 
 function getRelative(el0, el1) {
   // Get the top, left coordinates of two elements

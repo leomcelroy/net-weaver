@@ -1,5 +1,3 @@
-import { createListener } from "./createListener.js";
-
 function getXY(e, el) {
   let rect = el.getBoundingClientRect();
   let x = e.clientX - rect.left; //x position within the element.
@@ -8,8 +6,7 @@ function getXY(e, el) {
   return [ x, y ];
 }
 
-export function addNodeAdding(el, state) {
-  const listen = createListener(el);
+export function addNodeAdding(listen, state) {
 
   let dragging = false;
   let id = "";
