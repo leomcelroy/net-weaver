@@ -97,21 +97,23 @@ function drawTempEdge(edge, state) {
 
   let x0 = (offset0[0]+el0.getBoundingClientRect().width/2)*scale;
   let y0 = (offset0[1]+el0.getBoundingClientRect().height/2)*scale;
-  x1 = x1 * scale - 5;
-  y1 = y1 * scale - 5;
+  // x1 = x1 * scale - 5;
+  // y1 = y1 * scale - 5;
 
-  let xDist = Math.abs(x0 - x1);
-  xDist = xDist/1.3;
+  // let xDist = Math.abs(x0 - x1);
+  // xDist = xDist/1.3;
 
-  let [outNode_id, outNode_idx] = from.split(":");
-  outNode_idx = Number(outNode_idx);
-  const outNode = state.graph.getNode(outNode_id);
-  const outLeftOrRight = outNode.data.ports[outNode_idx].leftRightUpDown;
+  // let [outNode_id, outNode_idx] = from.split(":");
+  // outNode_idx = Number(outNode_idx);
+  // const outNode = state.graph.getNode(outNode_id);
+  // const outLeftOrRight = outNode.data.ports[outNode_idx].leftRightUpDown;
 
-  const inLeftOrRight = x1 > x0 ? "left" : "right";
+  // const inLeftOrRight = x1 > x0 ? "left" : "right";
 
 
-  const data = `M ${x0} ${y0} C ${x0 + xDist * (outLeftOrRight === "left" ? -1 : 1)} ${y0}, ${x1 + xDist * (inLeftOrRight === "left" ? -1 : 1)} ${y1}, ${x1} ${y1}`;
+  // const data = `M ${x0} ${y0} C ${x0 + xDist * (outLeftOrRight === "left" ? -1 : 1)} ${y0}, ${x1 + xDist * (inLeftOrRight === "left" ? -1 : 1)} ${y1}, ${x1} ${y1}`;
+  
+  const data = `M ${x0} ${y0} L ${x1} ${y1}`;
 
   return svg`
     <path class="edge" stroke-width=${`${3*state.dataflow.scale()}px`} vector-effect="non-scaling-stroke" d=${data}>
@@ -188,15 +190,33 @@ export function view(state) {
             })
           })
 
-          console.log(nets);
+          const copiedGraph = JSON.parse(JSON.stringify(graph));
+
+          // add port name to graph;
+
+          Object.entries(copiedGraph.edges).forEach(edge => {
+            const [edgeId, data] = edge;
+
+            const dstNode = graph.nodes[data.dst.node_id];
+            const dstPortName = dstNode.data.ports[data.dst.idx].name;
+            data.dst.portName = dstPortName;
+
+            const srcNode = graph.nodes[data.src.node_id];
+            const srcPortName = srcNode.data.ports[data.src.idx].name;
+            data.src.portName = srcPortName;
+          })
+
+          const result = { 
+            nets, 
+            graph: copiedGraph,
+            graphUIData: state.graphUIData
+          };
+
+          console.log(result);
 
           download(
             "netlist.json", 
-            JSON.stringify({ 
-              nets, 
-              graph,
-              graphUIData: state.graphUIData
-            })
+            JSON.stringify(result)
           );
         }}>
           <i class="fa-solid fa-download" style="padding-right: 10px;"></i>
@@ -210,6 +230,14 @@ export function view(state) {
         }}>
           <i class="fa-solid fa-trash" style="padding-right: 10px;"></i>
           delete
+        </div>
+
+        <div class="menu-item" @click=${() => {
+          const newWireMode = state.wireMode === "WIRES" ? "LABELS" : "WIRES";
+          state.wireMode = newWireMode;
+        }}>
+          <i class="fa-solid fa-circle-dot" style="padding-right: 10px;"></i>
+          wire mode: ${state.wireMode}
         </div>
 
         <!--
