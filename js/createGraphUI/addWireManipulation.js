@@ -4,6 +4,7 @@ export function addWireManipulation(listen, state) {
   let currentIndex = "";
 
   listen("mousedown", ".edge-arrow", e => {
+    if (state.wireMode !== "WIRES") return;
     const edgeId = e.target.dataset.id;
     const edge = state.graph.getEdge(edgeId);
 
@@ -22,10 +23,12 @@ export function addWireManipulation(listen, state) {
   })
 
   listen("mousedown", ".port", e => {
+    if (state.wireMode !== "WIRES") return;
     from = e.target.dataset.id;
   })
 
   listen("mouseup", ".port", e => {
+
     to = e.target.dataset.id;
   })
 

@@ -80,7 +80,6 @@ function evaluate(...nodeIds) {
 function addNode(menuString) {
   const master = config.nodes[menuString];
   const data = JSON.parse(JSON.stringify(master));
-  data.type = "COMPONENT";
 
   const id = config.graph.addNode(data, master.ports.length);
   return id;
