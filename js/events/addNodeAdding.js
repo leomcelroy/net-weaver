@@ -1,3 +1,5 @@
+import { patchState } from "../state.js";
+
 function getXY(e, el) {
   let rect = el.getBoundingClientRect();
   let x = e.clientX - rect.left; //x position within the element.
@@ -16,6 +18,7 @@ export function addNodeAdding(listen, state) {
     const typeToAdd = e.target.dataset.type;
 
     id = state.mutationActions.add_node(typeToAdd);
+    patchState();
   })
 
   listen("mousemove", "", e => {
@@ -26,16 +29,20 @@ export function addNodeAdding(listen, state) {
 
     state.graphUIData[id].x = x;
     state.graphUIData[id].y = y;
+
+    patchState();
   })
 
   listen("mouseup", ".node-toolbox", () => {
     if (dragging) {
       state.graph.removeNode(id);
+      patchState();
     }
   })
 
   listen("mouseup", "", e => {
     id = "";
     dragging = false;
+    patchState();
   })
 }

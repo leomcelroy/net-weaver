@@ -39,7 +39,7 @@ function createMutationActions(domNode, state) {
 
       this.render();
 
-      state.evaluate(id);
+      // state.evaluate(id);
 
       return id;
     },

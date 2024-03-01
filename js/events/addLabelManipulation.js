@@ -1,15 +1,38 @@
+import { createRandStr } from "../createRandStr.js";
+import { patchState } from "../state.js";
+
 export function addLabelManipulation(listen, state) {
   let from = "";
   let to = "";
   let currentIndex = "";
 
   listen("mousedown", ".port", e => {
+    if (state.wireMode !== "LABELS") return;
+
     from = e.target.dataset.id;
   })
 
   listen("mouseup", ".port", e => {
+    if (state.wireMode !== "LABELS") return;
     to = e.target.dataset.id;
   })
+
+  let inside = false;
+  listen("mousemove", "", e => {
+    const label = e.target.closest(".label");
+    if (label) {
+      inside = true;
+      patchState({
+        hoveredLabel: label.dataset.labelName
+      });
+    } else if (inside) {
+      inside = false;
+
+      patchState({
+        hoveredLabel: ""
+      });
+    }
+  });
 
   listen("mousemove", "", e => {
     if (state.wireMode !== "LABELS") return;
@@ -20,19 +43,15 @@ export function addLabelManipulation(listen, state) {
       const el1 = state.domNode.querySelector(".dataflow");
       const [ rx, ry ] = getRelative(el0, el1);
 
-      state.tempEdge = [
-        from,
-        getXY(e, el1)
-      ];
+      patchState({
+        tempEdge: [
+          from,
+          getXY(e, el1)
+        ]
+      });
       
     }
-
-    if (currentIndex !== "") {
-      state.mutationActions.remove_connection(currentIndex);
-      currentIndex = "";
-    }
   })
-
 
   listen("mouseup", "", e => {
     
@@ -42,27 +61,58 @@ export function addLabelManipulation(listen, state) {
 
     if (from !== "" && to !== "") {
 
-      const [ node, port ] = to.split(":");
+      const [ fromNode, fromPort ] = from.split(":");
+      const [ toNode, toPort ] = to.split(":");
 
-      console.log({ from , to })
+      const labelName = state
+        .graph
+        .getNode(fromNode)
+        .data
+        .ports
+        [fromPort]
+        .name;
 
-      // add 2 nodes to graph of types label
-      // add edge from out to 1 node
-      // add edge from in to 1 node
-      // add edge from out label node to in label node
+      // if label exists for src port use name of label, if not create name
+      // if label on dst port, clear label
 
-      state.graph.addNode({
-        type: "LABEL"
-      }, 1)
+      let currentSrcPort = null;
+
+      for (const labelId in state.labels) {
+        const label = state.labels[labelId];
+        const portKey = `${label.nodeId}:${label.portIdx}`;
+
+        if (from === portKey) {
+          console.log("coming from", label);
+          currentSrcPort = label.labelName;
+          delete state.labels[labelId];
+        }
+
+        if (to === portKey) {
+          delete state.labels[labelId];
+        }
+      }
+
+      state.labels[createRandStr(8)] = {
+        labelName: currentSrcPort ? currentSrcPort : labelName,
+        nodeId: fromNode,
+        portIdx: Number(fromPort)
+      }
+
+      state.labels[createRandStr(8)] = {
+        labelName: currentSrcPort ? currentSrcPort : labelName,
+        nodeId: toNode,
+        portIdx: Number(toPort)
+      }
+      
     }
-
-    console.log("CLEAR TEMP EDGE", state);
 
     from = "";
     to = "";
     currentIndex = "";
 
-    state.tempEdge = ["", [0, 0]];
+    patchState({
+      tempEdge: ["", [0, 0]]
+    });
     
   })
 

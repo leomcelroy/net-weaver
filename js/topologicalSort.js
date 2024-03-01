@@ -15,7 +15,6 @@ export function topologicalSort(graph, triggerNodes, backward = true) {
     }
   })
 
-
   const grouping = getGroups(finalDepthMap).filter(x => x.length > 0);
 
   return grouping;
@@ -31,33 +30,34 @@ function getDepths(graph, node, backward) {
 }
 
 const traverse = (depths, graph, id, count, backward) => {
-  depths[id] = count++;
+  depths[id] = count;
 
-  if (depths[id] > Object.keys(graph.nodes).length) {
+  const { nodes, edges } = graph;
+
+  if (depths[id] > Object.keys(nodes).length) {
     console.warn("cycle detected in graph");
     return null;
   }
 
   let neighbors = [];
 
-  graph
-    .nodes[id]
+  const ports = nodes[id]
     .ports
     .flat()
-    .forEach(x => {
-      const newNeighbor = graph
-        .edges
-        [x]
-        [backward ? "src" : "dst"]
-        .node_id;
+  
+  for (const portId of ports) {
+    const newNeighbor = edges
+      [portId]
+      [backward ? "src" : "dst"]
+      .node_id;
 
-      if (newNeighbor === id) return;
+    if (newNeighbor === id) continue;
 
-      neighbors.push(newNeighbor);
-    })
+    neighbors.push(newNeighbor);
+  }
     
 
-  neighbors.forEach(i => traverse(depths, graph, i, count, backward));
+  neighbors.forEach(i => traverse(depths, graph, i, count+1, backward));
 }
 
 const getGroups = depths => {

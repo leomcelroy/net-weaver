@@ -1,3 +1,4 @@
+import { patchState } from "../state.js";
 
 const pathContains = (e, selectorString) => e.composedPath().some(el => el.matches && el.matches(selectorString));
 
@@ -39,6 +40,8 @@ export function addNodeDragging(listen, state) {
     } else if (!e.shiftKey) {
       state.selectedNodes = new Set();
     }
+
+    patchState();
     
   })
 
@@ -56,7 +59,7 @@ export function addNodeDragging(listen, state) {
       );
     })
 
-    
+    patchState();
 
   })
 
@@ -70,5 +73,6 @@ export function addNodeDragging(listen, state) {
     state.dataflow.togglePanZoom(false);
     moved = false;
 
+    patchState();
   })
 }

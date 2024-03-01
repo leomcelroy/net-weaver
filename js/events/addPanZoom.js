@@ -1,3 +1,5 @@
+import { patchState } from "../state.js"; 
+
 const trigger = e => e.composedPath()[0];
 const matchesTrigger = (e, selectorString) => trigger(e).matches(selectorString);
 // create on listener
@@ -38,6 +40,7 @@ export function addPanZoom(el) {
       el.style.transform = "translate(" + pointX + "px, " + pointY + "px) scale(" + scale + ")";
     })
 
+    patchState({});
     // if (state.gridSize > 0) dispatch("RENDER");
   }
 

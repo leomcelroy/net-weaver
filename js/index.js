@@ -11,7 +11,7 @@ import { addSelectBox } from "./events/addSelectBox.js";
 import { addNodeAdding } from "./events/addNodeAdding.js";
 import { addWireManipulation } from "./events/addWireManipulation.js";
 import { addNodeDragging } from "./events/addNodeDragging.js";
-// import { addLabelManipulation } from "./addLabelManipulation.js";
+import { addLabelManipulation } from "./events/addLabelManipulation.js";
 
 const drawLoop = () => {
   const draw = () => {
@@ -25,11 +25,12 @@ const drawLoop = () => {
     requestAnimationFrame(r);
   };
 
-  requestAnimationFrame(r);
+  // requestAnimationFrame(r);
 };
 
 function init() {
-  drawLoop();
+  // drawLoop();
+  render(view(state), document.body);
 
 
   const domNode = document.body;
@@ -41,6 +42,7 @@ function init() {
 
   addNodeDragging(listener, state);
   addWireManipulation(listener, state);
+  addLabelManipulation(listener, state);
   addSelectBox(listener, state);
   addNodeAdding(listener, state);
   addDropUpload(file => {

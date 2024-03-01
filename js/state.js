@@ -10,8 +10,13 @@ const r = () => {
 }
 
 export const state = {
-  wireMode: "WIRES", // "WIRES" | "LABELS";
+  wireMode: "LABELS", // "WIRES" | "LABELS";
   labels: {},
+  hoveredLabel: "",
+  selectBox: {
+    start: [0, 0],
+    end: [0, 0]
+  },
   graph: createGraph(),
   drawNode,
   evaluate,
@@ -42,6 +47,16 @@ export const state = {
       state.graph.removeNode(id);
       delete state.graphUIData[id];
       state.selectedNodes.delete(id);
+
+      // clear labels
+      for (const labelId in state.labels) {
+        const label = state.labels[labelId];
+
+        if (label.nodeId === id) {
+          delete state.labels[labelId];
+        }
+      }
+
       r();
     },
     move_node(id, dx, dy) {
@@ -88,15 +103,15 @@ function drawNode(item, state) {
       data-id=${k}
       style=${`left: ${state.graphUIData[k].x}px; top: ${state.graphUIData[k].y}px;`}>
       <div class="node-title">
-        <div class="node-name">${nodeName}</div>
-          </div>
+        <div class="node-name">${k} : ${nodeName}</div>
+      </div>
       <div style="width: 100%; display: flex;">
         <div style="width: 50%;">
           ${node.data.ports
             .filter( port => port.leftRightUpDown === "left")
             .map((port, i) => html`
-            <div style="width=100%">
-              <div class="port port-left" style="top:${i*18 + 26}px" data-id=${`${k}:${port.idx}`}></div>
+            <div>
+              <div class="port port-left" style="top:${i*19 + 27}px" data-id=${`${k}:${port.idx}`}></div>
               <span style="padding-left: 10px;">${port.name}</span>
               </div>
             `)}
@@ -105,8 +120,8 @@ function drawNode(item, state) {
             ${node.data.ports
               .filter(port => port.leftRightUpDown === "right")
               .map((port, i) => html`
-              <div style="width=100%">
-                <div class="port port-right" style="top:${i*18 + 26}px" data-id=${`${k}:${port.idx}`}></div>
+              <div>
+                <div class="port port-right" style="top:${i*19 + 27}px" data-id=${`${k}:${port.idx}`}></div>
                 <span style="padding-right: 10px; display: flex; justify-content: flex-end;">${port.name}</span>
                 </div>
               `)}
@@ -119,11 +134,8 @@ function drawNode(item, state) {
 function evaluate(...nodeIds) {
   
   const graph = state.graph.getGraph();
-  console.log(graph);
 
   const groups = topologicalSort(graph, nodeIds);
-
-  console.log(groups);
 
   // groups.forEach(nodeId => {
   //   const node = state.graph.getNode(nodeId);
@@ -143,5 +155,24 @@ function addNode(menuString) {
 
   const id = state.graph.addNode(data, master.ports.length);
   return id;
+}
+
+
+export function patchState(newState, hardRender = false) {
+  for (const key in newState) {
+    if (!(key in state)) {
+      console.warn(`Name not in state: ${key}`);
+      continue;
+    }
+
+    state[key] = newState[key];
+  }
+
+  if (!hardRender) {
+    requestAnimationFrame(r);
+  } else {
+    r();
+  }
+
 }
 

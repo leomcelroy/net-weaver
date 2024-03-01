@@ -1,3 +1,5 @@
+import { patchState } from "../state.js";
+
 export function addWireManipulation(listen, state) {
   let from = "";
   let to = "";
@@ -15,10 +17,12 @@ export function addWireManipulation(listen, state) {
     const el0 = state.domNode.querySelector(`[data-id="${from}"]`);
     const el1 = state.domNode.querySelector(".dataflow");
 
-    state.tempEdge = [
-      from,
-      getXY(e, el1)
-    ];
+    patchState({
+      tempEdge: [
+        from,
+        getXY(e, el1)
+      ]
+    });
 
   })
 
@@ -28,21 +32,25 @@ export function addWireManipulation(listen, state) {
   })
 
   listen("mouseup", ".port", e => {
-
+    if (state.wireMode !== "WIRES") return;
     to = e.target.dataset.id;
   })
 
   listen("mousemove", "", e => {
+    if (state.wireMode !== "WIRES") return;
+
     if (from !== "") {
       // const rect = state.domNode.querySelector(`[data-id="${from}"]`).getBoundingClientRect();
       const el0 = state.domNode.querySelector(`[data-id="${from}"]`);
       const el1 = state.domNode.querySelector(".dataflow");
       const [ rx, ry ] = getRelative(el0, el1);
 
-      state.tempEdge = [
-        from,
-        getXY(e, el1)
-      ];
+      patchState({
+        tempEdge: [
+          from,
+          getXY(e, el1)
+        ]
+      });
       
     }
 
@@ -54,6 +62,8 @@ export function addWireManipulation(listen, state) {
 
 
   listen("mouseup", "", e => {
+    if (state.wireMode !== "WIRES") return;
+
     if (from === "") return;
 
     if (from !== "" && to !== "") {
@@ -78,9 +88,11 @@ export function addWireManipulation(listen, state) {
     to = "";
     currentIndex = "";
 
-    state.tempEdge = ["", [0, 0]];
-    
-  })
+    patchState({
+      tempEdge: ["", [0, 0]]
+    }); 
+       
+  });
 
 }
 

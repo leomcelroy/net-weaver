@@ -1,3 +1,5 @@
+import { patchState } from "../state.js";
+
 const getXY = (e, el) => {
   let rect = el.getBoundingClientRect();
   let x = e.clientX - rect.left; //x position within the element.
@@ -10,10 +12,12 @@ export function addSelectBox(listener, state) {
   let start = null;
   let end = null;
   const dataflow = state.dataflow;
-  state.selectBox = {
-    start: [0 ,0],
-    end: [0, 0]
-  }
+  patchState({
+    selectBox: {
+      start: [0 ,0],
+      end: [0, 0]
+    }
+  });
 
   listener("mousedown", ".nodes", e => {
 
@@ -28,8 +32,12 @@ export function addSelectBox(listener, state) {
     if (!e.shiftKey) {
       start = null;
       end = null;
-      state.selectBox.start = start;
-      state.selectBox.end = end;
+      patchState({
+        selectBox: {
+          start,
+          end
+        }
+      });
       return;
     }
     if (start === null) return;
@@ -37,14 +45,21 @@ export function addSelectBox(listener, state) {
     const [x, y] = getXY(e, state.domNode.querySelector(".dataflow"));
     end = dataflow.getPoint(x, y);
 
-    state.selectBox.start = [ 
+    const newStart = [ 
       Math.min(start[0], end[0]),
       Math.min(start[1], end[1]),
     ];
-    state.selectBox.end = [
+    const newEnd = [
       Math.max(start[0], end[0]),
       Math.max(start[1], end[1]),
     ];
+
+    patchState({
+      selectBox: {
+        start: newStart,
+        end: newEnd
+      }
+    });
 
   })
 
@@ -74,8 +89,12 @@ export function addSelectBox(listener, state) {
     
     start = null;
     end = null;
-    state.selectBox.start = start;
-    state.selectBox.end = end;
+    patchState({
+      selectBox: {
+        start,
+        end
+      }
+    });
     
   })
 

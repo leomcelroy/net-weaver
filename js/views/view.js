@@ -3,6 +3,7 @@ import { repeat } from 'lit-html/directives/repeat.js';
 import { map } from 'lit-html/directives/map.js';
 import { download } from "../download.js";
 import { generateNets } from "../generateNets.js";
+import { patchState } from "../state.js";
 
 function getRelative(el0, el1) {
   // Get the top, left coordinates of two elements
@@ -14,6 +15,108 @@ function getRelative(el0, el1) {
   const left = eleRect.left - targetRect.left;
 
   return [ left, top ];
+}
+
+function drawLabel([labelId, label], state) {
+  
+  const { labelName, nodeId, portIdx } = label;
+
+  if (labelName === "") {
+    console.log("no label");
+    return "";
+  }
+
+  const el = state.domNode.querySelector(`[data-id="${nodeId}:${portIdx}"]`);
+
+  if (el === null) return "";
+
+  const dataflow = state.domNode.querySelector(`.dataflow`);
+  const offset = getRelative(el, dataflow);
+  const rect = el.getBoundingClientRect();
+
+  const scale = 1; // window.devicePixelRatio;
+
+  let x = (offset[0]+rect.width/2)*scale;
+  let y = (offset[1]+rect.height/2)*scale;
+
+  const adjustedXY = state.dataflow.getPoint(x, y);
+  x = adjustedXY[0];
+  y = adjustedXY[1];
+
+  const node = state.graph.getNode(nodeId);
+
+  const leftOrRight = node.data.ports[portIdx].leftRightUpDown;
+
+  const styleLeft = `
+    position: absolute; 
+    left: ${x-5}px; 
+    top: ${y}px;
+    transform: translate(-100%, -50%);
+    background: ${state.hoveredLabel === labelName ? "yellow" : "lightgrey"};
+    border-radius: .25em;
+    padding: .05em .25em;
+    font-size: .8rem;
+    min-width: 30px;
+    text-align: center;
+  `
+
+  const styleRight = `
+    position: absolute; 
+    left: ${x+5}px; 
+    top: ${y}px;
+    transform: translate(0, -50%);
+    background: ${state.hoveredLabel === labelName ? "yellow" : "lightgrey"};
+    border-radius: .25em;
+    padding: .05em .25em;
+    font-size: .8rem;
+    min-width: 30px;
+    text-align: center;
+  `
+
+  const inputStyle = `
+    background: none;
+    border: none;
+    text-align: center;
+  `
+
+  let divStyle = leftOrRight === "left" ? styleLeft : styleRight;
+
+  return html`
+    <div class="label" data-label-name=${labelName} style=${divStyle}>
+      <span 
+        style=${inputStyle} 
+        @click=${e => {
+          const newName = prompt("Please input a label name. Empty string will delete label.", labelName);
+          if (newName === null) return;
+          if (newName === "") {
+            delete state.labels[labelId];
+            return;
+          }
+
+          label.labelName = newName;
+          patchState();
+        }}>
+        ${labelName}
+      </span>      
+    </div>
+  `
+  /*
+  <span 
+    contenteditable
+    style=${inputStyle} 
+    @blur=${e => {
+      const newName = e.target.innerText;
+      if (newName === "") {
+        delete state.labels[labelId];
+        return;
+      }
+
+      label.labelName = newName;
+      patchState();
+    }}>
+      ${labelName}
+    </span>
+  */ 
 }
 
 function drawEdge(edge, state) { // there muse be a better way to do this
@@ -113,11 +216,21 @@ function drawTempEdge(edge, state) {
 
   // const data = `M ${x0} ${y0} C ${x0 + xDist * (outLeftOrRight === "left" ? -1 : 1)} ${y0}, ${x1 + xDist * (inLeftOrRight === "left" ? -1 : 1)} ${y1}, ${x1} ${y1}`;
   
-  const data = `M ${x0} ${y0} L ${x1} ${y1}`;
+  const finalPoint = interpolatePts([x0, y0], [x1, y1], .97);
+
+  const data = `M ${x0} ${y0} L ${finalPoint[0]} ${finalPoint[1]}`;
 
   return svg`
     <path class="edge" stroke-width=${`${3*state.dataflow.scale()}px`} vector-effect="non-scaling-stroke" d=${data}>
   `
+
+  function interpolatePts(p1, p2, t) {
+    return [ 
+      p1[0] + t * (p2[0] - p1[0]), 
+      p1[1] + t * (p2[1] - p1[1])
+    ]
+  }
+
 }
 
 const drawSelectBox = box => {
@@ -152,7 +265,7 @@ const filteredNodes = (state) => {
     <div 
       class="node-type" 
       data-type=${nodeType}
-      style="padding: .5em 1em; background: darkgrey; margin: .5em 0;">
+      style="padding: .5em 1em; background: darkgrey; margin: .5em 0; overflow-x: auto;">
       ${nodeType}
       </div>
   `
@@ -284,6 +397,15 @@ export function view(state) {
                   (item, index) => state.drawNode(item, state)
                 )
               }
+              <div class="labels">
+                ${repeat(
+                    Object.entries(state.labels), 
+                    item => item[0], 
+                    (item, index) => drawLabel(item, state)
+                  )
+                }
+              </div>
+
               ${drawSelectBox(state.selectBox)}
             </div>
           </div>
@@ -294,6 +416,7 @@ export function view(state) {
               ${drawTempEdge(state.tempEdge, state)}
             </g>
           </svg>
+
         </div>
 
         <div class="node-toolbox" style="width: 275px; background: lightgrey;">
@@ -302,7 +425,7 @@ export function view(state) {
               style="width: 75%; height: 2em; border-radius: 1em; border: 1px solid grey; padding: .5em 1em;" 
               placeholder="add node..."
               .value=${state.searchTerm} 
-              @input=${e => { state.searchTerm = e.target.value; }}
+              @input=${e => { state.searchTerm = e.target.value; patchState(); }}
               />
           </div>
           <div style="overflow-y: scroll; height: 92%;">

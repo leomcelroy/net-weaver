@@ -1,4 +1,4 @@
-import { generateRandomString } from "./generateRandomString.js";
+import { createRandStr } from "./createRandStr.js";
 
 type Node = {
   data: any,
@@ -44,7 +44,7 @@ export function createGraph() {
   }
 
   function addNode(data: object, n_ports: number): string {
-    const node_id = `_${generateRandomString(8)}`;
+    const node_id = `_${createRandStr(8)}`;
 
     if (node_id in nodes) throw new Error(`Graph already has node with id ${node_id}.`)
 
@@ -89,7 +89,7 @@ export function createGraph() {
     dst_node_id: string,
     dst_idx: number
   ): string {
-    const edge_id = `_${generateRandomString(8)}`;
+    const edge_id = `_${createRandStr(8)}`;
 
     if (edge_id in edges) {
       throw new Error(`Edge ID ${edge_id} already exists.`);
