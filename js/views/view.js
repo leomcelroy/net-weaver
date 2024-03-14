@@ -286,44 +286,42 @@ export function view(state) {
           run
         </div>
 
+        <div class="menu-item" @click=${async () => { 
+
+            const URL = "https://webedg.uclalemur.com/compile";
+
+            const netlist = getNetlist(state);
+            console.log("sending", netlist);
+
+            try {
+              const res = await fetch(URL, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(netlist),
+              }).then(res => {
+                return res.json();
+              });
+
+              console.log("responded", res);
+            } catch (err) {
+              console.error(err);
+            }
+
+         }}>
+          <i class="fa-solid fa-square-share-nodes" style="padding-right: 10px;"></i>
+          compile
+        </div>
+
         <div class="menu-item" @click=${() => { console.log(state.graph.getGraph()) }}>
           <i class="fa-solid fa-print" style="padding-right: 10px;"></i>
           print graph
         </div>
 
         <div class="menu-item" @click=${() => {
-          const graph = state.graph.getGraph();
-          const nets = generateNets(graph);
-
-          nets.forEach(net => {
-            net.forEach(port => {
-              const id = port.nodeId;
-              port.name = id;
-              port.portName = graph.nodes[id].data.ports[port.portIdx].name
-            })
-          })
-
-          const copiedGraph = JSON.parse(JSON.stringify(graph));
-
-          // add port name to graph;
-
-          Object.entries(copiedGraph.edges).forEach(edge => {
-            const [edgeId, data] = edge;
-
-            const dstNode = graph.nodes[data.dst.node_id];
-            const dstPortName = dstNode.data.ports[data.dst.idx].name;
-            data.dst.portName = dstPortName;
-
-            const srcNode = graph.nodes[data.src.node_id];
-            const srcPortName = srcNode.data.ports[data.src.idx].name;
-            data.src.portName = srcPortName;
-          })
-
-          const result = { 
-            nets, 
-            graph: copiedGraph,
-            graphUIData: state.graphUIData
-          };
+          
+          const result = getNetlist(state);
 
           console.log(result);
 
@@ -453,4 +451,42 @@ export function view(state) {
         </div>
     </div>
   `
+}
+
+function getNetlist(state) {
+  const graph = state.graph.getGraph();
+  const nets = generateNets(graph);
+
+  nets.forEach(net => {
+    net.forEach(port => {
+      const id = port.nodeId;
+      port.name = id;
+      port.portName = graph.nodes[id].data.ports[port.portIdx].name
+    })
+  })
+
+  const copiedGraph = JSON.parse(JSON.stringify(graph));
+
+  // add port name to graph;
+
+  Object.entries(copiedGraph.edges).forEach(edge => {
+    const [edgeId, data] = edge;
+
+    const dstNode = graph.nodes[data.dst.node_id];
+    const dstPortName = dstNode.data.ports[data.dst.idx].name;
+    data.dst.portName = dstPortName;
+
+    const srcNode = graph.nodes[data.src.node_id];
+    const srcPortName = srcNode.data.ports[data.src.idx].name;
+    data.src.portName = srcPortName;
+  })
+
+  const result = { 
+    nets, 
+    graph: copiedGraph,
+    graphUIData: state.graphUIData,
+    labels: JSON.parse(JSON.stringify(state.labels))
+  };
+
+  return result;
 }

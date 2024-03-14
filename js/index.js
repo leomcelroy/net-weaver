@@ -46,9 +46,10 @@ function init() {
   addSelectBox(listener, state);
   addNodeAdding(listener, state);
   addDropUpload(file => {
-    const { graph, graphUIData } = JSON.parse(file);
+    const { graph, graphUIData, labels } = JSON.parse(file);
     state.graph.setGraph(graph);
     state.graphUIData = graphUIData;
+    state.labels = labels;
     state.mutationActions.render();
   });
 

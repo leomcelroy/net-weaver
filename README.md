@@ -1,14 +1,25 @@
 # net-weaver
 
+- types of arg parameters
+  - string
+  - integer
+  - boolean
+  - float
+  - range (range of floats)
 
 # TO-DO
 
-- clear state on upload
-
-
-- save labels in downloaded state
 - use labels when generating net list
+- make arg parameters editable
+  - add value key in node data
+- better search
 
+- make label input nice
+
+- make errors visible
+- clientside type checking on ports
+
+-> board design
 
 MAYBE
 - draw nets not direct edges
@@ -16,8 +27,10 @@ MAYBE
 - set view window
 - delete labels with x
 - delete multiple labels
+- clear state on upload
 
 DONE
+- save labels in downloaded state
 - draw labels in scale view window
 - remove
   - interalBlocks
