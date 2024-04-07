@@ -1,4 +1,6 @@
-import { components } from "./components.js";
+import componentsLibrary from "./componentsLibrary.js";
+
+const { blocks } = componentsLibrary;
 
 const test =  {
   name: "test component",
@@ -27,13 +29,11 @@ const test =  {
   ]
 }
 
-
-
 export const nodes = { 
   "test component": test 
 };
 
-components.forEach( comp => {
+blocks.forEach( comp => {
 
   if (
     ["InternalSubcircuit", "InternalBlock"]

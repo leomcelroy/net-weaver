@@ -1,25 +1,14 @@
 # net-weaver
 
-- types of arg parameters
-  - string
-  - integer
-  - boolean
-  - float
-  - range (range of floats)
+# TODO
 
-# TO-DO
-
-- use labels when generating net list
-- make arg parameters editable
-  - add value key in node data
 - better search
-
-- make label input nice
-
 - make errors visible
 - clientside type checking on ports
 
 -> board design
+
+to svg pcb
 
 MAYBE
 - draw nets not direct edges
@@ -28,6 +17,11 @@ MAYBE
 - delete labels with x
 - delete multiple labels
 - clear state on upload
+- make label input nice
+- center window on upload
+- add update components button, to re-add same types from library
+- add replace function
+- how to add generic components
 
 DONE
 - save labels in downloaded state
@@ -40,3 +34,20 @@ DONE
 - if label exists for src port use name of label, if not create name
 - if label on dst port, clear label
 - clear labels on node deletion
+- use labels when generating net list
+- make arg parameters editable
+  - add value key in node data
+
+
+# Notes
+
+- types of arg parameters
+  - string
+  - integer (int)
+  - boolean
+  - float
+  - range (range of floats)
+
+test case
+- control board
+- replace connector

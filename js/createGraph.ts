@@ -152,8 +152,14 @@ export function createGraph() {
     removeNode,
     removeEdge,
     setGraph(graph) {
-      nodes = graph.nodes;
-      edges = graph.edges;
+      nodes = JSON.parse(JSON.stringify(graph.nodes));
+      edges = JSON.parse(JSON.stringify(graph.edges));
+    },
+    copy() {
+      const newGraph = createGraph();
+      newGraph.setGraph(getGraph());
+
+      return newGraph;
     }
     // on
     // topologicalSort

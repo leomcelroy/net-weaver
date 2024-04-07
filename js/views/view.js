@@ -288,8 +288,9 @@ export function view(state) {
 
         <div class="menu-item" @click=${async () => { 
 
-            const URL = "https://webedg.uclalemur.com/compile";
-
+            // const URL = "https://webedg.uclalemur.com/compile";
+            const URL = "http://ctb.1337.cx:7761/compile";
+            
             const netlist = getNetlist(state);
             console.log("sending", netlist);
 
@@ -314,7 +315,10 @@ export function view(state) {
           compile
         </div>
 
-        <div class="menu-item" @click=${() => { console.log(state.graph.getGraph()) }}>
+        <div class="menu-item" @click=${() => { 
+          const result = getNetlist(state);
+          console.log(result);
+        }}>
           <i class="fa-solid fa-print" style="padding-right: 10px;"></i>
           print graph
         </div>
@@ -331,7 +335,7 @@ export function view(state) {
           );
         }}>
           <i class="fa-solid fa-download" style="padding-right: 10px;"></i>
-          download graph
+          download
         </div>
 
         <div class="menu-item" @click=${() => {
@@ -350,27 +354,6 @@ export function view(state) {
           <i class="fa-solid fa-circle-dot" style="padding-right: 10px;"></i>
           wire mode: ${state.wireMode}
         </div>
-
-        <!--
-        <div class="menu-item" @click=${() => {
-          const graph = state.graph.getGraph();
-          const nets = generateNets(graph);
-
-          console.log(nets);
-
-          download(
-            "netlist.json", 
-            JSON.stringify({ 
-              nets, 
-              graph,
-              graphUIData: state.graphUIData
-            })
-          );
-        }}>
-          <i class="fa-solid fa-network-wired" style="padding-right: 10px;"></i>
-          download netlist
-        </div>
-        -->
 
         <div class="menu-item-no-hover" style="position:absolute; right: 40px;">selected: ${state.selectedNodes.size}</div>
         <a class="github-logo" href="https://github.com/leomcelroy/net-weaver">
@@ -454,7 +437,38 @@ export function view(state) {
 }
 
 function getNetlist(state) {
-  const graph = state.graph.getGraph();
+  const copiedGraph = state.graph.copy();
+  const { labels } = state;
+
+  const edgesToAdd = {};
+
+  Object.values(labels).forEach(label => {
+    const { labelName, nodeId , portIdx } = label;
+
+    if (labelName in edgesToAdd) {
+      edgesToAdd[labelName].push( [ nodeId, portIdx ] );
+    } else {
+      edgesToAdd[labelName] =  [ [ nodeId, portIdx ] ];
+    }
+  });
+
+  Object.values(edgesToAdd).forEach(group => {
+    const [ srcNode, srcPort ] = group[0];
+    group.slice(1).forEach(dst => {
+      const [ dstNode, dstPort ] = dst;
+
+      copiedGraph.addEdge(
+        {}, 
+        srcNode, 
+        srcPort, 
+        dstNode, 
+        dstPort
+      );
+    })
+  })
+
+  const graph = copiedGraph.getGraph();
+
   const nets = generateNets(graph);
 
   nets.forEach(net => {
@@ -465,11 +479,11 @@ function getNetlist(state) {
     })
   })
 
-  const copiedGraph = JSON.parse(JSON.stringify(graph));
-
   // add port name to graph;
 
-  Object.entries(copiedGraph.edges).forEach(edge => {
+  const graphToReturn = state.graph.copy().getGraph();
+
+  Object.entries(graphToReturn.edges).forEach(edge => {
     const [edgeId, data] = edge;
 
     const dstNode = graph.nodes[data.dst.node_id];
@@ -483,7 +497,7 @@ function getNetlist(state) {
 
   const result = { 
     nets, 
-    graph: copiedGraph,
+    graph: graphToReturn,
     graphUIData: state.graphUIData,
     labels: JSON.parse(JSON.stringify(state.labels))
   };

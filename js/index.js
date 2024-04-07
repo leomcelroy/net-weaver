@@ -5,6 +5,8 @@ import { view } from "./views/view.js";
 
 import { createListener } from "./createListener.js";
 
+import { loadUrlParam } from "./loadUrlParam.js";
+
 import { addDropUpload } from "./events/addDropUpload.js";
 import { addPanZoom } from "./events/addPanZoom.js";
 import { addSelectBox } from "./events/addSelectBox.js";
@@ -45,13 +47,7 @@ function init() {
   addLabelManipulation(listener, state);
   addSelectBox(listener, state);
   addNodeAdding(listener, state);
-  addDropUpload(file => {
-    const { graph, graphUIData, labels } = JSON.parse(file);
-    state.graph.setGraph(graph);
-    state.graphUIData = graphUIData;
-    state.labels = labels;
-    state.mutationActions.render();
-  });
+  addDropUpload(uploadJSON);
 
   domNode.addEventListener("keydown", e => {
     if (e.keyCode === 191) {
@@ -60,6 +56,21 @@ function init() {
       e.preventDefault();
     }
   })
+
+  loadUrlParam("src").then(text => {
+    if (!text) return;
+    uploadJSON(text);
+  });
+
+  function uploadJSON(json) {
+    const { graph, graphUIData, labels } = JSON.parse(json);
+    state.graph.setGraph(graph);
+    state.graphUIData = graphUIData;
+    state.labels = labels;
+    state.mutationActions.render();
+    state.mutationActions.render();
+  }
+
 
 
 

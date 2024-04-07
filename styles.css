@@ -21,6 +21,10 @@ html, body {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
+[hidden] {
+  display: none;
+}
+
 
 .root {
   width: 100vw;
@@ -160,12 +164,23 @@ html, body {
 .node-title {
   position: relative;
   display: flex;
+  flex-direction: column;
   font-weight: bold;
   justify-content: space-between;
 }
 
-.node-name {
+.node-id-value {
+  width: max-content;
+  border-radius: .5rem;
+  padding: .1rem;
+  padding-left: .2rem;
+  padding-right: .2rem;
+  border-radius: .5rem;
+}
 
+.node-id-value:hover {
+  background: lightgrey;
+  cursor: pointer;
 }
 
 .port {
