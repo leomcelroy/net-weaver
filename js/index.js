@@ -1,5 +1,7 @@
 import { state } from "./state.js";
 
+import { generateSVGPCBcode } from "./generateSVGPCBcode.js";
+
 import { render } from "lit-html";
 import { view } from "./views/view.js";
 
@@ -77,6 +79,15 @@ function init() {
 }
 
 init();
+
+
+
+
+
+
+
+
+
 
 
 
