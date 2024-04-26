@@ -2,6 +2,27 @@
 
 # TODO
 
+if is_array == true and hint_array_direction == sink
+  add new port
+  link port to parent node
+    parent: {
+      name: "gpio",
+    },
+
+    {
+      name: "gpio_port1",
+      isArray: false,
+      elementOf: "gpio"
+    }
+
+    when all connections removed it disappears
+
+can't connect two array sinks
+can't drag from sink
+
+if is_array == true and hint_array_direction != sink
+  treat as normal single element
+
 - better search
 - make errors visible
 - clientside type checking on ports

@@ -28,6 +28,8 @@ export function addWireManipulation(listen, state) {
 
   listen("mousedown", ".port", e => {
     if (state.wireMode !== "WIRES") return;
+    if (e.target.matches("[is_sink]")) return;
+
     from = e.target.dataset.id;
   })
 

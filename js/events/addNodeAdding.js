@@ -13,9 +13,10 @@ export function addNodeAdding(listen, state) {
   let dragging = false;
   let id = "";
 
-  listen("mousedown", ".node-type", e => {
+  listen("mousedown", ".node-type, .node-type *", e => {
     dragging = true;
-    const typeToAdd = e.target.dataset.type;
+    console.log(e.target.closest(".node-type"))
+    const typeToAdd = e.target.closest(".node-type").dataset.type;
 
     id = state.mutationActions.add_node(typeToAdd);
     patchState();

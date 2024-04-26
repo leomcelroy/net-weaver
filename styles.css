@@ -22,7 +22,7 @@ html, body {
 }
 
 [hidden] {
-  display: none;
+  display: none !important;
 }
 
 
@@ -188,23 +188,20 @@ html, body {
   height: 15px;
   border-radius: 50%;
   background: grey;
-  position: absolute;
   z-index: 99999;
 }
 
-.port-left {
-  left: -9px;
-  top: 26px;
-}
-
-.port-right {
-  right: -9px;
-  top: 26px;
-}
-
-.port:hover {
+.port:hover, .port[elementOf]:hover {
   background: sandybrown;
   cursor: default;
+}
+
+.port[is_array][is_sink] {
+  border-radius: 0px;
+}
+
+.port[elementOf] {
+  background: #4c994c;
 }
 
 .edge-arrow:hover {

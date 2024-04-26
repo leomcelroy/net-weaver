@@ -26,6 +26,7 @@ export const state = {
   tempEdge: ["", [0 ,0]],
   dataflow: null,
   searchTerm: "",
+  searchResults: [],
   domNode: document.body,
   mutationActions: {
     render: r,
@@ -118,23 +119,23 @@ function drawNode(item, state) {
       </div>
       
       <div style="width: 100%; display: flex;">
-        <div style="width: 50%;">
+        <div style="display: flex; flex-direction: column;">
           ${node.data.ports
             .filter( port => port.leftRightUpDown === "left")
             .map((port, i) => html`
-              <div>
-                <div class="port port-left" style="top:${i*19 + 40}px" data-id=${`${k}:${port.idx}`}></div>
+              <div style="display: flex;">
+                <div class="port" ?is_array=${port.array} ?elementOf=${port.elementOf !== undefined} ?is_sink=${port.srcSinkBi === "sink"} style="top:${i*19 + 40}px" data-id=${`${k}:${port.idx}`}></div>
                 <span style="padding-left: 10px;">${port.name}</span>
               </div>
             `)}
         </div>
-        <div style="width: 50%;">
+        <div style="display: flex; flex-direction: column; flex: 1;">
             ${node.data.ports
               .filter(port => port.leftRightUpDown === "right")
               .map((port, i) => html`
-              <div>
-                <div class="port port-right" style="top:${i*19 + 40}px" data-id=${`${k}:${port.idx}`}></div>
-                <span style="padding-right: 10px; display: flex; justify-content: flex-end;">${port.name}</span>
+                <div style="display: flex; justify-content: flex-end;">
+                  <span style="padding-right: 10px; display: flex; justify-content: flex-end;">${port.name}</span>
+                  <div class="port" ?is_array=${port.array} ?elementOf=${port.elementOf !== undefined} ?is_sink=${port.srcSinkBi === "sink"} style="top:${i*19 + 40}px" data-id=${`${k}:${port.idx}`}></div>
                 </div>
               `)}
         </div>

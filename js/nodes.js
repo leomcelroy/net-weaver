@@ -56,7 +56,8 @@ blocks.forEach( comp => {
       name: p.name,
       leftRightUpDown: [null, "left", "up", "down"].includes(p.hint_position) ? "left" : "right", // of block
       type: p.type, // string eg digital bidirectional, usb host
-      array: p.is_array // boolean
+      array: p.is_array, // boolean
+      srcSinkBi: p.hint_array_direction
     })),
     argParams: comp.argParams
   }

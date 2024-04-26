@@ -12,6 +12,7 @@
     "vite": "^5.0.4"
   },
   "dependencies": {
+    "fuzzyset": "^1.0.7",
     "lit-html": "^3.1.0"
   }
 }

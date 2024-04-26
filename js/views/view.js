@@ -6,6 +6,8 @@ import { generateNets } from "../generateNets.js";
 import { patchState } from "../state.js";
 import { generateSVGPCBcode } from "../generateSVGPCBcode.js";
 import { showModal } from "./showModal.js";
+import { searchComponents } from "../searchComponents.js";
+import componentsLibrary from "../componentsLibrary.js";
 
 function getRelative(el0, el1) {
   // Get the top, left coordinates of two elements
@@ -91,7 +93,48 @@ function drawLabel([labelId, label], state) {
           const newName = prompt("Please input a label name. Empty string will delete label.", labelName);
           if (newName === null) return;
           if (newName === "") {
+            const { nodeId, portIdx } = state.labels[labelId];
+
             delete state.labels[labelId];
+
+            // if port now has no labels then delete it
+            let deletePort = true && state.graph
+              .getNode(nodeId)
+              .data
+              .ports
+              [portIdx]
+              .elementOf !== undefined;
+
+            Object.entries(state.labels).forEach(([k, v]) => {
+              const localNodeId = v.nodeId;
+              const localPortIdx = v.portIdx;
+              
+              if (localNodeId === nodeId && localPortIdx === portIdx) {
+                deletePort = false;
+              }
+            })
+
+            const nodeData = state.graph
+              .getNode(nodeId)
+              .data;
+
+            nodeData.ports = nodeData.ports.filter((x, i) => i !== portIdx);
+
+            // if delete port then update all labels that are after
+            // this is why I should always use IDs
+            if (deletePort) Object.entries(state.labels).forEach(([k, v]) => {
+              const localNodeId = v.nodeId;
+              const localPortIdx = v.portIdx;
+              
+              if (localNodeId === nodeId && localPortIdx > portIdx) {
+                v.portIdx--;
+                nodeData.ports[v.portIdx].idx--;
+              }
+            })
+
+
+            patchState({}, true);
+
             return;
           }
 
@@ -258,18 +301,60 @@ const drawSelectBox = box => {
 
 
 const filteredNodes = (state) => {
-  const searchQuery = state.searchTerm.toLowerCase();
-  const filteredNodes = Object.keys(state.nodes).filter(
-    (nodeType) => nodeType.toLowerCase().includes(searchQuery)
-  );
+  let filteredNodes = state.searchTerm === "" 
+    ? componentsLibrary.blocks
+    : state.searchResults;
 
-  const oneNodeHTML = (nodeType) => html`
+  filteredNodes = filteredNodes
+    .filter(x => x.superClasses.some(c => !["InternalBlock", "InternalSubcircuit"].includes(c)))
+    .filter(comp => {
+        if (
+          ["InternalSubcircuit", "InternalBlock"]
+          .some(x => comp.superClasses.includes(x))
+        ) {
+          return false;
+        }
+
+        if (comp.is_abstract) {
+          return false;
+        }
+
+        return true;
+    });
+
+  const oneNodeHTML = ({ type, docstring, superClasses }) => html`
     <div 
       class="node-type" 
-      data-type=${nodeType}
-      style="padding: .5em 1em; background: darkgrey; margin: .5em 0; overflow-x: auto;">
-      ${nodeType}
+      data-type=${type}
+      style="
+        padding: .5em 1em; 
+        background: darkgrey; 
+        margin: .5em 0; 
+        overflow-x: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        ">
+      <div>
+        ${type}
       </div>
+      <div>
+        ${superClasses.map(x => html`
+          <span 
+            style="
+              font-size: 0.7rem;
+              padding: .12rem;
+              margin: .2rem;
+              background: #a5d4e4;
+              color: #494444;
+              border-radius: .8rem;">
+              ${x}
+          </span>`)}
+      </div>
+      <div style="font-size: .8rem; color: #616060;">
+        ${docstring}
+      </div>
+    </div>
   `
 
   return filteredNodes.map(oneNodeHTML);
@@ -283,15 +368,19 @@ export function view(state) {
   return html`
     <div class="root">
       <div class="menu">
-        <div class="menu-item" @click=${() => state.evaluate(...state.selectedNodes)}>
+        <div class="menu-item" @click=${() => {
+          state.evaluate(...state.selectedNodes);
+
+          console.log(state);
+        }}>
           <i class="fa-solid fa-play" style="padding-right: 10px;"></i>
           run
         </div>
 
         <div class="menu-item" @click=${async () => { 
 
-            const URL = "https://webedg.uclalemur.com/compile";
-            // const URL = "http://ctb.1337.cx:7761/compile";
+            // const URL = "https://webedg.uclalemur.com/compile";
+            const URL = "http://ctb.1337.cx:7761/compile";
             
             const netlist = getNetlist(state);
             console.log("sending", netlist);
@@ -352,7 +441,7 @@ export function view(state) {
           delete
         </div>
 
-        <div class="menu-item" @click=${() => {
+        <div hidden class="menu-item" @click=${() => {
           const newWireMode = state.wireMode === "WIRES" ? "LABELS" : "WIRES";
           state.wireMode = newWireMode;
         }}>
@@ -405,13 +494,18 @@ export function view(state) {
 
         </div>
 
-        <div class="node-toolbox" style="width: 275px; background: lightgrey;">
+        <div class="node-toolbox" style="width: 350px; background: lightgrey;">
           <div style="width: 100%; display: flex; justify-content: center; padding: 1em;">
             <input 
               style="width: 75%; height: 2em; border-radius: 1em; border: 1px solid grey; padding: .5em 1em;" 
               placeholder="add node..."
               .value=${state.searchTerm} 
-              @input=${e => { state.searchTerm = e.target.value; patchState(); }}
+              @input=${e => { 
+                state.searchTerm = e.target.value; 
+                state.searchResults = searchComponents(e.target.value);
+
+                patchState();
+              }}
               />
           </div>
           <div style="overflow-y: scroll; height: 92%;">

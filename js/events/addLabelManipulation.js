@@ -8,6 +8,7 @@ export function addLabelManipulation(listen, state) {
 
   listen("mousedown", ".port", e => {
     if (state.wireMode !== "LABELS") return;
+    if (e.target.matches("[is_sink]")) return;
 
     from = e.target.dataset.id;
   })
@@ -59,10 +60,47 @@ export function addLabelManipulation(listen, state) {
 
     if (from === "") return;
 
-    if (from !== "" && to !== "") {
+    if (from !== "" && to !== "") {      
 
       const [ fromNode, fromPort ] = from.split(":");
-      const [ toNode, toPort ] = to.split(":");
+      let [ toNode, toPort ] = to.split(":");
+
+      // if to is an array sink add a new port 
+      const toNodeObj = state
+        .graph
+        .getNode(toNode)
+        .data;
+
+      const toNodePortObj = state
+        .graph
+        .getNode(toNode)
+        .data
+        .ports
+        [toPort];
+
+      if (toNodePortObj.array && toNodePortObj.srcSinkBi === "sink") {
+        // add new port
+        const newIdx = toNodeObj.ports.length;
+        const newPort = {
+          name: `${toNodePortObj.name}_${newIdx}`,
+          array: false,
+          idx: newIdx,
+          leftRightUpDown: toNodePortObj.leftRightUpDown,
+          srcSinkBi: "bi",
+          type: "DigitalBidir",
+          elementOf: Number(toPort)
+        }
+
+        toNodeObj.ports.push(newPort);
+        toPort = newIdx;
+
+        state
+          .graph
+          .getNode(toNode)
+          .ports
+          .push([])
+      }
+
 
       const labelName = state
         .graph
