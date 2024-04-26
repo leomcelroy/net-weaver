@@ -105,6 +105,8 @@ function drawLabel([labelId, label], state) {
               [portIdx]
               .elementOf !== undefined;
 
+
+
             Object.entries(state.labels).forEach(([k, v]) => {
               const localNodeId = v.nodeId;
               const localPortIdx = v.portIdx;
@@ -118,19 +120,23 @@ function drawLabel([labelId, label], state) {
               .getNode(nodeId)
               .data;
 
-            nodeData.ports = nodeData.ports.filter((x, i) => i !== portIdx);
+          
 
             // if delete port then update all labels that are after
             // this is why I should always use IDs
-            if (deletePort) Object.entries(state.labels).forEach(([k, v]) => {
-              const localNodeId = v.nodeId;
-              const localPortIdx = v.portIdx;
+            if (deletePort) {
+              nodeData.ports = nodeData.ports.filter((x, i) => i !== portIdx);
               
-              if (localNodeId === nodeId && localPortIdx > portIdx) {
-                v.portIdx--;
-                nodeData.ports[v.portIdx].idx--;
-              }
-            })
+                Object.entries(state.labels).forEach(([k, v]) => {
+                  const localNodeId = v.nodeId;
+                  const localPortIdx = v.portIdx;
+                  
+                  if (localNodeId === nodeId && localPortIdx > portIdx) {
+                    v.portIdx--;
+                    nodeData.ports[v.portIdx].idx--;
+                  }
+                })
+            }
 
 
             patchState({}, true);

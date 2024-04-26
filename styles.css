@@ -204,6 +204,10 @@ html, body {
   background: #4c994c;
 }
 
+[is_required] {
+  font-weight: bold;
+}
+
 .edge-arrow:hover {
   fill: red;
 }

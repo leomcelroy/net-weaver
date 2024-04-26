@@ -60,7 +60,7 @@ export function addLabelManipulation(listen, state) {
 
     if (from === "") return;
 
-    if (from !== "" && to !== "") {      
+    if (from !== "" && to !== "" && from !== to) {      
 
       const [ fromNode, fromPort ] = from.split(":");
       let [ toNode, toPort ] = to.split(":");
