@@ -4,7 +4,20 @@
   box-sizing: border-box;
 }
 
-html, body {
+:root {
+  --background-color: darkslategray;
+  --node-frame-color: #c7c3ba;
+  --node-ports-color: #eee9dc;
+  --toolbox-background: #b8c7bc94;
+  --toolbox-element: #eee9dc;
+  --toolbar-color: #1e3434;
+  --accent-color: #ffc55b;
+  --selected-color: sandybrown;
+  --tag-color: #84788a;
+}
+
+html,
+body {
   margin: 0px;
   width: 100vw;
   height: 100vh;
@@ -21,11 +34,6 @@ html, body {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-[hidden] {
-  display: none !important;
-}
-
-
 .root {
   width: 100vw;
   height: 100vh;
@@ -34,37 +42,76 @@ html, body {
   overflow: hidden;
 }
 
+
+
+
+/***********************************
+
+UTILITY STYLES
+
+***********************************/
+
+[hidden] {
+  display: none !important;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
+/***********************************
+
+MENU
+
+***********************************/
+
+
 .menu {
-  background: #3d2788;
+  background: var(--toolbar-color);
   color: white;
-  height: min-content;
-  width: 100%;
   display: flex;
   position: relative;
-  border-bottom: 1px solid black;
+  padding: 0.3rem 0.4rem 0.2rem 0.4rem;
+  z-index: 10;
+  gap: 0.3rem;
+  box-shadow: 0 0 3px 1px #000000c5;
 }
+
 
 .menu-item {
-  padding: 10px 10px 10px 10px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  color: white;
+  gap: 0.3rem;
+  padding: 0.3rem 0.5rem;
+  color: rgb(194, 194, 194);
   text-decoration: none;
+  border-radius: 0.3rem;
 }
 
-.menu-item:hover {
-  background: purple;
+.menu-item.btn:hover {
+  background: #ccc9bc4b;
+  box-shadow: 0 0 1px 1px #0000006e;
+  color: white;
   cursor: pointer;
 }
 
-.menu-item-no-hover {
-  padding: 10px 7px 10px 7px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-decoration: none;
+.github-logo {
+  color: inherit;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  height: 100%;
+  opacity: .8;
+}
+
+.github-logo:hover {
+  cursor: pointer;
+  opacity: 1;
 }
 
 .dropdown-container {
@@ -73,7 +120,7 @@ html, body {
 
 .dropdown-list {
   z-index: 11;
-  background: purple;
+  background: var(--accent-color);
   position: absolute;
   padding: 5px;
   top: 100%;
@@ -85,36 +132,169 @@ html, body {
   visibility: hidden;
 }
 
-.node-type {
+.workspace {
+  position: relative;
+  flex: 1;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
 }
 
-.node-type:hover {
-  opacity: .8;
-  cursor: grab;
+
+/***********************************
+
+TOOLBOX
+
+***********************************/
+
+.node-toolbox {
+  position: absolute;
+  width: 350px;
+  background-color: var(--toolbox-background);
+  right: 0;
+  max-height: calc(100% - 1rem);
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 2px 1px #202020;
+  padding: 0.5rem 0;
+  gap: 0.5em;
+  backdrop-filter: blur(10px);
 }
 
 .node-search {
-  padding: 5px;
-  margin: 3px;
+  display: flex; 
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem;
 }
+
+.node-search span {
+  color:black;
+  font-weight: bold;
+  font-size: larger;
+}
+
+
+.node-search input{
+  background-color: #92a5a5;
+  color: var(--toolbar-color);
+  width: 75%;
+  border-radius: 0.4em; 
+  border: 1px solid var(--toolbox-element); 
+  padding: .3rem 0.5rem;
+}
+
+.node-search input::placeholder {
+  color: rgb(37, 37, 37);
+}
+
+
+.toolbox-scroller {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #757575 transparent;
+  padding-left: 0.3rem;
+}
+
+.node-result {
+  padding: 0.3rem 0.4rem; 
+  background: var(--toolbox-element); 
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  position: relative;
+  box-shadow: 0 0 2px 1px #575757;
+  margin: 2px;
+  opacity: 0.8;
+}
+
+.node-result:hover {
+  cursor: grab;
+  box-shadow: 0 0 3px 1px #3a3a3a;
+  opacity: 1;
+}
+
+
+.node-type {
+  font-weight: bold;
+  font-family: monospace;
+  color: #1a1a1a;
+}
+
+.node-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2em;
+}
+
+.node-tag {
+  font-size: 0.7rem;
+  padding: 3px 6px;
+  background: var(--tag-color);
+  color: var(--toolbox-element);
+  font-family: monospace;
+  border-radius: 5px;
+}
+
+.node-docstring {
+  font-size: .8rem; 
+  color: #4b4b4b;
+  font-style: italic;
+  word-wrap: break-word;
+}
+
+
+/***********************************
+
+DROPDOWN
+
+***********************************/
 
 .dropdown-container:hover .dropdown-list {
 /*  opacity: 100%;*/
   visibility: visible;
 }
 
-.visible {
-  visibility: visible;
-}
 
 .bottom-container {
   background: blue;
   display: flex;
   flex: 1;
   overflow: hidden;
+}
+
+/***********************************
+
+DATAFLOW
+
+***********************************/
+
+
+.dataflow {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+#background {
+  --grid-size: 50px;
+  --dot: 1px;
+
+  background-size: calc(var(--grid-size) * var(--scale, 1))
+    calc(var(--grid-size) * var(--scale, 1));
+  background-image: radial-gradient(
+    circle,
+    rgb(148, 148, 148) var(--dot),
+    var(--background-color) var(--dot)
+  );
+  background-position: var(--offset-x, 0) var(--offset-y, 0);
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 
 .edges {
@@ -127,9 +307,16 @@ html, body {
 }
 
 .edge {
-  stroke: black;
+  stroke: gold;
+  stroke-linecap: round;
   fill: none;
 }
+
+
+.edge-arrow:hover {
+  fill: red;
+}
+
 
 .nodes {
   position: relative;
@@ -138,35 +325,45 @@ html, body {
   overflow: hidden;
 }
 
+
+/***********************************
+
+NODE UI
+
+***********************************/
+
 .node {
   position: absolute;
   min-width: 150px;
   height: min-content;
-  background: #add8e6e6;
-  border-radius: 10px;
-  padding: 7px;
-  border: 3px solid #00000000;
+  font-family: monospace;
+  border-radius:  0.3rem;
+  box-shadow: 0 0 2px 1px #202020;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  background-color: var(--node-frame-color);
 }
 
 .node:hover {
-  border: 3px solid white;
+  box-shadow: 0 0 14px 2px #202020;
 }
 
 .selected-node {
-  border: 3px solid sandybrown;
-}
-
-.node-view {
-  padding-top: 10px;
-  height: min-content;
+  outline: 3px solid var(--selected-color);
 }
 
 .node-title {
   position: relative;
   display: flex;
   flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.3rem 0.3rem 0.1rem 0.3rem;
+  border-radius: 0.3rem 0.3rem 0 0;
+}
+
+.node-name {
   font-weight: bold;
-  justify-content: space-between;
 }
 
 .node-id-value {
@@ -175,12 +372,50 @@ html, body {
   padding: .1rem;
   padding-left: .2rem;
   padding-right: .2rem;
-  border-radius: .5rem;
+  border-radius: .2rem;
 }
 
 .node-id-value:hover {
-  background: lightgrey;
-  cursor: pointer;
+  background: white;
+  cursor: text;
+}
+
+.node-id {
+  color: rgb(109, 109, 109); 
+  font-size: .7rem;
+  font-style: italic;
+}
+
+.node-content {
+  display: flex;
+  justify-content: center;
+}
+
+.node-view {
+  height: min-content;
+}
+
+.node-ports {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.3rem;
+  background: var(--node-ports-color);
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+/***********************************
+
+PORTS
+
+***********************************/
+
+
+.ports-container {
+  display: flex; 
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .port {
@@ -189,10 +424,12 @@ html, body {
   border-radius: 50%;
   background: grey;
   z-index: 99999;
+  box-shadow: 0 0 0 1px rgb(75, 75, 75);
 }
 
-.port:hover, .port[elementOf]:hover {
-  background: sandybrown;
+.port:hover,
+.port[elementOf]:hover {
+  background: var(--selected-color);
   cursor: default;
 }
 
@@ -208,53 +445,57 @@ html, body {
   font-weight: bold;
 }
 
-.edge-arrow:hover {
-  fill: red;
+
+.label {
+  position: absolute; 
+  border-radius: .2em;
+  padding: .1em .5em;
+  font-size: .8rem;
+  min-width: 30px;
+  text-align: center;
+  box-shadow: 0 0 0 1px #1d1d1da8;
 }
 
-.node-content {
+.label-input {
+  background: none;
+  border: none;
+  text-align: center;
+}
+
+/***********************************
+
+ARGS
+
+***********************************/
+
+
+.all-arg-params {
+  text-wrap: nowrap;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  padding: 0.1rem 0.3rem;
+  gap: 0.4rem;
 }
 
-.dataflow {
-/*  background: antiquewhite;*/
-  flex: 1;
-  position: relative;
-  overflow: hidden;
+.arg-param-value[null-arg-param] {
+  background-color: #ef9696;
 }
 
-#background {
-  --grid-size: 50px;
-  --dot: 1px;
 
-  background-size: calc(var(--grid-size) * var(--scale, 1))
-    calc(var(--grid-size) * var(--scale, 1));
-  background-image: radial-gradient(
-    circle,
-    grey var(--dot),
-    antiquewhite var(--dot)
-  );
-  background-position: var(--offset-x, 0) var(--offset-y, 0);
-  width: 100%;
-  height: 100%;
-  position: absolute;
+.arg-param {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
 }
 
-.github-logo {
-  color: inherit;
-  position: absolute;
-  right: 10px;
-  top: 5px;
-  height: 100%;
+.arg-param-value:hover {
+  background: white;
+  cursor: text;
 }
 
-.github-logo:hover {
-  cursor: pointer;
-  opacity: .8;
-}
-
-.hidden {
-  display: none;
-  visibility: hidden;
+.arg-param-value {
+  padding: 0.1rem 0.2rem;
+  border-radius: .2rem;
+  background: #eee9dc;
+  box-shadow: 0 0 0 1px #747474;
 }

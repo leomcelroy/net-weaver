@@ -113,35 +113,33 @@ function drawNode(item, state) {
             state.mutationActions.render();
           }}>${nodeName}</span>
         </div>
-        <div class="node-id" style="color: grey; font-size: .8rem;">
-          id: ${k}
-        </div>
+        <div class="node-id">${k}</div>
       </div>
       
-      <div style="width: 100%; display: flex;">
-        <div style="display: flex; flex-direction: column;">
+      <div class="node-ports">
+        <div class="ports-container">
           ${node.data.ports
             .filter( port => port.leftRightUpDown === "left")
             .map((port, i) => html`
-              <div style="display: flex;">
+              <div  style="display: flex;">
                 <div class="port" ?is_array=${port.array} ?elementOf=${port.elementOf !== undefined} ?is_sink=${port.srcSinkBi === "sink"} style="top:${i*19 + 40}px" data-id=${`${k}:${port.idx}`}></div>
-                <span ?is_required=${port.required}  style="padding-left: 10px;">${port.name}</span>
+                <span ?is_required=${port.required}  style="padding-left: 5px;">${port.name}</span>
               </div>
             `)}
         </div>
-        <div style="display: flex; flex-direction: column; flex: 1;">
+        <div class="ports-container">
             ${node.data.ports
               .filter(port => port.leftRightUpDown === "right")
               .map((port, i) => html`
-                <div style="display: flex; justify-content: flex-end;">
-                  <span ?is_required=${port.required}  style="padding-right: 10px; display: flex; justify-content: flex-end;">${port.name}</span>
+                <div  style="display: flex; justify-content: flex-end;">
+                  <span ?is_required=${port.required}  style="padding-right: 5px; display: flex; justify-content: flex-end;">${port.name}</span>
                   <div class="port" ?is_array=${port.array} ?elementOf=${port.elementOf !== undefined} ?is_sink=${port.srcSinkBi === "sink"} style="top:${i*19 + 40}px" data-id=${`${k}:${port.idx}`}></div>
                 </div>
               `)}
         </div>
       </div>
       <div class="all-arg-params">
-        <div style="font-weight: bold;" ?hidden=${node.data.argParams.length === 0} >Arguments:</div>
+        <!-- <div style="font-weight: bold;" ?hidden=${node.data.argParams.length === 0} >Arguments:</div> -->
 
         ${node.data.argParams.map(argParam => {
           const { name, type, default_value, value } = argParam;
@@ -169,33 +167,6 @@ function drawNode(item, state) {
           }
 
           return html`
-            <style>
-
-              [null-arg-param] {
-                background: #ef9696;
-                border-radius: .2rem;
-              }
-
-              .arg-params {
-                padding-top: .1rem;
-              }
-
-              .arg-param {
-                padding: .1rem;
-              }
-
-              .arg-param-value:hover {
-                background: lightgrey;
-                cursor: pointer;
-              }
-
-              .arg-param-value {
-                padding: .1rem;
-                padding-left: .2rem;
-                padding-right: .2rem;
-                border-radius: .5rem;
-              }
-            </style>
             <div class="arg-params">
 
               <!--
@@ -214,10 +185,10 @@ function drawNode(item, state) {
               -->
 
               <div class="arg-param">
-                <span>${name} (${type}):</span>
-                <span class="arg-param-value" ?null-arg-param=${value === null} @click=${adjustArgValue}>
+                <div>${name} (${type}):</div>
+                <div class="arg-param-value" ?null-arg-param=${value === null} @click=${adjustArgValue}>
                   ${JSON.stringify(value)}
-                </span>
+                </div>
               </div>
 
             </div>

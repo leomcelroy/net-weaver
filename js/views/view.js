@@ -52,35 +52,17 @@ function drawLabel([labelId, label], state) {
   const leftOrRight = node.data.ports[portIdx].leftRightUpDown;
 
   const styleLeft = `
-    position: absolute; 
     left: ${x-5}px; 
     top: ${y}px;
     transform: translate(-100%, -50%);
-    background: ${state.hoveredLabel === labelName ? "yellow" : "lightgrey"};
-    border-radius: .25em;
-    padding: .05em .25em;
-    font-size: .8rem;
-    min-width: 30px;
-    text-align: center;
+    background: ${state.hoveredLabel === labelName ? "gold" : "lightgrey"};
   `
 
   const styleRight = `
-    position: absolute; 
     left: ${x+5}px; 
     top: ${y}px;
     transform: translate(0, -50%);
-    background: ${state.hoveredLabel === labelName ? "yellow" : "lightgrey"};
-    border-radius: .25em;
-    padding: .05em .25em;
-    font-size: .8rem;
-    min-width: 30px;
-    text-align: center;
-  `
-
-  const inputStyle = `
-    background: none;
-    border: none;
-    text-align: center;
+    background: ${state.hoveredLabel === labelName ? "gold" : "lightgrey"};
   `
 
   let divStyle = leftOrRight === "left" ? styleLeft : styleRight;
@@ -88,7 +70,7 @@ function drawLabel([labelId, label], state) {
   return html`
     <div class="label" data-label-name=${labelName} style=${divStyle}>
       <span 
-        style=${inputStyle} 
+        class="label-input"
         @click=${e => {
           const newName = prompt("Please input a label name. Empty string will delete label.", labelName);
           if (newName === null) return;
@@ -329,35 +311,15 @@ const filteredNodes = (state) => {
     });
 
   const oneNodeHTML = ({ type, docstring, superClasses }) => html`
-    <div 
-      class="node-type" 
-      data-type=${type}
-      style="
-        padding: .5em 1em; 
-        background: darkgrey; 
-        margin: .5em 0; 
-        overflow-x: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        ">
-      <div>
-        ${type}
-      </div>
-      <div>
+    <div class="node-result" data-type=${type}>
+      <div class="node-type">${type}</div>
+      <div class="node-tags">
         ${superClasses.map(x => html`
-          <span 
-            style="
-              font-size: 0.7rem;
-              padding: .12rem;
-              margin: .2rem;
-              background: #a5d4e4;
-              color: #494444;
-              border-radius: .8rem;">
+          <span class="node-tag">
               ${x}
           </span>`)}
       </div>
-      <div style="font-size: .8rem; color: #616060;">
+      <div class="node-docstring">
         ${docstring}
       </div>
     </div>
@@ -374,16 +336,16 @@ export function view(state) {
   return html`
     <div class="root">
       <div class="menu">
-        <div class="menu-item" @click=${() => {
+        <div class="menu-item btn" @click=${() => {
           state.evaluate(...state.selectedNodes);
 
           console.log(state);
         }}>
-          <i class="fa-solid fa-play" style="padding-right: 10px;"></i>
+          <i class="fa-solid fa-play"></i>
           run
         </div>
 
-        <div class="menu-item" @click=${async () => { 
+        <div class="menu-item btn" @click=${async () => { 
 
             // const URL = "https://webedg.uclalemur.com/compile";
             const URL = "http://ctb.1337.cx:7761/compile";
@@ -411,19 +373,19 @@ export function view(state) {
             }
 
          }}>
-          <i class="fa-solid fa-square-share-nodes" style="padding-right: 10px;"></i>
+          <i class="fa-solid fa-square-share-nodes"></i>
           compile
         </div>
 
-        <div class="menu-item" @click=${() => { 
+        <div class="menu-item btn" @click=${() => { 
           const result = getNetlist(state);
           console.log(result);
         }}>
-          <i class="fa-solid fa-print" style="padding-right: 10px;"></i>
+          <i class="fa-solid fa-print"></i>
           print graph
         </div>
 
-        <div class="menu-item" @click=${() => {
+        <div class="menu-item btn" @click=${() => {
           
           const result = getNetlist(state);
 
@@ -434,34 +396,34 @@ export function view(state) {
             JSON.stringify(result)
           );
         }}>
-          <i class="fa-solid fa-download" style="padding-right: 10px;"></i>
+          <i class="fa-solid fa-download"></i>
           download
         </div>
 
-        <div class="menu-item" @click=${() => {
+        <div class="menu-item btn" @click=${() => {
           for (const node of state.selectedNodes) {
             state.mutationActions.delete_node(node);
           }
         }}>
-          <i class="fa-solid fa-trash" style="padding-right: 10px;"></i>
+          <i class="fa-solid fa-trash"></i>
           delete
         </div>
 
-        <div hidden class="menu-item" @click=${() => {
+        <div hidden class="menu-item btn" @click=${() => {
           const newWireMode = state.wireMode === "WIRES" ? "LABELS" : "WIRES";
           state.wireMode = newWireMode;
         }}>
-          <i class="fa-solid fa-circle-dot" style="padding-right: 10px;"></i>
+          <i class="fa-solid fa-circle-dot"></i>
           wire mode: ${state.wireMode}
         </div>
 
-        <div class="menu-item-no-hover" style="position:absolute; right: 40px;">selected: ${state.selectedNodes.size}</div>
+        <div class="menu-item" style="position:absolute; right: 40px;">selected: ${state.selectedNodes.size}</div>
         <a class="github-logo" href="https://github.com/leomcelroy/net-weaver">
           <i class="fa-brands fa-github" style="font-size:24px"></i>
         </a>
       </div>
 
-      <div style="display: flex; flex: 1; height: 96%; flex-direction: row;">
+      <div class="workspace">
         <div class="dataflow" style="width: 100%; height: 100%;">
           <canvas
             id="background"
@@ -500,11 +462,12 @@ export function view(state) {
 
         </div>
 
-        <div class="node-toolbox" style="width: 350px; background: lightgrey;">
-          <div style="width: 100%; display: flex; justify-content: center; padding: 1em;">
+        <div class="node-toolbox">
+          <div class="node-search">
+            <span>Nodes</span>
             <input 
-              style="width: 75%; height: 2em; border-radius: 1em; border: 1px solid grey; padding: .5em 1em;" 
-              placeholder="add node..."
+
+              placeholder="search for node..."
               .value=${state.searchTerm} 
               @input=${e => { 
                 state.searchTerm = e.target.value; 
@@ -514,7 +477,7 @@ export function view(state) {
               }}
               />
           </div>
-          <div style="overflow-y: scroll; height: 92%;">
+          <div class="toolbox-scroller">
             ${filteredNodes(state)}
           </div>
         </div>
