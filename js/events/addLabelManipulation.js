@@ -1,5 +1,6 @@
 import { createRandStr } from "../createRandStr.js";
 import { patchState } from "../state.js";
+import lib from "../componentsLibrary.js";
 
 export function addLabelManipulation(listen, state) {
   let from = "";
@@ -78,6 +79,34 @@ export function addLabelManipulation(listen, state) {
         .ports
         [toPort];
 
+      const fromNodePortObj = state
+        .graph
+        .getNode(fromNode)
+        .data
+        .ports
+        [fromPort];
+
+      const toAcceptableLinkTypes = [];
+      const fromAcceptableLinkTypes = [];
+
+      lib.links.forEach(link => {
+        if (link.ports.map(p => p.type).some(type => toNodePortObj.type === type)) {
+          toAcceptableLinkTypes.push(link.type)
+        }
+
+
+        if (link.ports.map(p => p.type).some(type => fromNodePortObj.type === type)) {
+          fromAcceptableLinkTypes.push(link.type)
+        }
+      })
+
+      if (!toAcceptableLinkTypes.some(type => fromAcceptableLinkTypes.includes(type))) {
+        console.log("can't link these types", fromAcceptableLinkTypes, toAcceptableLinkTypes);
+
+        cleanUp();
+        return;
+      }
+
       if (toNodePortObj.array && toNodePortObj.srcSinkBi === "sink") {
         // add new port
         const newIdx = toNodeObj.ports.length;
@@ -144,13 +173,17 @@ export function addLabelManipulation(listen, state) {
       
     }
 
-    from = "";
-    to = "";
-    currentIndex = "";
+    cleanUp();
 
-    patchState({
-      tempEdge: ["", [0, 0]]
-    });
+    function cleanUp() {
+      from = "";
+      to = "";
+      currentIndex = "";
+
+      patchState({
+        tempEdge: ["", [0, 0]]
+      });
+    }
     
   })
 

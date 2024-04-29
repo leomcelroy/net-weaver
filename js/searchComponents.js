@@ -1,6 +1,32 @@
 import componentsLibrary from "./componentsLibrary.js";
 import FuzzySet from 'fuzzyset'
 
+export function searchComponents(searchTerm) {  
+  const searchTerms = searchTerm.toLowerCase().split(" ");
+
+  const blocks = componentsLibrary
+    .blocks
+    .filter(comp => {
+        if (
+          ["InternalSubcircuit", "InternalBlock"]
+          .some(x => comp.superClasses.includes(x))
+        ) {
+          return false;
+        }
+
+        if (comp.is_abstract) {
+          return false;
+        }
+
+        const termMatch = searchTerms.some(x => comp.superClasses.some(c => c.toLowerCase().includes(x)));
+
+        return termMatch || searchTerms.some(x => comp.type.toLowerCase().includes(x));
+    });
+  
+  return blocks;
+}
+
+/*
 const types = [];
 
 function addToTypes(node) {
@@ -13,8 +39,29 @@ function addToTypes(node) {
 addToTypes(componentsLibrary.typeHierarchyTree);
 types.shift();
 
+function collectLeafNames(node, parentNames = []) {
+    const currentPath = [...parentNames, node.name].filter(name => name !== "");  // Include the current node's name in the path
+    let leafDictionary = {};
 
-console.log(types);
+    if (node.children && node.children.length > 0) {
+        // If the node has children, it's not a leaf, recurse into each child
+        node.children.forEach(child => {
+            const childLeaves = collectLeafNames(child, currentPath);
+            leafDictionary = { ...leafDictionary, ...childLeaves };  // Merge results
+        });
+    } else {
+        // If no children, it's a leaf node, add it to the dictionary
+        leafDictionary[node.name] = parentNames;  // Use the accumulated parent names
+    }
+
+    return leafDictionary;
+}
+
+console.log({
+  types,
+  leafDict: collectLeafNames(componentsLibrary.typeHierarchyTree)
+})
+
 
 const searchSet = new FuzzySet();
 types.forEach(t => searchSet.add(t));
@@ -81,3 +128,4 @@ function findFuzzyMatches(inputString, treeNode) {
 
     return [...results];
 }
+*/

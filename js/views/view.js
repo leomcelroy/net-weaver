@@ -8,6 +8,7 @@ import { generateSVGPCBcode } from "../generateSVGPCBcode.js";
 import { showModal } from "./showModal.js";
 import { searchComponents } from "../searchComponents.js";
 import componentsLibrary from "../componentsLibrary.js";
+import { createSpinner } from "./createSpinner.js";
 
 function getRelative(el0, el1) {
   // Get the top, left coordinates of two elements
@@ -67,68 +68,68 @@ function drawLabel([labelId, label], state) {
 
   let divStyle = leftOrRight === "left" ? styleLeft : styleRight;
 
-  return html`
-    <div class="label" data-label-name=${labelName} style=${divStyle}>
-      <span 
-        class="label-input"
-        @click=${e => {
-          const newName = prompt("Please input a label name. Empty string will delete label.", labelName);
-          if (newName === null) return;
-          if (newName === "") {
-            const { nodeId, portIdx } = state.labels[labelId];
+  const onClick = e => {
+    const newName = prompt("Please input a label name. Empty string will delete label.", labelName);
+    if (newName === null) return;
+    if (newName === "") {
+      const { nodeId, portIdx } = state.labels[labelId];
 
-            delete state.labels[labelId];
+      delete state.labels[labelId];
 
-            // if port now has no labels then delete it
-            let deletePort = true && state.graph
-              .getNode(nodeId)
-              .data
-              .ports
-              [portIdx]
-              .elementOf !== undefined;
+      // if port now has no labels then delete it
+      let deletePort = true && state.graph
+        .getNode(nodeId)
+        .data
+        .ports
+        [portIdx]
+        .elementOf !== undefined;
 
 
 
-            Object.entries(state.labels).forEach(([k, v]) => {
-              const localNodeId = v.nodeId;
-              const localPortIdx = v.portIdx;
-              
-              if (localNodeId === nodeId && localPortIdx === portIdx) {
-                deletePort = false;
-              }
-            })
+      Object.entries(state.labels).forEach(([k, v]) => {
+        const localNodeId = v.nodeId;
+        const localPortIdx = v.portIdx;
+        
+        if (localNodeId === nodeId && localPortIdx === portIdx) {
+          deletePort = false;
+        }
+      })
 
-            const nodeData = state.graph
-              .getNode(nodeId)
-              .data;
+      const nodeData = state.graph
+        .getNode(nodeId)
+        .data;
 
-          
+    
 
-            // if delete port then update all labels that are after
-            // this is why I should always use IDs
-            if (deletePort) {
-              nodeData.ports = nodeData.ports.filter((x, i) => i !== portIdx);
-              
-                Object.entries(state.labels).forEach(([k, v]) => {
-                  const localNodeId = v.nodeId;
-                  const localPortIdx = v.portIdx;
-                  
-                  if (localNodeId === nodeId && localPortIdx > portIdx) {
-                    v.portIdx--;
-                    nodeData.ports[v.portIdx].idx--;
-                  }
-                })
+      // if delete port then update all labels that are after
+      // this is why I should always use IDs
+      if (deletePort) {
+        nodeData.ports = nodeData.ports.filter((x, i) => i !== portIdx);
+        
+          Object.entries(state.labels).forEach(([k, v]) => {
+            const localNodeId = v.nodeId;
+            const localPortIdx = v.portIdx;
+            
+            if (localNodeId === nodeId && localPortIdx > portIdx) {
+              v.portIdx--;
+              nodeData.ports[v.portIdx].idx--;
             }
+          })
+      }
 
 
-            patchState({}, true);
+      patchState({}, true);
 
-            return;
-          }
+      return;
+    }
 
-          label.labelName = newName;
-          patchState();
-        }}>
+    label.labelName = newName;
+    patchState();
+  }
+
+  return html`
+    <div class="label" @click=${onClick} data-label-name=${labelName} style=${divStyle}>
+      <span class="label-input">
         ${labelName}
       </span>      
     </div>
@@ -249,6 +250,7 @@ function drawTempEdge(edge, state) {
 
   // const data = `M ${x0} ${y0} C ${x0 + xDist * (outLeftOrRight === "left" ? -1 : 1)} ${y0}, ${x1 + xDist * (inLeftOrRight === "left" ? -1 : 1)} ${y1}, ${x1} ${y1}`;
   
+  // should remove set number of pixels
   const finalPoint = interpolatePts([x0, y0], [x1, y1], .97);
 
   const data = `M ${x0} ${y0} L ${finalPoint[0]} ${finalPoint[1]}`;
@@ -336,7 +338,7 @@ export function view(state) {
   return html`
     <div class="root">
       <div class="menu">
-        <div class="menu-item btn" @click=${() => {
+        <div hidden class="menu-item btn" @click=${() => {
           state.evaluate(...state.selectedNodes);
 
           console.log(state);
@@ -353,6 +355,8 @@ export function view(state) {
             const netlist = getNetlist(state);
             console.log("sending", netlist);
 
+            const spinner = createSpinner();
+
             try {
               const res = await fetch(URL, {
                 method: 'POST',
@@ -364,11 +368,14 @@ export function view(state) {
                 return res.json();
               });
 
+              spinner.remove();
+
               console.log("responded", res);
 
               const code = generateSVGPCBcode(res);
               showModal(code);
             } catch (err) {
+              spinner.remove();
               console.error(err);
             }
 

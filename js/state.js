@@ -148,11 +148,19 @@ function drawNode(item, state) {
             const newValue = prompt("Please input a value:", JSON.stringify(value));
             
             const castFunction = {
-              "string": val => val,
+              "str": val => val,
               "int": val => Number(val),
               "bool": val => Boolean(val),
               "float": val => Number(val),
-              "range": val => JSON.parse(val).map(Number)
+              "range": val => {
+                let parsed = JSON.parse(val);
+
+                if (typeof parsed === "number") {
+                  parsed = [parsed - 0.05*parsed, parsed + 0.05*parsed];
+                }
+
+                return parsed;
+              }
             }[type];
 
             if (newValue === "" || newValue === null) return;
