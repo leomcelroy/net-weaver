@@ -129,7 +129,7 @@ function drawNode(item, state) {
               </div>
             `)}
         </div>
-        <div style="display: flex; flex-direction: column; flex: 1;">
+        <div style="display: flex; flex-direction: column; flex: 1; padding-left: 10px;">
             ${node.data.ports
               .filter(port => port.leftRightUpDown === "right")
               .map((port, i) => html`
