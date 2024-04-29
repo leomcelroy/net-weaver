@@ -349,8 +349,8 @@ export function view(state) {
 
         <div class="menu-item btn" @click=${async () => { 
 
-            // const URL = "https://webedg.uclalemur.com/compile";
-            const URL = "http://ctb.1337.cx:7761/compile";
+            const URL = "https://webedg.uclalemur.com/compile";
+            // const URL = "http://ctb.1337.cx:7761/compile";
             
             const netlist = getNetlist(state);
             console.log("sending", netlist);

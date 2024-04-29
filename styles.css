@@ -419,8 +419,8 @@ PORTS
 }
 
 .port {
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: grey;
   z-index: 99999;

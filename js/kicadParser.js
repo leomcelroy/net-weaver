@@ -132,7 +132,8 @@ export function kicadParser(data) {
       acc[key] = value[0];
     } else {
       value.forEach((v, i) => {
-        acc[`${key}_${i + 1}`] = v;
+        const newKey = i === 0 ? key : `${key}_${i}`
+        acc[newKey] = v;
       })
     }
 

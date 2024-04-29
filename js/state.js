@@ -98,6 +98,29 @@ function drawNode(item, state) {
 
   if (!state.graphUIData[k]) return "";
 
+  const leftNodes = node.data.ports.filter( port => port.leftRightUpDown === "left");
+  const rightNodes = node.data.ports.filter( port => port.leftRightUpDown === "right");
+
+  function sortNodes(nodeList) {
+
+    const result = {};
+    node.data.ports.forEach(n => {
+      result[n.name] = [];
+    })
+
+    nodeList.forEach(n => {
+      if (n.elementOf !== undefined) {
+        const portName = node.data.ports[n.elementOf].name
+        result[portName].push(n)
+      } else {
+        result[n.name].push(n);
+      }
+    })
+
+
+    return Object.values(result).flat();
+  }
+
   return html`
     <div class=${["node", selected ? "selected-node" : ""].join(" ")} data-id=${k} style=${`left: ${state.graphUIData[k].x}px; top: ${state.graphUIData[k].y}px;`}>
       
@@ -118,20 +141,18 @@ function drawNode(item, state) {
       
       <div class="node-ports">
         <div class="ports-container">
-          ${node.data.ports
-            .filter( port => port.leftRightUpDown === "left")
+          ${sortNodes(leftNodes)
             .map((port, i) => html`
-              <div  style="display: flex;">
+              <div  style="display: flex; align-items: center;">
                 <div class="port" ?is_array=${port.array} ?elementOf=${port.elementOf !== undefined} ?is_sink=${port.srcSinkBi === "sink"} style="top:${i*19 + 40}px" data-id=${`${k}:${port.idx}`}></div>
                 <span ?is_required=${port.required}  style="padding-left: 5px;">${port.name}</span>
               </div>
             `)}
         </div>
         <div class="ports-container">
-            ${node.data.ports
-              .filter(port => port.leftRightUpDown === "right")
+            ${sortNodes(rightNodes)
               .map((port, i) => html`
-                <div  style="display: flex; justify-content: flex-end;">
+                <div  style="display: flex; justify-content: flex-end; align-items: center;">
                   <span ?is_required=${port.required}  style="padding-right: 5px; display: flex; justify-content: flex-end;">${port.name}</span>
                   <div class="port" ?is_array=${port.array} ?elementOf=${port.elementOf !== undefined} ?is_sink=${port.srcSinkBi === "sink"} style="top:${i*19 + 40}px" data-id=${`${k}:${port.idx}`}></div>
                 </div>
