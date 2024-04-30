@@ -136,7 +136,7 @@ function drawNode(item, state) {
             state.mutationActions.render();
           }}>${nodeName}</span>
         </div>
-        <div class="node-id">${k}</div>
+        <div hidden class="node-id">${k}</div>
       </div>
       
       <div class="node-ports">

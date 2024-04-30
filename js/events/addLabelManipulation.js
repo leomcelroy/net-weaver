@@ -116,7 +116,7 @@ export function addLabelManipulation(listen, state) {
           idx: newIdx,
           leftRightUpDown: toNodePortObj.leftRightUpDown,
           srcSinkBi: "bi",
-          type: "DigitalBidir",
+          type: toNodePortObj.type,
           elementOf: Number(toPort)
         }
 
