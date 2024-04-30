@@ -80,8 +80,8 @@ export function kicadParser(data) {
 
           return [ pts ];
         },
-        "circle": () => circle(...size.map(x => x/2)),
-        "oval": () => circle(...size.map(x => x/2)),
+        "circle": () => circle(...size.map(x => x/4)), // what should this scaling be?
+        "oval": () => circle(...size.map(x => x/4)), // what should this scaling be?
         "custom": () => {
           const primitives = getNamedArray(line, "primitives");
 
