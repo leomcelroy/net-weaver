@@ -82,7 +82,7 @@ export function kicadParser(data) {
         },
         "circle": () => circle(...size.map(x => x/2)), 
         "oval": () => {
-            const pts = generateRoundRect(0, 0, ...size.reverse(), 1); 
+            const pts = generateRoundRect(0, 0, ...size, 1); 
             return [ pts ];
         },
         "custom": () => {
