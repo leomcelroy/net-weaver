@@ -19,6 +19,8 @@ The compiler also generates start layouts which can be viewed, editted, and rout
 
 # Examples
 
+In each example below see the NetWeaver block diagram and the generated board layout from SVG-PCB.
+
 ### [Charlieplexing LED Matrix](https://www.leomcelroy.com/net-weaver/?src=examples/CharlieMatrix.json)
 
 <img width="554" alt="Screenshot 2024-05-03 at 2 02 44 AM" src="https://github.com/leomcelroy/net-weaver/assets/27078897/30029f49-c041-4732-a64d-d481e44ce6f5">
