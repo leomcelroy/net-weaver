@@ -37,15 +37,16 @@ export function showModal(code) {
                 width: 100%;
                 height: 100%;
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
                 justify-content: center;
                 background-color: rgba(0, 0, 0, 0.7); /* Dimmed background */
                 z-index: 1000000000; /* Makes sure the modal is on top */
             }
 
             .modal-content {
-                background: white;
+                background: #829791;
                 padding: 20px;
+                margin-top: 40px;
                 border-radius: 8px;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                 max-width: 90%;
@@ -60,8 +61,9 @@ export function showModal(code) {
             }
 
             .modal-code {
-                background-color: #f4f4f4;
-                border: 1px solid #ddd;
+                background-color: #d8d9ce;
+                // border: 1px solid #ddd;
+                border-radius: 4px;
                 padding: 10px;
                 white-space: pre; 
                 overflow: auto; 
@@ -81,7 +83,7 @@ export function showModal(code) {
                 padding: 8px 16px;
                 font-size: 16px;
                 color: white;
-                background-color: #007BFF;
+                background-color: #1e3534;
                 border: none;
                 border-radius: 4px;
                 cursor: pointer;
@@ -90,7 +92,7 @@ export function showModal(code) {
             }
 
             .modal-action button:hover {
-                background-color: #0056b3;
+                background-color: #244141;
             }
         </style>
         <div class="modal-container" @click=${closeModal}>

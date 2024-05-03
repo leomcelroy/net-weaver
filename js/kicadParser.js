@@ -63,6 +63,7 @@ export function kicadParser(data) {
 
       let at = getNamedArray(line, "at").map(x => Number(x)*scale);
       at[1] = -at[1]; // negative Y axis
+      let rotate = at.length === 3 ? Number(getNamedArray(line, "at")[2]) : 0;
 
       let layers = getNamedArray(line, "layers");
       layers = convertLayers(layers);
@@ -103,6 +104,10 @@ export function kicadParser(data) {
         (shape in shapeCases) 
         ? shapeCases[shape]()
         : [];
+
+      if (rotate !== 0) {
+        rotateShape(shapeGeometry, rotate);
+      }
 
       const footprint = { 
         pos: at, 
@@ -206,6 +211,35 @@ function generateRoundRect(centerX, centerY, width, height, rratio, numPointsPer
     points.push(points[0]);
 
     return points;
+}
+
+const rotateShape = (shape, angle, point = [0, 0]) => {
+  const fn = p => {
+
+    let delta = angle / 180 * Math.PI;
+
+    let hereX = p[0] - point[0];
+    let hereY = p[1] - point[1];
+
+    let newPoint = [
+      hereX * Math.cos(delta) - hereY * Math.sin(delta) + point[0],
+      hereY * Math.cos(delta) + hereX * Math.sin(delta) + point[1]
+    ];
+
+    return newPoint;
+  }
+
+
+  return applyFn(shape, fn);
+
+  function applyFn(shape, fn) {
+      shape.forEach((pl, i) => {
+        shape[i] = pl.map(fn);
+      })
+
+      return shape;
+    }
+
 }
 
 

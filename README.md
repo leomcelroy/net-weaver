@@ -1,74 +1,21 @@
-# net-weaver
+# NetWeaver: block-based PCB design in the browser
 
-# TODO
+NetWeaver is a web-based tool for generating circuit schematics (and layouts)
+using libraries of components and sub-circuits.
 
-if is_array == true and hint_array_direction == sink
-  add new port
-  link port to parent node
-    parent: {
-      name: "gpio",
-    },
+![NetWeaver interface]()
 
-    {
-      name: "gpio_port1",
-      isArray: false,
-      elementOf: "gpio"
-    }
+It is built on top of [Polymorphic Blocks](https://github.com/BerkeleyHCI/PolymorphicBlocks) for creating netlists and [SVG-PCB](https://leomcelroy.com/svg-pcb/) for describing board layouts.
 
-    when all connections removed it disappears
+In NetWeaver instead of having to specify which physical pins of components are connected to each other
+you can connect ports which represent high level electrical interfaces (digital GPIO, I2C bundle, etc...).
+You can think of NetWeaver as embedding information you would typically have to find by digging through a datasheet
+into part descriptions.
 
-can't connect two array sinks
-can't drag from sink
+These nets are then compiled into a netlist using a backend hardware description language (HDL) that verifies the boards
+viability with interface and electrical checks.
 
-if is_array == true and hint_array_direction != sink
-  treat as normal single element
+You can then use 
 
-- better search
-- make errors visible
-- clientside type checking on ports
+# Examples
 
--> board design
-
-to svg pcb
-
-MAYBE
-- draw nets not direct edges
-- pull wires from labels
-- set view window
-- delete labels with x
-- delete multiple labels
-- clear state on upload
-- make label input nice
-- center window on upload
-- add update components button, to re-add same types from library
-- add replace function
-- how to add generic components
-
-DONE
-- save labels in downloaded state
-- draw labels in scale view window
-- remove
-  - interalBlocks
-- delete labels
-- edit label name
-- don't render in loop, do it on state change
-- if label exists for src port use name of label, if not create name
-- if label on dst port, clear label
-- clear labels on node deletion
-- use labels when generating net list
-- make arg parameters editable
-  - add value key in node data
-
-
-# Notes
-
-- types of arg parameters
-  - string
-  - integer (int)
-  - boolean
-  - float
-  - range (range of floats)
-
-test case
-- control board
-- replace connector

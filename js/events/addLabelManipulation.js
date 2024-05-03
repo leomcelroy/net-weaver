@@ -1,6 +1,7 @@
 import { createRandStr } from "../createRandStr.js";
 import { patchState } from "../state.js";
 import lib from "../componentsLibrary.js";
+import { showError } from "../showError.js";
 
 export function addLabelManipulation(listen, state) {
   let from = "";
@@ -101,8 +102,8 @@ export function addLabelManipulation(listen, state) {
       })
 
       if (!toAcceptableLinkTypes.some(type => fromAcceptableLinkTypes.includes(type))) {
-        console.log("can't link these types", fromAcceptableLinkTypes, toAcceptableLinkTypes);
-
+        const err = `Can't link these types: ${fromAcceptableLinkTypes} to ${toAcceptableLinkTypes}`;
+        showError([err], { time: 5000 })
         cleanUp();
         return;
       }

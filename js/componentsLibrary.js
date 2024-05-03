@@ -2,6 +2,1753 @@ export default {
   "blocks": [
     {
       "name": "",
+      "type": "IndicatorSinkRgbLed",
+      "superClasses": [
+        "Light",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "signals",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "current_draw",
+          "type": "range",
+          "default_value": [
+            0.001,
+            0.01
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Common anode indicator RGB LED"
+    },
+    {
+      "name": "",
+      "type": "Ap2210",
+      "superClasses": [
+        "LinearRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "AP2210 RF ULDO in SOT-23-5 with high PSRR and high(er) voltage tolerant.\n  "
+    },
+    {
+      "name": "",
+      "type": "Nhd_312_25664uc",
+      "superClasses": [
+        "Oled",
+        "Display",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "dc",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "cs",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "spi",
+          "type": "SpiPeripheral",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "256x64 3.12\" passive-matrix OLED"
+    },
+    {
+      "name": "",
+      "type": "Vl53l0x",
+      "superClasses": [
+        "Vl53l0xBase",
+        "DistanceSensor",
+        "Sensor"
+      ],
+      "ports": [
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "int",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Interrupt output for new data available"
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Time-of-flight laser ranging sensor, up to 2m"
+    },
+    {
+      "name": "",
+      "type": "IndicatorSinkPackedRgbLedElement",
+      "superClasses": [
+        "IndicatorSinkLed",
+        "Light",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "signal",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Stm32f103_48",
+      "superClasses": [
+        "Stm32f103Base",
+        "Microcontroller",
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "can",
+          "type": "CanControllerPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller CAN controller ports"
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "TypedTestPoint",
+      "superClasses": [
+        "Testing"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Test point with a typed port (eg, VoltageSink, instead of Passive)."
+    },
+    {
+      "name": "",
+      "type": "FootprintToucbPad",
+      "superClasses": [
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "pad",
+          "type": "TouchPadPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "touch_footprint",
+          "type": "str",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Mcp3561",
+      "superClasses": [
+        "AnalogToDigital",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwra",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "vref",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "vins",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "spi",
+          "type": "SpiPeripheral",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "cs",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "MCP3561R up-to-24-bit delta-sigma ADC with internal voltage reference.\nIMPORTANT - an antialias filter is REQUIRED at the inputs. The reference design uses a RC with 1k and 0.1uF (fc=10kHz)\nwith the general recommendation being low R and high C and with low time constant to provide high rejection at DMCLK.\nTODO: assert that an antialias filter is connected"
+    },
+    {
+      "name": "",
+      "type": "DifferentialAmplifier",
+      "superClasses": [
+        "OpampApplication",
+        "Analog"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "input_positive",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "input_negative",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "output_reference",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "output",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "ratio",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "input_impedance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "series",
+          "type": "int",
+          "default_value": 24,
+          "docstring": null
+        },
+        {
+          "name": "tolerance",
+          "type": "float",
+          "default_value": 0.01,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Opamp differential amplifier, outputs the difference between the input nodes, scaled by some factor,\nand offset from some reference node.\nThis implementation uses the same resistance for the two input resistors (R1, R2),\nand the same resistance for the feedback and reference resistors (Rf, Rg).\nFrom https://en.wikipedia.org/wiki/Operational_amplifier_applications#Differential_amplifier_(difference_amplifier):\nVout = Rf/R1 * (Vp - Vn)\n\nImpedance equations from https://e2e.ti.com/blogs_/archives/b/precisionhub/posts/overlooking-the-obvious-the-input-impedance-of-a-difference-amplifier\n  (ignoring the opamp input impedances, which we assume are >> the resistors)\nRin,n = R1 / (1 - (Rg / (R2+Rg)) * (Vin,n / Vin,p))\nRin,p = R2 + Rg\nRout = opamp output impedance - TODO: is this correct?\n\nratio specifies Rf/R1, the amplification ratio."
+    },
+    {
+      "name": "",
+      "type": "BananaJack",
+      "superClasses": [
+        "Connector"
+      ],
+      "ports": [
+        {
+          "name": "port",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Base class for a single terminal 4mm banana jack, such as used on test equipment."
+    },
+    {
+      "name": "",
+      "type": "EspAutoProgram",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "dtr",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "rts",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "en",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "boot",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Auto-programming circuit for the ESP series, to drive the target EN (reset) and BOOT (e.g., IO0) pins."
+    },
+    {
+      "name": "",
+      "type": "Cstne",
+      "superClasses": [
+        "CeramicResonator",
+        "OscillatorReference",
+        "DiscreteApplication"
+      ],
+      "ports": [
+        {
+          "name": "crystal",
+          "type": "CrystalPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "frequency",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "IndicatorSinkPackedRgbLed",
+      "superClasses": [
+        "Light",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "red_sig",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "green_sig",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "blue_sig",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "red_pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "green_pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "blue_pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Vl53l0xBase",
+      "superClasses": [
+        "DistanceSensor",
+        "Sensor"
+      ],
+      "ports": [
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "int",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Interrupt output for new data available"
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Abstract base class for VL53L0x devices"
+    },
+    {
+      "name": "",
+      "type": "Filter",
+      "superClasses": [],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Signal conditioning subcircuit."
+    },
+    {
+      "name": "",
+      "type": "LipoConnector",
+      "superClasses": [
+        "Connector",
+        "Battery",
+        "PowerSource"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "chg",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "voltage",
+          "type": "range",
+          "default_value": [
+            2.5,
+            4.2
+          ],
+          "docstring": null
+        },
+        {
+          "name": "actual_voltage",
+          "type": "range",
+          "default_value": [
+            2.5,
+            4.2
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "PassiveConnector (abstract connector) that is expected to have a LiPo on one end.\nBoth the voltage specification and the actual voltage can be specified as parameters.\nTHERE IS NO STANDARD LIPO PINNING OR CONNECTOR - MAKE SURE TO VERIFY THIS!\nBE PREPARED FOR REVERSE POLARITY CONNECTIONS.\nDefault pinning has ground being pin 1, and power being pin 2.\n\nConnector type not specified, up to the user through a refinement."
+    },
+    {
+      "name": "",
+      "type": "Bme680",
+      "superClasses": [
+        "EnvironmentalSensor",
+        "DefaultExportBlock",
+        "Sensor"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_io",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "IO supply voltage"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Gas (indoor air quality), pressure, temperature, and humidity sensor.\nHumidity accuracy /-3% RH, pressure noise 0.12 Pa, temperature accuracy +/-0.5 C @ 25C"
+    },
+    {
+      "name": "",
+      "type": "Ov2640_Fpc24",
+      "superClasses": [
+        "Ov2640",
+        "Camera",
+        "Sensor"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_analog",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_digital",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "dvp8",
+          "type": "Dvp8Camera",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "sio",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwdn",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "OV2640 camera as a 24-pin FPC bottom contact connector, as seems to be common on ESP32 with camera boards.\nElectrical parameters from https://www.uctronics.com/download/OV2640_DS.pdf\nPinning and interface circuit from https://github.com/Freenove/Freenove_ESP32_WROVER_Board/blob/f710fd6976e76ab76c29c2ee3042cd7bac22c3d6/Datasheet/ESP32_Schematic.pdf\n  and https://www.waveshare.com/w/upload/9/99/OV2640-Camera-Board-Schematic.pdf\nOn many boards, Y0 and Y1 (LSBs) are left unconnected to save IOs."
+    },
+    {
+      "name": "",
+      "type": "Light",
+      "superClasses": [
+        "HumanInterface"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Discrete lights."
+    },
+    {
+      "name": "",
+      "type": "UsbBitBang",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "dp",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "dm",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "dp_pull",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Bit-bang circuit for USB, from the UPduino3.0 circuit and for 3.3v.\nPresumably generalizes to any digital pin that can be driven fast enough.\n\nTODO: a more formal analysis of tolerances"
+    },
+    {
+      "name": "",
+      "type": "Xc6209",
+      "superClasses": [
+        "LinearRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "XC6209F (F: 300mA version, no pull-down resistor; 2: +/-2% accuracy)\nLow-ESR ceramic cap compatible"
+    },
+    {
+      "name": "",
+      "type": "DigitalWrapperDirectionSwitchWithCenter",
+      "superClasses": [
+        "DigitalWrapperDirectionSwitch",
+        "DigitalDirectionSwitch",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "a",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "b",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "c",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "d",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "center",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Stm32l432Base",
+      "superClasses": [
+        "Microcontroller",
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "can",
+          "type": "CanControllerPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller CAN controller ports"
+        },
+        {
+          "name": "dac",
+          "type": "AnalogSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog output pins"
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Analog",
+      "superClasses": [],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Analog blocks that don't fit into one of the other categories"
+    },
+    {
+      "name": "",
+      "type": "DecouplingCapacitor",
+      "superClasses": [
+        "DiscreteApplication"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "capacitance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "exact_capacitance",
+          "type": "bool",
+          "default_value": 0.0,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Optionally polarized capacitor used for DC decoupling, with VoltageSink connections with voltage inference.\nImplemented as a shim block."
+    },
+    {
+      "name": "",
+      "type": "QwiicTarget",
+      "superClasses": [
+        "Connector"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "A Qwiic (https://www.sparkfun.com/qwiic) connector to a I2C target.\nThis would be on a board with a host controller."
+    },
+    {
+      "name": "",
+      "type": "JacdacEdgeConnectorBare",
+      "superClasses": [
+        "JacdacSubcircuit",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "gnd_src",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "jd_pwr_src",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "gnd_sink",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "jd_pwr_sink",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "jd_data",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "is_power_provider",
+          "type": "bool",
+          "default_value": 0.0,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Jacdac connector, in power sink or source mode (both available, but both may not be connected simultaneously).\nThis is the bare connector, you should use the non-bare one with the recommended interface circuitry in most cases!\nUses the recessed connector, which is the default used by the device outline generator.\n\nRequires this KiCad footprint library to be available: https://github.com/mattoppenheim/jacdac\n\nAll specs from from https://microsoft.github.io/jacdac-docs/reference/electrical-spec\n\nIf the power sink (power is sunk into the port and off-board) is connected, is_power_provider\nindicates whether this port should model the maximum downstream current draw"
+    },
+    {
+      "name": "",
+      "type": "Qmc5883l",
+      "superClasses": [
+        "Magnetometer",
+        "DefaultExportBlock",
+        "Sensor"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_io",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "TODO"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "drdy",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "3-axis magnetometer.\nThis part seems to be a licensed semi-copy of the HMC5883L which is no longer in production.\nIt might be hardware drop-in compatible though the firmware protocol differs."
+    },
+    {
+      "name": "",
+      "type": "TypedJumper",
+      "superClasses": [
+        "Testing"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Jumper with typed ports (eg, VoltageSource-VoltageSink, instead of Passive)."
+    },
+    {
+      "name": "",
+      "type": "SwdCortexTargetConnector",
+      "superClasses": [
+        "ProgrammingConnector",
+        "Connector",
+        "Testing"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "swd",
+          "type": "SwdHostPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Programming header with power and SWD (SWCLK/SWDIO/RESET) pins."
+    },
+    {
+      "name": "",
+      "type": "VoltageReference",
+      "superClasses": [
+        "LinearRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "output_voltage",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": "Voltage reference, generally provides high accuracy but limited current"
+    },
+    {
+      "name": "",
       "type": "Freenove_Esp32_Wrover",
       "superClasses": [
         "IoController",
@@ -16,7 +1763,7 @@ export default {
           "hint_signal_direction": "bidir",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller digital GPIO pins"
         },
         {
           "name": "adc",
@@ -26,7 +1773,7 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller analog input pins"
         },
         {
           "name": "spi",
@@ -36,7 +1783,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
         },
         {
           "name": "i2c",
@@ -46,7 +1793,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
         },
         {
           "name": "uart",
@@ -56,7 +1803,7 @@ export default {
           "hint_signal_direction": "bidir",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller UARTs"
         },
         {
           "name": "usb",
@@ -66,8 +1813,993 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
           "docstring": null
         },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2s",
+          "type": "I2sController",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2S controller ports, each element is an independent I2S controller"
+        },
+        {
+          "name": "dvp8",
+          "type": "Dvp8Host",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller 8-bit DVP digital video ports"
+        },
+        {
+          "name": "can",
+          "type": "CanControllerPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller CAN controller ports"
+        },
+        {
+          "name": "dac",
+          "type": "AnalogSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog output pins"
+        },
+        {
+          "name": "touch",
+          "type": "TouchDriver",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller touch input"
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "spi_peripheral",
+          "type": "SpiPeripheral",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
+        },
+        {
+          "name": "gnd_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Ground for power output ports, when the device is acting as a power source"
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Power output port, typically of the device's Vdd or VddIO rail; must be used with gnd_out"
+        },
+        {
+          "name": "vusb_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Power output port of the device's Vbus, typically 5v; must be used with gnd_out"
+        },
+        {
+          "name": "io2",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "ESP32-WROVER-DEV breakout with camera.\n\nModule datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-wrover-e_esp32-wrover-ie_datasheet_en.pdf\nBoard used: https://amazon.com/ESP32-WROVER-Contained-Compatible-Bluetooth-Tutorials/dp/B09BC1N9LL\nBoard internal schematic: https://github.com/Freenove/Freenove_ESP32_WROVER_Board/blob/f710fd6976e76ab76c29c2ee3042cd7bac22c3d6/Datasheet/ESP32_Schematic.pdf\n\nTop left is pin 1, going down the left side then up the right side.\nUp is defined from the text orientation (antenna is on top)."
+    },
+    {
+      "name": "",
+      "type": "ProtectionZenerDiode",
+      "superClasses": [
+        "Protection"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "voltage",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Zener diode reversed across a power rail to provide transient overvoltage protection (and become an incandescent\nindicator on a reverse voltage)"
+    },
+    {
+      "name": "",
+      "type": "G3VM_61GR2",
+      "superClasses": [
+        "SolidStateRelay",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "leda",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "ledk",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "feta",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "fetb",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Mcp73831",
+      "superClasses": [
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_bat",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "stat",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "charging_current",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Single-cell Li-ion / Li-poly charger, seemingly popular on Adafruit and Sparkfun boards."
+    },
+    {
+      "name": "",
+      "type": "AnalogFilter",
+      "superClasses": [
+        "Filter"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Analog signal conditioning subcircuit."
+    },
+    {
+      "name": "",
+      "type": "OscillatorReference",
+      "superClasses": [
+        "DiscreteApplication"
+      ],
+      "ports": [
+        {
+          "name": "crystal",
+          "type": "CrystalPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "frequency",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Rp2040",
+      "superClasses": [
+        "Microcontroller",
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "JacdacDataInterface",
+      "superClasses": [
+        "JacdacSubcircuit",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "signal",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "jd_data",
+          "type": "JacdacDataPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Interface from a Jacdac data bus to a device, including protection and EMI filtering.\nDoes NOT include per-port circuitry like ESD diodes and status LEDs."
+    },
+    {
+      "name": "",
+      "type": "Stm32g031Base",
+      "superClasses": [
+        "Microcontroller",
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "DigitalWrapperRotaryEncoderWithSwitch",
+      "superClasses": [
+        "DigitalWrapperRotaryEncoder",
+        "DigitalRotaryEncoder",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "a",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "b",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "sw",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Stm32l432k",
+      "superClasses": [
+        "Stm32l432Base",
+        "Microcontroller",
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "can",
+          "type": "CanControllerPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller CAN controller ports"
+        },
+        {
+          "name": "dac",
+          "type": "AnalogSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog output pins"
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "VoltageIndicatorLed",
+      "superClasses": [
+        "Light",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "signal",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "color",
+          "type": "str",
+          "default_value": "",
+          "docstring": null
+        },
+        {
+          "name": "current_draw",
+          "type": "range",
+          "default_value": [
+            0.001,
+            0.01
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "LED connected to a voltage rail as an indicator that there is voltage present"
+    },
+    {
+      "name": "",
+      "type": "W25q",
+      "superClasses": [
+        "SpiMemory",
+        "Memory"
+      ],
+      "ports": [
+        {
+          "name": "io2",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "io3",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "spi",
+          "type": "SpiPeripheral",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "cs",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Winbond W25Q series of SPI memory devices\n  "
+    },
+    {
+      "name": "",
+      "type": "ProgrammableController",
+      "superClasses": [],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "General programmable controller."
+    },
+    {
+      "name": "",
+      "type": "OscillatorCrystal",
+      "superClasses": [
+        "OscillatorReference",
+        "DiscreteApplication"
+      ],
+      "ports": [
+        {
+          "name": "crystal",
+          "type": "CrystalPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "frequency",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Crystal and supporting circuitry to connect it to an oscillator driver.\nShould include load capacitors."
+    },
+    {
+      "name": "",
+      "type": "UsbAReceptacle",
+      "superClasses": [
+        "UsbHostConnector",
+        "Connector"
+      ],
+      "ports": [
         {
           "name": "pwr",
           "type": "VoltageSink",
@@ -85,26 +2817,171 @@ export default {
           "hint_position": "down",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": false,
+          "required": true,
           "docstring": null
         },
         {
-          "name": "i2s",
-          "type": "I2sController",
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Tmp1075n",
+      "superClasses": [
+        "EnvironmentalSensor",
+        "Sensor"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "alert",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Overtemperature SMBus alert"
+        }
+      ],
+      "argParams": [
+        {
+          "name": "addr_lsb",
+          "type": "int",
+          "default_value": 0,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Temperature sensor with 0.25C typical accuracy"
+    },
+    {
+      "name": "",
+      "type": "Lpc1549_48",
+      "superClasses": [
+        "Lpc1549Base",
+        "Microcontroller",
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
           "is_array": true,
           "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
           "docstring": null
         },
         {
-          "name": "dvp8",
-          "type": "Dvp8Host",
-          "is_array": true,
-          "hint_position": null,
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
           "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
+          "hint_array_direction": null,
           "required": false,
           "docstring": null
         },
@@ -116,7 +2993,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller CAN controller ports"
         },
         {
           "name": "dac",
@@ -126,17 +3003,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
-        },
-        {
-          "name": "touch",
-          "type": "TouchDriver",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
+          "docstring": "Microcontroller analog output pins"
         },
         {
           "name": "i2c_target",
@@ -146,7 +3013,7 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
         },
         {
           "name": "spi_peripheral",
@@ -156,16 +3023,113 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Tpa2005d1",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
           "docstring": null
         },
         {
-          "name": "gnd_out",
-          "type": "VoltageSource",
+          "name": "gnd",
+          "type": "VoltageSink",
           "is_array": false,
-          "hint_position": "right",
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "sig",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "spk",
+          "type": "SpeakerDriverPort",
+          "is_array": false,
+          "hint_position": null,
           "hint_signal_direction": "source",
           "hint_array_direction": null,
-          "required": false,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "gain",
+          "type": "range",
+          "default_value": [
+            16.0,
+            24.0
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "TPA2005D1 configured in single-ended input mode.\nPossible semi-pin-compatible with PAM8302AASCR (C113367), but which has internal resistor."
+    },
+    {
+      "name": "",
+      "type": "LightSensor",
+      "superClasses": [
+        "Sensor"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Ldl1117",
+      "superClasses": [
+        "LinearRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
           "docstring": null
         },
         {
@@ -175,11 +3139,769 @@ export default {
           "hint_position": "right",
           "hint_signal_direction": "source",
           "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "output_voltage",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "A series of fixed-output, general-purpose, low-dropout linear regulators in SOT-223 and\nsupporting up to 18V input and 1.2A draw."
+    },
+    {
+      "name": "",
+      "type": "Opa2171",
+      "superClasses": [
+        "MultipackOpamp",
+        "Analog"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": true,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
           "required": false,
           "docstring": null
         },
         {
-          "name": "vusb_out",
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": true,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "inp",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "inn",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "AnalogSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Dual precision general purpose RRO opamp.\n  "
+    },
+    {
+      "name": "",
+      "type": "Tps561201",
+      "superClasses": [
+        "DiscreteBuckConverter",
+        "VoltageRegulator",
+        "BuckConverter",
+        "SwitchingVoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Adjustable synchronous buck converter in SOT-23-6 with integrated switch"
+    },
+    {
+      "name": "",
+      "type": "Dg468",
+      "superClasses": [
+        "AnalogSwitch",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "control",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "com",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "inputs",
+          "type": "Passive",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "DG468 36V 10ohm SPST switch in normally-open configuration\n  "
+    },
+    {
+      "name": "",
+      "type": "S8261A",
+      "superClasses": [
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "1-cell LiIon/LiPo Battery protection IC protecting against overcharge, overdischarge, over current.\n  "
+    },
+    {
+      "name": "",
+      "type": "Pesd1can",
+      "superClasses": [
+        "CanEsdDiode",
+        "Protection"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "can",
+          "type": "CanDiffPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "JacdacMountingGnd4",
+      "superClasses": [
+        "JacdacSubcircuit",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Antenna",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "a",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "frequency",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "impedance",
+          "type": "range",
+          "default_value": [
+            -Infinity,
+            Infinity
+          ],
+          "docstring": null
+        },
+        {
+          "name": "power",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Protection",
+      "superClasses": [],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Circuit protection elements, eg TVS diodes, fuses"
+    },
+    {
+      "name": "",
+      "type": "Mcp47f",
+      "superClasses": [
+        "DigitalToAnalog",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "ref0",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "ref1",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out0",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "out1",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "out2",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "out3",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "lat0",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "lat1",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "MCP47FxBx4/8 quad / octal 8/10/12-bit I2C DAC, with selectable internal or external Vref\n  "
+    },
+    {
+      "name": "",
+      "type": "SpiMemory",
+      "superClasses": [
+        "Memory"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "spi",
+          "type": "SpiPeripheral",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "cs",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "size",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": "Base class for SPI memory, with acceptable sizes (in bits) as a range."
+    },
+    {
+      "name": "",
+      "type": "Tlv9061",
+      "superClasses": [
+        "Opamp",
+        "Analog"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "inp",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "inn",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "RRIO op-amp in SOT-23-6.\n  "
+    },
+    {
+      "name": "",
+      "type": "Ap3012",
+      "superClasses": [
+        "DiscreteBoostConverter",
+        "VoltageRegulator",
+        "BoostConverter",
+        "SwitchingVoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Adjustable boost converter in SOT-23-5 with integrated switch"
+    },
+    {
+      "name": "",
+      "type": "Er_Epd027_2",
+      "superClasses": [
+        "EInk",
+        "Display",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "spi",
+          "type": "SpiPeripheral",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "cs",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "dc",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "busy",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "EK79651AB-based white/black/red 2.7\" 176x264 e-paper display.\n(Probably) compatible with https://www.waveshare.com/w/upload/b/ba/2.7inch_e-Paper_V2_Specification.pdf,\nand https://www.waveshare.com/w/upload/7/7b/2.7inch-e-paper-b-v2-specification.pdf"
+    },
+    {
+      "name": "",
+      "type": "UsbDeviceConnector",
+      "superClasses": [
+        "Connector",
+        "PowerSource"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
           "type": "VoltageSource",
           "is_array": false,
           "hint_position": "right",
@@ -189,8 +3911,665 @@ export default {
           "docstring": null
         },
         {
-          "name": "io2",
+          "name": "gnd",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "usb",
+          "type": "UsbHostPort",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Abstract base class for a USB 2.0 device-side port connector"
+    },
+    {
+      "name": "",
+      "type": "ProgrammingConnector",
+      "superClasses": [
+        "Connector",
+        "Testing"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Programming / debug / JTAG connectors."
+    },
+    {
+      "name": "",
+      "type": "DigitalIsolator",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr_a",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd_a",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "in_a",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "out_a",
+          "type": "DigitalSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr_b",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd_b",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "in_b",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "out_b",
+          "type": "DigitalSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Multichannel digital isolator, shifts logic signals between different logic voltages\nand isolation domains. Supports arbitrary channels in either direction, but it needs to\nmap down to a single chip (or be multipacked).\nin_a -> out_b, and in_b -> out_a must each have the same array elements, which is how\nchannels will be matched to pins."
+    },
+    {
+      "name": "",
+      "type": "Mcp4728",
+      "superClasses": [
+        "DigitalToAnalog",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out0",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "out1",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "out2",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "out3",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "ldac",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "rdy",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "output_caps",
+          "type": "bool",
+          "default_value": 1.0,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "MCP4728 quad 12-bit I2C DAC, with selectable internal or external Vref=Vdd.\nNote, MCP47F seems to be a similar architecture but the example application has an optional\n0.1uF capacitor on the VoutN lines to reduce noise, which is generated by default here."
+    },
+    {
+      "name": "",
+      "type": "Ld1117",
+      "superClasses": [
+        "LinearRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "output_voltage",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "IntegratorInverting",
+      "superClasses": [
+        "OpampApplication",
+        "Analog"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "input",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "output",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reference",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "factor",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "capacitance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "series",
+          "type": "int",
+          "default_value": 6,
+          "docstring": null
+        },
+        {
+          "name": "tolerance",
+          "type": "float",
+          "default_value": 0.05,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Opamp integrator, outputs the negative integral of the input signal, relative to some reference signal.\nWill clip to the input voltage rails.\n\nFrom https://en.wikipedia.org/wiki/Operational_amplifier_applications#Inverting_integrator:\nVout = - 1/RC * int(Vin) (integrating over time)\n\nSeries is lower and tolerance is higher because there's a cap involved\nTODO - separate series for cap, and series and tolerance by decade?"
+    },
+    {
+      "name": "",
+      "type": "JacdacMountingPwr3",
+      "superClasses": [
+        "JacdacSubcircuit",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "jd_pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Testing",
+      "superClasses": [],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Blocks for testing (eg, test points) and programming (eg, programming headers)."
+    },
+    {
+      "name": "",
+      "type": "Pcf2129",
+      "superClasses": [
+        "RealtimeClock"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_bat",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "spi",
+          "type": "SpiPeripheral",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "cs",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "clkout",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "int",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "RTC with integrated crystal. SO-16 version"
+    },
+    {
+      "name": "",
+      "type": "Esp32s3_Base",
+      "superClasses": [],
+      "ports": [
+        {
+          "name": "gpio",
           "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "dvp8",
+          "type": "Dvp8Host",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller 8-bit DVP digital video ports"
+        },
+        {
+          "name": "i2s",
+          "type": "I2sController",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2S controller ports, each element is an independent I2S controller"
+        },
+        {
+          "name": "can",
+          "type": "CanControllerPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller CAN controller ports"
+        },
+        {
+          "name": "touch",
+          "type": "TouchDriver",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller touch input"
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "spi_peripheral",
+          "type": "SpiPeripheral",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "chip_pu",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "io0",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "uart0",
+          "type": "UartPort",
           "is_array": false,
           "hint_position": null,
           "hint_signal_direction": "bidir",
@@ -200,8 +4579,739 @@ export default {
         }
       ],
       "argParams": [],
+      "is_abstract": true,
+      "docstring": "Base class for ESP32-S3 series microcontrollers with WiFi and Bluetooth (classic and LE)\nand AI acceleration\n\nChip datasheet: https://www.espressif.com/documentation/esp32-s3_datasheet_en.pdf"
+    },
+    {
+      "name": "",
+      "type": "Shtc3",
+      "superClasses": [
+        "EnvironmentalSensor",
+        "Sensor"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
       "is_abstract": false,
-      "docstring": "ESP32-WROVER-DEV breakout with camera.\n\nModule datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-wrover-e_esp32-wrover-ie_datasheet_en.pdf\nBoard used: https://amazon.com/ESP32-WROVER-Contained-Compatible-Bluetooth-Tutorials/dp/B09BC1N9LL\nBoard internal schematic: https://github.com/Freenove/Freenove_ESP32_WROVER_Board/blob/f710fd6976e76ab76c29c2ee3042cd7bac22c3d6/Datasheet/ESP32_Schematic.pdf\n\nTop left is pin 1, going down the left side then up the right side.\nUp is defined from the text orientation (antenna is on top)."
+      "docstring": "Humidity and temperature sensor with +/-2% RH and +/-0.2C"
+    },
+    {
+      "name": "",
+      "type": "E93Lc_B",
+      "superClasses": [
+        "SpiMemory",
+        "Memory"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "spi",
+          "type": "SpiPeripheral",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "cs",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "size",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "93LCxxB series of SPI EEPROMs. The E prefix is because Python identifiers can't start with numbers\nNote, A variant is 8-bit word, B variant is 16-bit word"
+    },
+    {
+      "name": "",
+      "type": "Fpga",
+      "superClasses": [
+        "ProgrammableController"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "FPGA with its surrounding application circuit."
+    },
+    {
+      "name": "",
+      "type": "SeriesPowerFerriteBead",
+      "superClasses": [
+        "DiscreteApplication"
+      ],
+      "ports": [
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "hf_impedance",
+          "type": "range",
+          "default_value": [
+            -Infinity,
+            Infinity
+          ],
+          "docstring": null
+        },
+        {
+          "name": "dc_resistance",
+          "type": "range",
+          "default_value": [
+            -Infinity,
+            Infinity
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Series ferrite bead for power applications"
+    },
+    {
+      "name": "",
+      "type": "Pgb102st23",
+      "superClasses": [
+        "UsbEsdDiode",
+        "Protection"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "usb",
+          "type": "UsbPassivePort",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "ESD suppressor, suitable for high speed protocols including USB2.0, 0.12pF typ"
+    },
+    {
+      "name": "",
+      "type": "Lsm6ds3trc",
+      "superClasses": [
+        "Accelerometer",
+        "Gyroscope",
+        "DefaultExportBlock",
+        "Sensor"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_io",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "IO supply voltage"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "int1",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Programmable interrupt"
+        },
+        {
+          "name": "int2",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Programmable interrupt"
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Integrated 3d accelerometer (ranging over +/- 2/4/8/16 g) and 3d gyroscope\n(ranging over +/- 125/250/500/1000/2000 dps)."
+    },
+    {
+      "name": "",
+      "type": "CanEsdDiode",
+      "superClasses": [
+        "Protection"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "can",
+          "type": "CanDiffPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Xbee_S3b",
+      "superClasses": [
+        "Interface",
+        "Radiofrequency"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "data",
+          "type": "UartPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "rssi",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "associate",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "XBee-PRO 900HP, product numbers XBP9B-*"
+    },
+    {
+      "name": "",
+      "type": "HighSideSwitch",
+      "superClasses": [
+        "PowerSwitch"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "control",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "output",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "pull_resistance",
+          "type": "range",
+          "default_value": [
+            9500.0,
+            10500.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "max_rds",
+          "type": "float",
+          "default_value": 1.0,
+          "docstring": null
+        },
+        {
+          "name": "frequency",
+          "type": "range",
+          "default_value": [
+            0.0,
+            0.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "clamp_voltage",
+          "type": "range",
+          "default_value": [
+            0.0,
+            0.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "clamp_resistance_ratio",
+          "type": "float",
+          "default_value": 10,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "A high-side FET switch, using a two switch architecture, a main pass PFET with a amplifier NFET to drive its gate.\nIf clamp_voltage is nonzero, a zener clamp is generated to limit the PFET gate voltage.\nThe clamp resistor is specified as a ratio from the pull resistance.\n\nTODO: clamp_voltage should be compared against the actual voltage so the clamp is automatically generated,\nbut generators don't support link terms (yet?)"
+    },
+    {
+      "name": "",
+      "type": "SeriesPowerResistor",
+      "superClasses": [
+        "DiscreteApplication"
+      ],
+      "ports": [
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "resistance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Series resistor for power applications"
+    },
+    {
+      "name": "",
+      "type": "Esp32s3_Wroom_1",
+      "superClasses": [
+        "Microcontroller",
+        "Radiofrequency",
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "dvp8",
+          "type": "Dvp8Host",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller 8-bit DVP digital video ports"
+        },
+        {
+          "name": "i2s",
+          "type": "I2sController",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2S controller ports, each element is an independent I2S controller"
+        },
+        {
+          "name": "can",
+          "type": "CanControllerPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller CAN controller ports"
+        },
+        {
+          "name": "touch",
+          "type": "TouchDriver",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller touch input"
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "spi_peripheral",
+          "type": "SpiPeripheral",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "ESP32-S3-WROOM-1 module\n  "
+    },
+    {
+      "name": "",
+      "type": "JacdacSubcircuit",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Category for Jacdac subcircuits"
+    },
+    {
+      "name": "",
+      "type": "Xc9142",
+      "superClasses": [
+        "DiscreteBoostConverter",
+        "BoostConverter",
+        "SwitchingVoltageRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Low-input-voltage boost converter (starts as low as 0.9V) with fixed output.\nXC9142 has PWM/PFM functionality, compared to PWM only for XC9141.\nSemi pin compatible with XC9140, LTC3525, MAX1724."
     },
     {
       "name": "",
@@ -337,11 +5447,21 @@ export default {
     },
     {
       "name": "",
-      "type": "Pcf2129",
+      "type": "Oscillator",
       "superClasses": [
-        "RealtimeClock"
+        "DiscreteApplication"
       ],
       "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
         {
           "name": "pwr",
           "type": "VoltageSink",
@@ -353,7 +5473,37 @@ export default {
           "docstring": null
         },
         {
-          "name": "pwr_bat",
+          "name": "out",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "frequency",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": "Device that generates a digital clock signal given power."
+    },
+    {
+      "name": "",
+      "type": "OpampElement",
+      "superClasses": [
+        "Opamp",
+        "Analog"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
           "type": "VoltageSink",
           "is_array": false,
           "hint_position": "up",
@@ -373,8 +5523,8 @@ export default {
           "docstring": null
         },
         {
-          "name": "spi",
-          "type": "SpiPeripheral",
+          "name": "inp",
+          "type": "AnalogSink",
           "is_array": false,
           "hint_position": "left",
           "hint_signal_direction": "sink",
@@ -383,7 +5533,62 @@ export default {
           "docstring": null
         },
         {
-          "name": "cs",
+          "name": "inn",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Packed opamp element"
+    },
+    {
+      "name": "",
+      "type": "JacdacMountingGnd2",
+      "superClasses": [
+        "JacdacSubcircuit",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "AnalogIsolatedSwitch",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "signal",
           "type": "DigitalSink",
           "is_array": false,
           "hint_position": "left",
@@ -393,39 +5598,17 @@ export default {
           "docstring": null
         },
         {
-          "name": "clkout",
-          "type": "DigitalSingleSource",
+          "name": "gnd",
+          "type": "VoltageSink",
           "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": false,
+          "required": true,
           "docstring": null
         },
         {
-          "name": "int",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "RTC with integrated crystal. SO-16 version"
-    },
-    {
-      "name": "",
-      "type": "AnalogClampZenerDiode",
-      "superClasses": [
-        "Protection"
-      ],
-      "ports": [
-        {
-          "name": "signal_in",
+          "name": "apull",
           "type": "AnalogSink",
           "is_array": false,
           "hint_position": "left",
@@ -435,7 +5618,17 @@ export default {
           "docstring": null
         },
         {
-          "name": "signal_out",
+          "name": "ain",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "aout",
           "type": "AnalogSource",
           "is_array": false,
           "hint_position": "right",
@@ -443,153 +5636,11 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Analog overvoltage protection diode to clamp the input voltage"
-    },
-    {
-      "name": "",
-      "type": "Qmc5883l",
-      "superClasses": [
-        "Magnetometer",
-        "Sensor"
-      ],
-      "ports": [
-        {
-          "name": "vdd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "drdy",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
         }
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "QMC5883L 3-axis magnetometer in single supply configuration.\nThis part seems to be a licensed semi-copy of the HMC5883L which is no longer in production.\nIt might be hardware drop-in compatible though the firmware protocol differs."
-    },
-    {
-      "name": "",
-      "type": "Opa2197",
-      "superClasses": [
-        "MultipackOpamp",
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": true,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": true,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "inp",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "inn",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "AnalogSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Dual precision RRO opamps.\n  "
-    },
-    {
-      "name": "",
-      "type": "PowerSource",
-      "superClasses": [],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Power sources, including connectors that also supply power."
+      "docstring": "Digitally controlled solid state relay that switches an analog signal.\nIncludes a ballasting resistor.\n\nThe ports are not tagged with Input/Output/InOut, because of potential for confusion between\nthe digital side and the analog side.\n\nA separate output-side pull port allows modeling the output switch standoff voltage\nwhen the switch is off."
     },
     {
       "name": "",
@@ -656,13 +5707,319 @@ export default {
     },
     {
       "name": "",
-      "type": "Er_Oled022_1",
+      "type": "SwitchingVoltageRegulator",
       "superClasses": [
-        "Oled",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "ripple_current_factor",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "input_ripple_limit",
+          "type": "float",
+          "default_value": 0.075,
+          "docstring": null
+        },
+        {
+          "name": "output_ripple_limit",
+          "type": "float",
+          "default_value": 0.025,
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Freenove_Esp32s3_Wroom",
+      "superClasses": [
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "dvp8",
+          "type": "Dvp8Host",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller 8-bit DVP digital video ports"
+        },
+        {
+          "name": "i2s",
+          "type": "I2sController",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2S controller ports, each element is an independent I2S controller"
+        },
+        {
+          "name": "can",
+          "type": "CanControllerPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller CAN controller ports"
+        },
+        {
+          "name": "touch",
+          "type": "TouchDriver",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller touch input"
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "spi_peripheral",
+          "type": "SpiPeripheral",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
+        },
+        {
+          "name": "gnd_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Ground for power output ports, when the device is acting as a power source"
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Power output port, typically of the device's Vdd or VddIO rail; must be used with gnd_out"
+        },
+        {
+          "name": "vusb_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Power output port of the device's Vbus, typically 5v; must be used with gnd_out"
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Freenove ESP32S3 WROOM breakout breakout with camera.\n\nBoard pinning: https://github.com/Freenove/Freenove_ESP32_S3_WROOM_Board/blob/main/ESP32S3_Pinout.png\n\nTop left is pin 1, going down the left side then up the right side.\nUp is defined from the text orientation (antenna is on top)."
+    },
+    {
+      "name": "",
+      "type": "L78l",
+      "superClasses": [
+        "LinearRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "output_voltage",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "L78Lxx high(er) input voltage linear regulator in SOT-89.\n  "
+    },
+    {
+      "name": "",
+      "type": "E2154fs091",
+      "superClasses": [
+        "EInk",
         "Display",
         "HumanInterface"
       ],
       "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
         {
           "name": "gnd",
           "type": "VoltageSink",
@@ -674,21 +6031,11 @@ export default {
           "docstring": null
         },
         {
-          "name": "vcc",
-          "type": "VoltageSink",
+          "name": "busy",
+          "type": "DigitalSource",
           "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
+          "hint_position": "right",
+          "hint_signal_direction": "source",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
@@ -704,13 +6051,13 @@ export default {
           "docstring": null
         },
         {
-          "name": "spi",
-          "type": "SpiPeripheral",
+          "name": "dc",
+          "type": "DigitalSink",
           "is_array": false,
           "hint_position": "left",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": false,
+          "required": true,
           "docstring": null
         },
         {
@@ -720,43 +6067,84 @@ export default {
           "hint_position": "left",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": false,
+          "required": true,
           "docstring": null
         },
         {
-          "name": "dc",
-          "type": "DigitalSink",
+          "name": "spi",
+          "type": "SpiPeripheral",
           "is_array": false,
           "hint_position": "left",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
+          "required": true,
           "docstring": null
         }
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "SSD1305-based 2.2\" 128x32 monochrome OLED in SPI or I2C mode."
+      "docstring": "1.54\" 152x152px red/black/white e-ink display with 24-pin FPC connector, 0.5mm pitch"
     },
     {
       "name": "",
-      "type": "SeriesPowerFerriteBead",
+      "type": "RealtimeClock",
+      "superClasses": [],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Realtime clock device."
+    },
+    {
+      "name": "",
+      "type": "CanControllerTestPoint",
       "superClasses": [
-        "DiscreteApplication"
+        "TypedTestPoint",
+        "Testing"
       ],
       "ports": [
         {
-          "name": "pwr_out",
+          "name": "io",
+          "type": "CanPassivePort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "tp_name",
+          "type": "str",
+          "default_value": "",
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Two test points for CAN controller-side TXD and RXD"
+    },
+    {
+      "name": "",
+      "type": "UsbMicroBReceptacle",
+      "superClasses": [
+        "UsbDeviceConnector",
+        "Connector",
+        "PowerSource"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
           "type": "VoltageSource",
           "is_array": false,
           "hint_position": "right",
@@ -766,10 +6154,103 @@ export default {
           "docstring": null
         },
         {
-          "name": "pwr_in",
+          "name": "usb",
+          "type": "UsbHostPort",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "AnalogSwitchTree",
+      "superClasses": [
+        "AnalogSwitch",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
           "type": "VoltageSink",
           "is_array": false,
           "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "control",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "com",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "inputs",
+          "type": "Passive",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "switch_size",
+          "type": "int",
+          "default_value": 0,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Generates an n-ported analog switch by creating a tree of individual, smaller switches.\nParameterized by the size of the element switches."
+    },
+    {
+      "name": "",
+      "type": "ConnectorSpeaker",
+      "superClasses": [
+        "Speaker",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "input",
+          "type": "SpeakerPort",
+          "is_array": false,
+          "hint_position": null,
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
@@ -778,34 +6259,25 @@ export default {
       ],
       "argParams": [
         {
-          "name": "hf_impedance",
+          "name": "impedance",
           "type": "range",
           "default_value": [
-            -Infinity,
-            Infinity
-          ],
-          "docstring": null
-        },
-        {
-          "name": "dc_resistance",
-          "type": "range",
-          "default_value": [
-            -Infinity,
-            Infinity
+            8.0,
+            8.0
           ],
           "docstring": null
         }
       ],
       "is_abstract": false,
-      "docstring": "Series ferrite bead for power applications"
+      "docstring": "Speaker that delegates to a PassiveConnector and with configurable impedance."
     },
     {
       "name": "",
-      "type": "Tps561201",
+      "type": "Lm2733",
       "superClasses": [
-        "DiscreteBuckConverter",
+        "DiscreteBoostConverter",
         "VoltageRegulator",
-        "BuckConverter",
+        "BoostConverter",
         "SwitchingVoltageRegulator",
         "PowerConditioner"
       ],
@@ -853,11 +6325,563 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "Adjustable synchronous buck converter in SOT-23-6 with integrated switch"
+      "docstring": "Adjustable boost converter in SOT-23-5 with integrated switch"
     },
     {
       "name": "",
-      "type": "Lm4871",
+      "type": "EInk",
+      "superClasses": [
+        "Display",
+        "HumanInterface"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "E-ink display, which retains the image after power is removed."
+    },
+    {
+      "name": "",
+      "type": "Neopixel",
+      "superClasses": [
+        "Light",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "vdd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "din",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "dout",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Abstract base class for Neopixel-type LEDs including the Vdd/Gnd/Din/Dout interface."
+    },
+    {
+      "name": "",
+      "type": "BuckConverter",
+      "superClasses": [
+        "SwitchingVoltageRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "ripple_current_factor",
+          "type": "range",
+          "default_value": "(0.2, 0.5)",
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": "Step-down switching converter"
+    },
+    {
+      "name": "",
+      "type": "IndicatorSinkLedResistor",
+      "superClasses": [
+        "IndicatorSinkLed",
+        "Light",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "signal",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "TODO: should the resistor sided-ness be configurable, eg as a generator? Similar for IndicatorLed"
+    },
+    {
+      "name": "",
+      "type": "CustomSyncBuckConverterIndependent",
+      "superClasses": [
+        "DiscreteBoostConverter",
+        "BoostConverter",
+        "SwitchingVoltageRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_logic",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwm_low",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwm_high",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "frequency",
+          "type": "range",
+          "default_value": [
+            100000.0,
+            1000000.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "voltage_drop",
+          "type": "range",
+          "default_value": [
+            0.0,
+            1.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "rds_on",
+          "type": "range",
+          "default_value": [
+            0.0,
+            1.0
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Custom synchronous buck with two PWM inputs for the high and low side gate drivers.\nBecause of the MOSFET body diode, will probably be fine-ish if the low side FET is not driven."
+    },
+    {
+      "name": "",
+      "type": "Nlas4157",
+      "superClasses": [
+        "AnalogSwitch",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "control",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "com",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "inputs",
+          "type": "Passive",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "NLAS4157 2:1 analog switch, 1ohm Ron, in SOT-363.\nPin compatible with:\n- TS5A3159: 5v tolerant, 1 ohm\n- TS5A3160: 5v tolerant, 1 ohm"
+    },
+    {
+      "name": "",
+      "type": "Iso1050dub",
+      "superClasses": [
+        "IsolatedCanTransceiver",
+        "CanTransceiver",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "controller",
+          "type": "CanTransceiverPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "can",
+          "type": "CanDiffPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "can_pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "can_gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "VoltageSenseDivider",
+      "superClasses": [
+        "Analog"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "input",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "output",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "full_scale_voltage",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "impedance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Voltage divider that takes in an output voltage and parallel impedance spec, and produces an output analog signal\nof the appropriate magnitude (as a fraction of the input voltage).\nUnlike the normal VoltageDivider, the output is defined in terms of full scale voltage - that is, the voltage\noutput at the maximum input voltage, which makes the tolerance specification more useful for sensing applications\nwith variable input voltage.\n\nTODO: can this be unified with VoltageDivider?"
+    },
+    {
+      "name": "",
+      "type": "CpuFan3Pin",
+      "superClasses": [
+        "CpuFanConnector",
+        "Connector"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "sense",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "3-pin fan controller"
+    },
+    {
+      "name": "",
+      "type": "DigitalWrapperDirectionSwitch",
+      "superClasses": [
+        "DigitalDirectionSwitch",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "a",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "b",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "c",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "d",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Basic implementation for DigitalDirectionSwitch as a wrapper around a passive-typed DirectionSwitch."
+    },
+    {
+      "name": "",
+      "type": "AnalogDemuxer",
       "superClasses": [
         "Interface"
       ],
@@ -883,7 +6907,27 @@ export default {
           "docstring": null
         },
         {
-          "name": "sig",
+          "name": "control",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "outputs",
+          "type": "AnalogSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "input",
           "type": "AnalogSink",
           "is_array": false,
           "hint_position": "left",
@@ -891,35 +6935,152 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
-        },
-        {
-          "name": "spk",
-          "type": "SpeakerDriverPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
         }
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": null
+      "docstring": "Wrapper around AnalogSwitch that provides demuxing functionality - multiple source ports, one sink port.\n  "
     },
     {
       "name": "",
-      "type": "CeramicResonator",
-      "superClasses": [
-        "OscillatorReference",
-        "DiscreteApplication"
-      ],
+      "type": "Esp32_Base",
+      "superClasses": [],
       "ports": [
         {
-          "name": "crystal",
-          "type": "CrystalPort",
-          "is_array": false,
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
           "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "i2s",
+          "type": "I2sController",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2S controller ports, each element is an independent I2S controller"
+        },
+        {
+          "name": "dvp8",
+          "type": "Dvp8Host",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller 8-bit DVP digital video ports"
+        },
+        {
+          "name": "can",
+          "type": "CanControllerPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller CAN controller ports"
+        },
+        {
+          "name": "dac",
+          "type": "AnalogSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog output pins"
+        },
+        {
+          "name": "touch",
+          "type": "TouchDriver",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller touch input"
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "spi_peripheral",
+          "type": "SpiPeripheral",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
@@ -934,29 +7095,109 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
+        },
+        {
+          "name": "chip_pu",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "io0",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "io2",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "uart0",
+          "type": "UartPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Base class for ESP32 series microcontrollers with WiFi and Bluetooth (classic and LE)\n\nChip datasheet: https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf"
+    },
+    {
+      "name": "",
+      "type": "SingleDiodePowerMerge",
+      "superClasses": [
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_in_diode",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
         }
       ],
       "argParams": [
         {
-          "name": "frequency",
+          "name": "voltage_drop",
           "type": "range",
           "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "reverse_recovery_time",
+          "type": "range",
+          "default_value": [
+            -Infinity,
+            Infinity
+          ],
           "docstring": null
         }
       ],
       "is_abstract": false,
-      "docstring": "Category for ceramic resonators"
-    },
-    {
-      "name": "",
-      "type": "Display",
-      "superClasses": [
-        "HumanInterface"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Pixel displays."
+      "docstring": "Single-diode power merge block for two voltage sources, where the lower voltage one is diode-gated and less\npreferred if both are connected."
     },
     {
       "name": "",
@@ -1014,11 +7255,206 @@ export default {
     },
     {
       "name": "",
-      "type": "SdCard",
+      "type": "Opa2333",
       "superClasses": [
-        "Memory"
+        "MultipackOpamp",
+        "Analog"
       ],
       "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": true,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": true,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "inp",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "inn",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "AnalogSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Dual precision RRIO (including negative input) opamps.\n  "
+    },
+    {
+      "name": "",
+      "type": "IndicatorSinkLedArray",
+      "superClasses": [
+        "Light",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "signals",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "count",
+          "type": "int",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "color",
+          "type": "str",
+          "default_value": "",
+          "docstring": null
+        },
+        {
+          "name": "current_draw",
+          "type": "range",
+          "default_value": [
+            0.001,
+            0.01
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "An array of IndicatorSinkLed, just a convenience wrapper."
+    },
+    {
+      "name": "",
+      "type": "PriorityPowerOr",
+      "superClasses": [
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_hi",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_lo",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "diode_voltage_drop",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "fet_rds_on",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Power merge block for two power inputs, where the high priority input (e.g. USB) is higher voltage and\nthe low priority input is lower voltage (e.g. battery).\nThe higher priority input incurs a diode drop, while the lower priority input has a FET.\nAs a side effect, the FET power path also acts as reverse polarity protection."
+    },
+    {
+      "name": "",
+      "type": "Waveshare_Epd",
+      "superClasses": [
+        "EInk",
+        "Display",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
         {
           "name": "pwr",
           "type": "VoltageSink",
@@ -1030,10 +7466,10 @@ export default {
           "docstring": null
         },
         {
-          "name": "gnd",
-          "type": "VoltageSink",
+          "name": "reset",
+          "type": "DigitalSink",
           "is_array": false,
-          "hint_position": "down",
+          "hint_position": "left",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
@@ -1058,18 +7494,1328 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
+        },
+        {
+          "name": "dc",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "busy",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Multi-device-compatible driver circuitry based on the Waveshare E-Paper Driver HAT\nhttps://www.waveshare.com/wiki/E-Paper_Driver_HAT\nexcluding the \"clever\" reset circuit"
+    },
+    {
+      "name": "",
+      "type": "Ncp3420",
+      "superClasses": [
+        "HalfBridgeDriver",
+        "PowerSwitch"
+      ],
+      "ports": [
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwm_in",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "low_out",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "high_pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "high_gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "high_out",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Half-bridge driver supporting 35V offset, 4.6-13.2v input, external boot diode, auto-deadtime."
+    },
+    {
+      "name": "",
+      "type": "CeramicResonator",
+      "superClasses": [
+        "OscillatorReference",
+        "DiscreteApplication"
+      ],
+      "ports": [
+        {
+          "name": "crystal",
+          "type": "CrystalPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "frequency",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Category for ceramic resonators"
+    },
+    {
+      "name": "",
+      "type": "SignalDivider",
+      "superClasses": [
+        "Analog"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "input",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "output",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "ratio",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "impedance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Specialization of ResistiveDivider for Analog signals"
+    },
+    {
+      "name": "",
+      "type": "Esp32c3_Base",
+      "superClasses": [],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "i2s",
+          "type": "I2sController",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2S controller ports, each element is an independent I2S controller"
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "spi_peripheral",
+          "type": "SpiPeripheral",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "en",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "io2",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "io8",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "io9",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "uart0",
+          "type": "UartPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
         }
       ],
       "argParams": [],
       "is_abstract": true,
-      "docstring": "Minimum connections for SD card, with IOs definitions set according to SD card spec"
+      "docstring": "Base class for ESP32-C3 series devices, with RISC-V core, 2.4GHz WiF,i, BLE5.\nPlatformIO: use board ID esp32-c3-devkitm-1\n\nChip datasheet: https://espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf"
     },
     {
       "name": "",
-      "type": "PullupResistorArray",
+      "type": "Sk6805_Ec15",
       "superClasses": [
-        "TypedTestPoint",
+        "Neopixel",
+        "Light",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "vdd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "din",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "dout",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "SK6805-EC15 Neopixel RGB LED in 1.5x1.5 (0606)."
+    },
+    {
+      "name": "",
+      "type": "PmosReverseProtection",
+      "superClasses": [
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "gate_resistor",
+          "type": "range",
+          "default_value": [
+            9500.0,
+            10500.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "rds_on",
+          "type": "range",
+          "default_value": [
+            0.0,
+            0.1
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Reverse polarity protection using a PMOS. This method has lower power loss over diode-based protection.\n100R-330R is good but 1k-50k can be used for continuous load.\nRef: https://components101.com/articles/design-guide-pmos-mosfet-for-reverse-voltage-polarity-protection"
+    },
+    {
+      "name": "",
+      "type": "Tlp3545a",
+      "superClasses": [
+        "SolidStateRelay",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "leda",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "ledk",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "feta",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "fetb",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Cbmud1200l",
+      "superClasses": [
+        "DigitalIsolator",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr_a",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd_a",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "in_a",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "out_a",
+          "type": "DigitalSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr_b",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd_b",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "in_b",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "out_b",
+          "type": "DigitalSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "LowPassRc",
+      "superClasses": [
+        "AnalogFilter",
+        "Filter"
+      ],
+      "ports": [
+        {
+          "name": "input",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "output",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "impedance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "cutoff_freq",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "voltage",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Passive-typed low-pass RC specified by the resistor value (impedance) and -3dB (~70%) cutoff frequency."
+    },
+    {
+      "name": "",
+      "type": "VoltageRegulator",
+      "superClasses": [
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "output_voltage",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": "Structural abstract base class for DC-DC voltage regulators with shared ground (non-isolated).\nThis takes some input voltage and produces a stable voltage at output_voltage on its output.\n\nWhile this abstract class does not define any limitations on the output voltage, subclasses and concrete\nimplementations commonly have restrictions, for example linear regulators can only produce voltages lower\nthan the input voltage."
+    },
+    {
+      "name": "",
+      "type": "AnalogSwitch",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "control",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "com",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "inputs",
+          "type": "Passive",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Base class for a n-ported analog switch with passive-typed ports."
+    },
+    {
+      "name": "",
+      "type": "EspProgrammingTc2030",
+      "superClasses": [
+        "EspProgrammingHeader",
+        "ProgrammingConnector",
+        "Connector",
         "Testing"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "en",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "boot",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "UNOFFICIAL tag connect header, based on a modification of the FT232 cable\n(https://www.tag-connect.com/product/tc2030-ftdi-ttl-232rg-vsw3v3)\nbut adding the auto-programming pins (and using DTR instead of CTS into the cable).\nPower pins compatible with the official SWD header.\n\nPer boot docs, EN is connected to RTS and boot is connected to DTR (CTS on the original pinning,\nsince it doesn't have a DTR pin)."
+    },
+    {
+      "name": "",
+      "type": "UsbEsdDiode",
+      "superClasses": [
+        "Protection"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "usb",
+          "type": "UsbPassivePort",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Sk6812_Side_A",
+      "superClasses": [
+        "Neopixel",
+        "Light",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "vdd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "din",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "dout",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "SK6812-SIDE-A side-emitting Neopixel LED."
+    },
+    {
+      "name": "",
+      "type": "BoostConverter",
+      "superClasses": [
+        "SwitchingVoltageRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "ripple_current_factor",
+          "type": "range",
+          "default_value": "(0.2, 0.5)",
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": "Step-up switching converter"
+    },
+    {
+      "name": "",
+      "type": "Esp32c3_Wroom02",
+      "superClasses": [
+        "Microcontroller",
+        "Radiofrequency",
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2s",
+          "type": "I2sController",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2S controller ports, each element is an independent I2S controller"
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "spi_peripheral",
+          "type": "SpiPeripheral",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Wrapper around Esp32c3_Wroom02 with external capacitors and UART programming header."
+    },
+    {
+      "name": "",
+      "type": "Sd18ob261",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "clk",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "lr",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "data",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "SD18OB261-060 PDM microphone, probably footprint-compatible with similar Knowles devices.\nApplication circuit is not specified in the datasheet, this uses the one from SPH0655LM4H\n(single 0.1uF decap)."
+    },
+    {
+      "name": "",
+      "type": "PmosChargerReverseProtection",
+      "superClasses": [
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": "Power output for a load which will be also reverse protected from the battery"
+        },
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": "Power input from the battery"
+        },
+        {
+          "name": "chg_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": "Charger input to charge the battery. Must be connected to pwr_out."
+        },
+        {
+          "name": "chg_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": "Charging output to the battery chg port. Must be connected to pwr_in,"
+        }
+      ],
+      "argParams": [
+        {
+          "name": "r1_val",
+          "type": "range",
+          "default_value": [
+            99000.0,
+            101000.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "r2_val",
+          "type": "range",
+          "default_value": [
+            99000.0,
+            101000.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "rds_on",
+          "type": "range",
+          "default_value": [
+            0.0,
+            0.1
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Charging capable a battery reverse protection using PMOS transistors. The highest battery voltage is bounded by the\ntransistors' Vgs/Vds. There is also a rare case when this circuit being disconnected when a charger is connected first.\nBut always reverse protect. R1 and R2 are the pullup bias resistors for mp1 and mp2 PFet.\nMore info at: https://www.edn.com/reverse-voltage-protection-for-battery-chargers/"
+    },
+    {
+      "name": "",
+      "type": "Interface",
+      "superClasses": [],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Interface devices, eg CAN transceiver (CAN <-> SPI / I2C interface),\nand including analog interfaces (ADCs, DACs)."
+    },
+    {
+      "name": "",
+      "type": "PullupDelayRc",
+      "superClasses": [
+        "DigitalFilter",
+        "Filter"
       ],
       "ports": [
         {
@@ -1085,9 +8831,263 @@ export default {
         {
           "name": "io",
           "type": "DigitalSingleSource",
-          "is_array": true,
+          "is_array": false,
           "hint_position": "right",
           "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "impedance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "time_constant",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Pull-up resistor with capacitor for delay.\n  "
+    },
+    {
+      "name": "",
+      "type": "Ws2812b",
+      "superClasses": [
+        "Neopixel",
+        "Light",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "vdd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "din",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "dout",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "DefaultExportBlock",
+      "superClasses": [],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "EXPERIMENTAL UTILITY CLASS. There needs to be a cleaner way to address this eventually,\nperhaps as a core compiler construct.\nThis encapsulates the common pattern of an optional export, which if not externally connected,\nconnects the internal port to some other default port.\nTODO The default can be specified as a port, or a function that returns a port (e.g. to instantiate adapters)."
+    },
+    {
+      "name": "",
+      "type": "DiodePowerMerge",
+      "superClasses": [
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in1",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_in2",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "voltage_drop",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "reverse_recovery_time",
+          "type": "range",
+          "default_value": "(0, inf)",
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Diode power merge block for two voltage sources.\n  "
+    },
+    {
+      "name": "",
+      "type": "NeopixelArray",
+      "superClasses": [
+        "Light",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "din",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "dout",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "vdd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "count",
+          "type": "int",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "An array of Neopixels"
+    },
+    {
+      "name": "",
+      "type": "Vl53l0xArray",
+      "superClasses": [
+        "DistanceSensor",
+        "Sensor"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
           "hint_array_direction": "source",
           "required": false,
           "docstring": null
@@ -1095,14 +9095,255 @@ export default {
       ],
       "argParams": [
         {
-          "name": "resistance",
-          "type": "range",
+          "name": "count",
+          "type": "int",
           "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "first_reset_fixed",
+          "type": "bool",
+          "default_value": 0.0,
           "docstring": null
         }
       ],
       "is_abstract": false,
-      "docstring": "Array of PullupResistors, sized from the port array's connections."
+      "docstring": "Array of Vl53l0x with common I2C but individually exposed XSHUT pins and optionally GPIO1 (interrupt)."
+    },
+    {
+      "name": "",
+      "type": "Esp32c3",
+      "superClasses": [
+        "Microcontroller",
+        "Radiofrequency",
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2s",
+          "type": "I2sController",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2S controller ports, each element is an independent I2S controller"
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "spi_peripheral",
+          "type": "SpiPeripheral",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "ESP32-C3 application circuit, bare chip + RF circuits.\nNOT RECOMMENDED - you will need to do your own RF layout, instead consider using the WROOM module."
+    },
+    {
+      "name": "",
+      "type": "SoftPowerGate",
+      "superClasses": [
+        "PowerSwitch"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": "Gate controlled power out"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "btn_out",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Allows the button state to be read independently of the control signal"
+        },
+        {
+          "name": "btn_in",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": "Should be connected to a button output. Do not connect IO"
+        },
+        {
+          "name": "control",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": "external control to latch the power on"
+        }
+      ],
+      "argParams": [
+        {
+          "name": "pull_resistance",
+          "type": "range",
+          "default_value": [
+            9500.0,
+            10500.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "amp_resistance",
+          "type": "range",
+          "default_value": [
+            9500.0,
+            10500.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "diode_drop",
+          "type": "range",
+          "default_value": [
+            0.0,
+            0.4
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "A high-side PFET power gate that has a button to power on, can be latched on by an external signal,\nand provides the button output as a signal."
     },
     {
       "name": "",
@@ -1224,181 +9465,6 @@ export default {
     },
     {
       "name": "",
-      "type": "Esp32_Wroom_32",
-      "superClasses": [
-        "Microcontroller",
-        "Radiofrequency",
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2s",
-          "type": "I2sController",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "dvp8",
-          "type": "Dvp8Host",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanControllerPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "dac",
-          "type": "AnalogSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "touch",
-          "type": "TouchDriver",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi_peripheral",
-          "type": "SpiPeripheral",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Wrapper around Esp32c3_Wroom02 with external capacitors and UART programming header.\nNOT COMPATIBLE WITH QSPI PSRAM VARIANTS - for those, GPIO16 needs to be pulled up."
-    },
-    {
-      "name": "",
       "type": "SeriesPowerInductor",
       "superClasses": [
         "DiscreteApplication"
@@ -1456,7 +9522,427 @@ export default {
     },
     {
       "name": "",
-      "type": "Opa189",
+      "type": "Pesd5v0x1bt",
+      "superClasses": [
+        "UsbEsdDiode",
+        "Protection"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "usb",
+          "type": "UsbPassivePort",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Ultra low capacitance ESD protection diode (0.9pF typ), suitable for USB and GbE"
+    },
+    {
+      "name": "",
+      "type": "DiscreteBuckBoostConverter",
+      "superClasses": [
+        "BuckBoostConverter",
+        "SwitchingVoltageRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "ripple_current_factor",
+          "type": "range",
+          "default_value": "(0.2, 0.5)",
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": "Category for discrete buck-boost converter subcircuits (as opposed to integrated components)"
+    },
+    {
+      "name": "",
+      "type": "AABattery",
+      "superClasses": [
+        "Battery",
+        "PowerSource"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "voltage",
+          "type": "range",
+          "default_value": [
+            1.3,
+            1.7
+          ],
+          "docstring": null
+        },
+        {
+          "name": "actual_voltage",
+          "type": "range",
+          "default_value": [
+            1.3,
+            1.7
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "AA Alkaline battery"
+    },
+    {
+      "name": "",
+      "type": "SoftPowerSwitch",
+      "superClasses": [
+        "PowerSwitch"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "btn_out",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "control",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "pull_resistance",
+          "type": "range",
+          "default_value": [
+            9500.0,
+            10500.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "amp_resistance",
+          "type": "range",
+          "default_value": [
+            9500.0,
+            10500.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "diode_drop",
+          "type": "range",
+          "default_value": [
+            0.0,
+            0.4
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "A software power switch that adds a power button a user can turn on\n  "
+    },
+    {
+      "name": "",
+      "type": "NeopixelArrayCircular",
+      "superClasses": [
+        "NeopixelArray",
+        "Light",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "din",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "dout",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "vdd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "count",
+          "type": "int",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "An array of Neopixels, with a circular layout template"
+    },
+    {
+      "name": "",
+      "type": "Ir2301",
+      "superClasses": [
+        "HalfBridgeDriver",
+        "PowerSwitch"
+      ],
+      "ports": [
+        {
+          "name": "low_in",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "high_in",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "low_out",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "high_pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "high_gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "high_out",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "has_boot_diode",
+          "type": "bool",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "IR2301 half-bridge driver supporting 600V offset, 5-20v input, external boot diode,\nno shoot through protect, no deadtime."
+    },
+    {
+      "name": "",
+      "type": "RfConnector",
+      "superClasses": [
+        "Connector"
+      ],
+      "ports": [
+        {
+          "name": "sig",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Base class for a RF connector, with a signal and ground. Signal is passive-typed."
+    },
+    {
+      "name": "",
+      "type": "Mcp6001",
       "superClasses": [
         "Opamp",
         "Analog"
@@ -1515,307 +10001,15 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "High voltage (4.5-36V), low-noise opamp in SOIC-8.\n  "
+      "docstring": "MCP6001 RRO op-amp in SOT-23-5\n  "
     },
     {
       "name": "",
-      "type": "Oled",
+      "type": "Apx803s",
       "superClasses": [
-        "Display",
-        "HumanInterface"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "OLED display, with the pixel density of an LCD but with infinite contrast and no backlight."
-    },
-    {
-      "name": "",
-      "type": "Sk6805_Ec15",
-      "superClasses": [
-        "Neopixel",
-        "Light",
-        "HumanInterface"
+        "Interface"
       ],
       "ports": [
-        {
-          "name": "vdd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "din",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dout",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "SK6805-EC15 Neopixel RGB LED in 1.5x1.5 (0606)."
-    },
-    {
-      "name": "",
-      "type": "VoltageReference",
-      "superClasses": [
-        "LinearRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "output_voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": "Voltage reference, generally provides high accuracy but limited current"
-    },
-    {
-      "name": "",
-      "type": "Esp32s3_Wroom_1",
-      "superClasses": [
-        "Microcontroller",
-        "Radiofrequency",
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "dvp8",
-          "type": "Dvp8Host",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2s",
-          "type": "I2sController",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanControllerPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "touch",
-          "type": "TouchDriver",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi_peripheral",
-          "type": "SpiPeripheral",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "ESP32-S3-WROOM-1 module\n  "
-    },
-    {
-      "name": "",
-      "type": "Oscillator",
-      "superClasses": [
-        "DiscreteApplication"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
         {
           "name": "pwr",
           "type": "VoltageSink",
@@ -1827,59 +10021,6 @@ export default {
           "docstring": null
         },
         {
-          "name": "out",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "frequency",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": "Device that generates a digital clock signal given power."
-    },
-    {
-      "name": "",
-      "type": "Ltc3429",
-      "superClasses": [
-        "DiscreteBoostConverter",
-        "VoltageRegulator",
-        "BoostConverter",
-        "SwitchingVoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
           "name": "gnd",
           "type": "VoltageSink",
           "is_array": false,
@@ -1890,19 +10031,26 @@ export default {
           "docstring": null
         },
         {
-          "name": "reset",
-          "type": "DigitalSink",
+          "name": "nreset",
+          "type": "DigitalSingleSource",
           "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
+          "hint_position": "right",
+          "hint_signal_direction": "source",
           "hint_array_direction": null,
-          "required": false,
+          "required": true,
           "docstring": null
         }
       ],
-      "argParams": [],
+      "argParams": [
+        {
+          "name": "reset_threshold",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
       "is_abstract": false,
-      "docstring": "Low-input-voltage boost converter (starts as low as 0.85V).\nPin-compatible with the less-expensive UM3429S"
+      "docstring": null
     },
     {
       "name": "",
@@ -1998,223 +10146,23 @@ export default {
     },
     {
       "name": "",
-      "type": "SwdCortexTargetConnector",
+      "type": "AnalogToDigital",
       "superClasses": [
-        "ProgrammingConnector",
-        "Connector",
-        "Testing"
+        "Interface"
       ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "swd",
-          "type": "SwdHostPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
+      "ports": [],
       "argParams": [],
       "is_abstract": true,
-      "docstring": "Programming header with power and SWD (SWCLK/SWDIO/RESET) pins."
-    },
-    {
-      "name": "",
-      "type": "Hdc1080",
-      "superClasses": [
-        "EnvironmentalSensor",
-        "Sensor"
-      ],
-      "ports": [
-        {
-          "name": "vdd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
       "docstring": null
     },
     {
       "name": "",
-      "type": "DigitalSwitch",
+      "type": "AnalogLowPassRc",
       "superClasses": [
-        "HumanInterface"
+        "DigitalFilter",
+        "Filter"
       ],
       "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Wrapper around Switch that provides a digital port which is pulled low (to GND) when pressed."
-    },
-    {
-      "name": "",
-      "type": "Sensor",
-      "superClasses": [],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Any kind of sensor with any interface. Multi-packed sensors may inherit from multiple categories"
-    },
-    {
-      "name": "",
-      "type": "Xbee_S3b",
-      "superClasses": [
-        "Interface",
-        "Radiofrequency"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "data",
-          "type": "UartPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "rssi",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "associate",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "XBee-PRO 900HP, product numbers XBP9B-*"
-    },
-    {
-      "name": "",
-      "type": "Amplifier",
-      "superClasses": [
-        "OpampApplication",
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
         {
           "name": "input",
           "type": "AnalogSink",
@@ -2236,438 +10184,63 @@ export default {
           "docstring": null
         },
         {
-          "name": "reference",
-          "type": "AnalogSink",
+          "name": "gnd",
+          "type": "VoltageSink",
           "is_array": false,
-          "hint_position": "left",
+          "hint_position": "down",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": false,
+          "required": true,
           "docstring": null
         }
       ],
       "argParams": [
-        {
-          "name": "amplification",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
         {
           "name": "impedance",
           "type": "range",
-          "default_value": [
-            10000.0,
-            100000.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "series",
-          "type": "int",
-          "default_value": 24,
-          "docstring": null
-        },
-        {
-          "name": "tolerance",
-          "type": "float",
-          "default_value": 0.01,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Opamp non-inverting amplifier, outputs a scaled-up version of the input signal.\n\nFrom https://en.wikipedia.org/wiki/Operational_amplifier_applications#Non-inverting_amplifier:\nVout = Vin (1 + R1/R2)\n\nThe input and output impedances given are a bit more complex, so this simplifies it to\nthe opamp's specified pin impedances - TODO: is this correct(ish)?"
-    },
-    {
-      "name": "",
-      "type": "Esp32c3",
-      "superClasses": [
-        "Microcontroller",
-        "Radiofrequency",
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2s",
-          "type": "I2sController",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi_peripheral",
-          "type": "SpiPeripheral",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "ESP32-C3 application circuit, bare chip + RF circuits.\nNOT RECOMMENDED - you will need to do your own RF layout, instead consider using the WROOM module."
-    },
-    {
-      "name": "",
-      "type": "DecouplingCapacitor",
-      "superClasses": [
-        "DiscreteApplication"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "capacitance",
-          "type": "range",
           "default_value": null,
           "docstring": null
         },
         {
-          "name": "exact_capacitance",
-          "type": "bool",
-          "default_value": 0.0,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Optionally polarized capacitor used for DC decoupling, with VoltageSink connections with voltage inference.\nImplemented as a shim block."
-    },
-    {
-      "name": "",
-      "type": "OscillatorCrystal",
-      "superClasses": [
-        "OscillatorReference",
-        "DiscreteApplication"
-      ],
-      "ports": [
-        {
-          "name": "crystal",
-          "type": "CrystalPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "frequency",
+          "name": "cutoff_freq",
           "type": "range",
           "default_value": null,
           "docstring": null
         }
       ],
       "is_abstract": false,
-      "docstring": "Crystal and supporting circuitry to connect it to an oscillator driver.\nShould include load capacitors."
+      "docstring": "Low-pass RC filter attached to an analog line.\n  "
     },
     {
       "name": "",
-      "type": "Fcr7350",
+      "type": "AnalogMuxer",
       "superClasses": [
-        "BananaSafetyJack",
-        "BananaJack",
-        "Connector"
-      ],
-      "ports": [
-        {
-          "name": "port",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "FCR7350x PTH right-angle safety banana jack connector.\nx indicates the color code.\n\nPotentially footprint compatible with Pomona 73099 (~$9)?\n\nTODO: automatically support color code generation?"
-    },
-    {
-      "name": "",
-      "type": "IndicatorSinkPackedRgbLed",
-      "superClasses": [
-        "Light",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "red_sig",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "green_sig",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "blue_sig",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "red_pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "green_pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "blue_pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "DigitalRotaryEncoder",
-      "superClasses": [
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "a",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "b",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Wrapper around RotaryEncoder that provides digital ports that are pulled low (to GND) when pressed."
-    },
-    {
-      "name": "",
-      "type": "Opa2189",
-      "superClasses": [
-        "MultipackOpamp",
-        "Analog"
+        "Interface"
       ],
       "ports": [
         {
           "name": "pwr",
           "type": "VoltageSink",
-          "is_array": true,
+          "is_array": false,
           "hint_position": "up",
           "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
+          "hint_array_direction": null,
+          "required": true,
           "docstring": null
         },
         {
           "name": "gnd",
           "type": "VoltageSink",
-          "is_array": true,
+          "is_array": false,
           "hint_position": "down",
           "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
+          "hint_array_direction": null,
+          "required": true,
           "docstring": null
         },
         {
-          "name": "inp",
-          "type": "AnalogSink",
+          "name": "control",
+          "type": "DigitalSink",
           "is_array": true,
           "hint_position": "left",
           "hint_signal_direction": "sink",
@@ -2676,7 +10249,7 @@ export default {
           "docstring": null
         },
         {
-          "name": "inn",
+          "name": "inputs",
           "type": "AnalogSink",
           "is_array": true,
           "hint_position": "left",
@@ -2688,360 +10261,9 @@ export default {
         {
           "name": "out",
           "type": "AnalogSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Dual precision RRO opamps.\n  "
-    },
-    {
-      "name": "",
-      "type": "Connector",
-      "superClasses": [],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Connectors, including card sockets."
-    },
-    {
-      "name": "",
-      "type": "Sk6812_Side_A",
-      "superClasses": [
-        "Neopixel",
-        "Light",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "vdd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "din",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dout",
-          "type": "DigitalSource",
           "is_array": false,
           "hint_position": "right",
           "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "SK6812-SIDE-A side-emitting Neopixel LED."
-    },
-    {
-      "name": "",
-      "type": "Stm32l432k",
-      "superClasses": [
-        "Stm32l432Base",
-        "Microcontroller",
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanControllerPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "dac",
-          "type": "AnalogSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "DifferentialAmplifier",
-      "superClasses": [
-        "OpampApplication",
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "input_positive",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "input_negative",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output_reference",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "ratio",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "input_impedance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "series",
-          "type": "int",
-          "default_value": 24,
-          "docstring": null
-        },
-        {
-          "name": "tolerance",
-          "type": "float",
-          "default_value": 0.01,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Opamp differential amplifier, outputs the difference between the input nodes, scaled by some factor,\nand offset from some reference node.\nThis implementation uses the same resistance for the two input resistors (R1, R2),\nand the same resistance for the feedback and reference resistors (Rf, Rg).\nFrom https://en.wikipedia.org/wiki/Operational_amplifier_applications#Differential_amplifier_(difference_amplifier):\nVout = Rf/R1 * (Vp - Vn)\n\nImpedance equations from https://e2e.ti.com/blogs_/archives/b/precisionhub/posts/overlooking-the-obvious-the-input-impedance-of-a-difference-amplifier\n  (ignoring the opamp input impedances, which we assume are >> the resistors)\nRin,n = R1 / (1 - (Rg / (R2+Rg)) * (Vin,n / Vin,p))\nRin,p = R2 + Rg\nRout = opamp output impedance - TODO: is this correct?\n\nratio specifies Rf/R1, the amplification ratio."
-    },
-    {
-      "name": "",
-      "type": "Molex1040310811",
-      "superClasses": [
-        "MicroSdSocket",
-        "Connector",
-        "SdCard",
-        "Memory"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiPeripheral",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "cs",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
@@ -3049,351 +10271,7 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "CurrentSenseResistor",
-      "superClasses": [
-        "DiscreteApplication"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "sense_in",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "sense_out",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "resistance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "sense_in_reqd",
-          "type": "bool",
-          "default_value": 1.0,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Current sense resistor with a power passthrough resistor and positive and negative sense temrinals."
-    },
-    {
-      "name": "",
-      "type": "Esp32c3_Base",
-      "superClasses": [],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2s",
-          "type": "I2sController",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi_peripheral",
-          "type": "SpiPeripheral",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "en",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "io2",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "io8",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "io9",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart0",
-          "type": "UartPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Base class for ESP32-C3 series devices, with RISC-V core, 2.4GHz WiF,i, BLE5.\nPlatformIO: use board ID esp32-c3-devkitm-1\n\nChip datasheet: https://espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf"
-    },
-    {
-      "name": "",
-      "type": "VoltageSenseDivider",
-      "superClasses": [
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "input",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "full_scale_voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "impedance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Voltage divider that takes in an output voltage and parallel impedance spec, and produces an output analog signal\nof the appropriate magnitude (as a fraction of the input voltage).\nUnlike the normal VoltageDivider, the output is defined in terms of full scale voltage - that is, the voltage\noutput at the maximum input voltage, which makes the tolerance specification more useful for sensing applications\nwith variable input voltage.\n\nTODO: can this be unified with VoltageDivider?"
-    },
-    {
-      "name": "",
-      "type": "Ap2210",
-      "superClasses": [
-        "LinearRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "AP2210 RF ULDO in SOT-23-5 with high PSRR and high(er) voltage tolerant.\n  "
+      "docstring": "Wrapper around AnalogSwitch that provides muxing functionality - multiple sink ports, one source port.\n  "
     },
     {
       "name": "",
@@ -3408,10 +10286,9 @@ export default {
     },
     {
       "name": "",
-      "type": "Mcp4728",
+      "type": "HalfBridgeDriver",
       "superClasses": [
-        "DigitalToAnalog",
-        "Interface"
+        "PowerSwitch"
       ],
       "ports": [
         {
@@ -3435,362 +10312,27 @@ export default {
           "docstring": null
         },
         {
-          "name": "out0",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "out1",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "out2",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "out3",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "ldac",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "rdy",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "output_caps",
-          "type": "bool",
-          "default_value": 1.0,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "MCP4728 quad 12-bit I2C DAC, with selectable internal or external Vref=Vdd.\nNote, MCP47F seems to be a similar architecture but the example application has an optional\n0.1uF capacitor on the VoutN lines to reduce noise, which is generated by default here."
-    },
-    {
-      "name": "",
-      "type": "IndicatorSinkLed",
-      "superClasses": [
-        "Light",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "signal",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "color",
-          "type": "str",
-          "default_value": "",
-          "docstring": null
-        },
-        {
-          "name": "current_draw",
-          "type": "range",
-          "default_value": [
-            0.001,
-            0.01
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": "Abstract part for an low-side-driven (\"common anode\") indicator LED"
-    },
-    {
-      "name": "",
-      "type": "DigitalArrayTestPoint",
-      "superClasses": [
-        "TypedTestPoint",
-        "Testing"
-      ],
-      "ports": [
-        {
-          "name": "io",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "tp_name",
-          "type": "str",
-          "default_value": "",
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Creates an array of Digital test points, sized from the port array's connections."
-    },
-    {
-      "name": "",
-      "type": "Ov2640",
-      "superClasses": [
-        "Camera",
-        "Sensor"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_analog",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_digital",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dvp8",
-          "type": "Dvp8Camera",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "sio",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwdn",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "OV2640 digital camera with DVP interface, commonly used with ESP32 devices"
-    },
-    {
-      "name": "",
-      "type": "AnalogIsolatedSwitch",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "signal",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "apull",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "ain",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "aout",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Digitally controlled solid state relay that switches an analog signal.\nIncludes a ballasting resistor.\n\nThe ports are not tagged with Input/Output/InOut, because of potential for confusion between\nthe digital side and the analog side.\n\nA separate output-side pull port allows modeling the output switch standoff voltage\nwhen the switch is off."
-    },
-    {
-      "name": "",
-      "type": "Accelerometer",
-      "superClasses": [
-        "Sensor"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "NeopixelArray",
-      "superClasses": [
-        "Light",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "din",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dout",
+          "name": "low_out",
           "type": "DigitalSource",
           "is_array": false,
           "hint_position": "right",
           "hint_signal_direction": "source",
           "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "high_pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
           "required": false,
           "docstring": null
         },
         {
-          "name": "vdd",
+          "name": "high_gnd",
           "type": "VoltageSink",
           "is_array": false,
           "hint_position": "up",
@@ -3800,11 +10342,11 @@ export default {
           "docstring": null
         },
         {
-          "name": "gnd",
-          "type": "VoltageSink",
+          "name": "high_out",
+          "type": "DigitalSource",
           "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
+          "hint_position": "right",
+          "hint_signal_direction": "source",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
@@ -3812,93 +10354,31 @@ export default {
       ],
       "argParams": [
         {
-          "name": "count",
-          "type": "int",
+          "name": "has_boot_diode",
+          "type": "bool",
           "default_value": null,
           "docstring": null
         }
       ],
-      "is_abstract": false,
-      "docstring": "An array of Neopixels"
+      "is_abstract": true,
+      "docstring": "Half-bridge driver with independent low / high control for driving two NMOS devices,\nwith a high-side driver that allows a voltage offset from the main gnd.\n\nA parameter controls whether a boot diode is required (chip-internal or generated component) or disallowed.\nDevices with an internal boot diode must require has_boot_diode=False.\nDevices without an internal boot diode may generate an external one.\n\nThis device:\n- may or may not have shoot-through protection\n- may or may not have an internal bootstrap diode or controller\n- may or may not support non-half-bridge topologies (eg, high-side ground required to be the FET common node)\n\nTODO: auto-generate parameters based on switching frequencies and FET parameters?"
     },
     {
       "name": "",
-      "type": "Holyiot_18010",
+      "type": "UflConnector",
       "superClasses": [
-        "Microcontroller",
-        "Radiofrequency",
-        "IoController",
-        "ProgrammableController"
+        "RfConnector",
+        "Connector"
       ],
       "ports": [
         {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
+          "name": "sig",
+          "type": "Passive",
           "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
+          "hint_position": null,
+          "hint_signal_direction": "passive",
           "hint_array_direction": null,
-          "required": false,
+          "required": true,
           "docstring": null
         },
         {
@@ -3908,67 +10388,80 @@ export default {
           "hint_position": "down",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2s",
-          "type": "I2sController",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi_peripheral",
-          "type": "SpiPeripheral",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr_usb",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
+          "required": true,
           "docstring": null
         }
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "Wrapper around the Holyiot 18010 that includes supporting components (programming port)"
+      "docstring": "Base class for a U.FL / IPEX / UMCC connector, miniature RF connector."
     },
     {
       "name": "",
-      "type": "AnalogClampResistor",
+      "type": "Opa197",
+      "superClasses": [
+        "Opamp",
+        "Analog"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "inp",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "inn",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "High voltage opamp (4.5-36V) in SOIC-8.\n(part also available in SOT-23-5)"
+    },
+    {
+      "name": "",
+      "type": "AnalogClampZenerDiode",
       "superClasses": [
         "Protection"
       ],
@@ -3992,115 +10485,6 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "clamp_target",
-          "type": "range",
-          "default_value": [
-            0.0,
-            3.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "clamp_current",
-          "type": "range",
-          "default_value": [
-            0.00025,
-            0.0025
-          ],
-          "docstring": null
-        },
-        {
-          "name": "protection_voltage",
-          "type": "range",
-          "default_value": [
-            0.0,
-            0.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "zero_out",
-          "type": "bool",
-          "default_value": 0.0,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Inline resistor that limits the current (to a parameterized amount) which works in concert\nwith ESD diodes in the downstream device to clamp the signal voltage to allowable levels.\n\nThe protection voltage can be extended beyond the modeled range from the input signal,\nand can also be specified to allow zero output voltage (for when the downstream device\nis powered down)\n\nTODO: clamp_target should be inferred from the target voltage_limits,\nbut voltage_limits doesn't always get propagated"
-    },
-    {
-      "name": "",
-      "type": "G3VM_61GR2",
-      "superClasses": [
-        "SolidStateRelay",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "leda",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "ledk",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "feta",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "fetb",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Pam8302a",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
         },
         {
           "name": "gnd",
@@ -4108,454 +10492,6 @@ export default {
           "is_array": false,
           "hint_position": "down",
           "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "sig",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "spk",
-          "type": "SpeakerDriverPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "PAM8302A configured in single-ended input mode."
-    },
-    {
-      "name": "",
-      "type": "CurrentSensor",
-      "superClasses": [
-        "Sensor"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Mcp3561",
-      "superClasses": [
-        "AnalogToDigital",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwra",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "vref",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "vins",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiPeripheral",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "cs",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "MCP3561R up-to-24-bit delta-sigma ADC with internal voltage reference.\nIMPORTANT - an antialias filter is REQUIRED at the inputs. The reference design uses a RC with 1k and 0.1uF (fc=10kHz)\nwith the general recommendation being low R and high C and with low time constant to provide high rejection at DMCLK.\nTODO: assert that an antialias filter is connected"
-    },
-    {
-      "name": "",
-      "type": "IndicatorSinkPackedRgbLedElement",
-      "superClasses": [
-        "IndicatorSinkLed",
-        "Light",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "signal",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "AnalogRfTestPoint",
-      "superClasses": [
-        "TypedTestPoint",
-        "Testing"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "io",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Test point with a AnalogSink port and 50-ohm matching resistor."
-    },
-    {
-      "name": "",
-      "type": "DigitalWrapperRotaryEncoder",
-      "superClasses": [
-        "DigitalRotaryEncoder",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "a",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "b",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Basic implementation for DigitalRotaryEncoder as a wrapper around a passive-typed RotaryEncoder."
-    },
-    {
-      "name": "",
-      "type": "Lmv321",
-      "superClasses": [
-        "Opamp",
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "inp",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "inn",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "RRO op-amp in SOT-23-5.\n  "
-    },
-    {
-      "name": "",
-      "type": "Gyroscope",
-      "superClasses": [
-        "Sensor"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "OpampElement",
-      "superClasses": [
-        "Opamp",
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "inp",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "inn",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Packed opamp element"
-    },
-    {
-      "name": "",
-      "type": "Dm3btDsfPejs",
-      "superClasses": [
-        "MicroSdSocket",
-        "Connector",
-        "SdCard",
-        "Memory"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiPeripheral",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "cs",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "PulldownResistor",
-      "superClasses": [
-        "DiscreteApplication"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "io",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
@@ -4563,59 +10499,58 @@ export default {
       ],
       "argParams": [
         {
-          "name": "resistance",
+          "name": "voltage",
           "type": "range",
           "default_value": null,
           "docstring": null
         }
       ],
       "is_abstract": false,
-      "docstring": "Pull-down resistor with an VoltageSink for automatic implicit connect to a Ground line."
+      "docstring": "Analog overvoltage protection diode to clamp the input voltage"
     },
     {
       "name": "",
-      "type": "Tlp3545a",
+      "type": "L74Ahct1g125",
       "superClasses": [
-        "SolidStateRelay",
         "Interface"
       ],
       "ports": [
         {
-          "name": "leda",
-          "type": "Passive",
+          "name": "pwr",
+          "type": "VoltageSink",
           "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
         },
         {
-          "name": "ledk",
-          "type": "Passive",
+          "name": "gnd",
+          "type": "VoltageSink",
           "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
         },
         {
-          "name": "feta",
-          "type": "Passive",
+          "name": "input",
+          "type": "DigitalSink",
           "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
         },
         {
-          "name": "fetb",
-          "type": "Passive",
+          "name": "output",
+          "type": "DigitalSource",
           "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
+          "hint_position": "right",
+          "hint_signal_direction": "source",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
@@ -4623,15 +10558,79 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
+      "docstring": "Single buffer, useful as a level shifter"
+    },
+    {
+      "name": "",
+      "type": "DigitalToAnalog",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
       "docstring": null
     },
     {
       "name": "",
-      "type": "Freenove_Esp32s3_Wroom",
+      "type": "DigitalLowPassRc",
       "superClasses": [
-        "IoController",
-        "ProgrammableController"
+        "DigitalFilter",
+        "Filter"
       ],
+      "ports": [
+        {
+          "name": "input",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "output",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "impedance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "cutoff_freq",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Low-pass RC filter attached to a digital line.\nDoes not change the signal, only performs filtering"
+    },
+    {
+      "name": "",
+      "type": "Nrf52840_Base",
+      "superClasses": [],
       "ports": [
         {
           "name": "gpio",
@@ -4641,7 +10640,7 @@ export default {
           "hint_signal_direction": "bidir",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller digital GPIO pins"
         },
         {
           "name": "adc",
@@ -4651,7 +10650,7 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller analog input pins"
         },
         {
           "name": "spi",
@@ -4661,7 +10660,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
         },
         {
           "name": "i2c",
@@ -4671,7 +10670,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
         },
         {
           "name": "uart",
@@ -4681,7 +10680,7 @@ export default {
           "hint_signal_direction": "bidir",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller UARTs"
         },
         {
           "name": "usb",
@@ -4691,37 +10690,7 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "dvp8",
-          "type": "Dvp8Host",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
+          "docstring": "Microcontroller USB device ports"
         },
         {
           "name": "i2s",
@@ -4731,27 +10700,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanControllerPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "touch",
-          "type": "TouchDriver",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
+          "docstring": "Microcontroller I2S controller ports, each element is an independent I2S controller"
         },
         {
           "name": "i2c_target",
@@ -4761,7 +10710,7 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
         },
         {
           "name": "spi_peripheral",
@@ -4771,111 +10720,7 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "vusb_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Freenove ESP32S3 WROOM breakout breakout with camera.\n\nBoard pinning: https://github.com/Freenove/Freenove_ESP32_S3_WROOM_Board/blob/main/ESP32S3_Pinout.png\n\nTop left is pin 1, going down the left side then up the right side.\nUp is defined from the text orientation (antenna is on top)."
-    },
-    {
-      "name": "",
-      "type": "Xc6206p",
-      "superClasses": [
-        "LinearRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "output_voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "XC6206P LDOs in SOT-23 which seem popular in some open-source designs and some are JLC basic parts."
-    },
-    {
-      "name": "",
-      "type": "IndicatorSinkLedArray",
-      "superClasses": [
-        "Light",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "signals",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
         },
         {
           "name": "pwr",
@@ -4886,134 +10731,6 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "count",
-          "type": "int",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "color",
-          "type": "str",
-          "default_value": "",
-          "docstring": null
-        },
-        {
-          "name": "current_draw",
-          "type": "range",
-          "default_value": [
-            0.001,
-            0.01
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "An array of IndicatorSinkLed, just a convenience wrapper."
-    },
-    {
-      "name": "",
-      "type": "CanControllerTestPoint",
-      "superClasses": [
-        "TypedTestPoint",
-        "Testing"
-      ],
-      "ports": [
-        {
-          "name": "io",
-          "type": "CanPassivePort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "tp_name",
-          "type": "str",
-          "default_value": "",
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Two test points for CAN controller-side TXD and RXD"
-    },
-    {
-      "name": "",
-      "type": "Cstne",
-      "superClasses": [
-        "CeramicResonator",
-        "OscillatorReference",
-        "DiscreteApplication"
-      ],
-      "ports": [
-        {
-          "name": "crystal",
-          "type": "CrystalPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "frequency",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "EnvironmentalSensor",
-      "superClasses": [
-        "Sensor"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Ws2812b",
-      "superClasses": [
-        "Neopixel",
-        "Light",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "vdd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
         },
         {
           "name": "gnd",
@@ -5026,130 +10743,7 @@ export default {
           "docstring": null
         },
         {
-          "name": "din",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dout",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Nucleo_F303k8",
-      "superClasses": [
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanControllerPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "dac",
-          "type": "AnalogSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
+          "name": "pwr_usb",
           "type": "VoltageSink",
           "is_array": false,
           "hint_position": "up",
@@ -5159,185 +10753,37 @@ export default {
           "docstring": null
         },
         {
-          "name": "gnd",
-          "type": "VoltageSink",
+          "name": "xtal",
+          "type": "CrystalDriver",
           "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
+          "hint_position": null,
           "hint_signal_direction": "source",
           "hint_array_direction": null,
           "required": false,
           "docstring": null
         },
         {
-          "name": "pwr_out",
-          "type": "VoltageSource",
+          "name": "xtal_rtc",
+          "type": "CrystalDriver",
           "is_array": false,
-          "hint_position": "right",
+          "hint_position": null,
           "hint_signal_direction": "source",
           "hint_array_direction": null,
           "required": false,
           "docstring": null
         },
         {
-          "name": "vusb_out",
-          "type": "VoltageSource",
+          "name": "swd",
+          "type": "SwdTargetPort",
           "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Nucleo32 F303K8 configured as power source from USB."
-    },
-    {
-      "name": "",
-      "type": "PulldownResistorArray",
-      "superClasses": [
-        "TypedTestPoint",
-        "Testing"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
+          "hint_position": null,
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
         },
         {
-          "name": "io",
-          "type": "DigitalSingleSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "resistance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Array of PulldownResistors, sized from the port array's connections."
-    },
-    {
-      "name": "",
-      "type": "DiscreteBuckBoostConverter",
-      "superClasses": [
-        "BuckBoostConverter",
-        "SwitchingVoltageRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "ripple_current_factor",
-          "type": "range",
-          "default_value": "(0.2, 0.5)",
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": "Category for discrete buck-boost converter subcircuits (as opposed to integrated components)"
-    },
-    {
-      "name": "",
-      "type": "Ap3012",
-      "superClasses": [
-        "DiscreteBoostConverter",
-        "VoltageRegulator",
-        "BoostConverter",
-        "SwitchingVoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "reset",
+          "name": "nreset",
           "type": "DigitalSink",
           "is_array": false,
           "hint_position": "left",
@@ -5348,49 +10794,14 @@ export default {
         }
       ],
       "argParams": [],
-      "is_abstract": false,
-      "docstring": "Adjustable boost converter in SOT-23-5 with integrated switch"
-    },
-    {
-      "name": "",
-      "type": "JlcAntenna",
-      "superClasses": [
-        "Antenna",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "a",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
+      "is_abstract": true,
       "docstring": null
     },
     {
       "name": "",
-      "type": "AnalogFilter",
+      "type": "Cr2032",
       "superClasses": [
-        "Filter"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Analog signal conditioning subcircuit."
-    },
-    {
-      "name": "",
-      "type": "Pj_036ah",
-      "superClasses": [
-        "PowerBarrelJack",
-        "Connector",
+        "Battery",
         "PowerSource"
       ],
       "ports": [
@@ -5417,41 +10828,84 @@ export default {
       ],
       "argParams": [
         {
-          "name": "voltage_out",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "current_limits",
+          "name": "voltage",
           "type": "range",
           "default_value": [
-            -Infinity,
-            Infinity
+            2.0,
+            3.0
           ],
           "docstring": null
         }
       ],
       "is_abstract": false,
-      "docstring": "SMT Barrel jack for 2.1mm ID and 5.5mm OD"
+      "docstring": null
     },
     {
       "name": "",
-      "type": "IndicatorLedArray",
+      "type": "IoController",
       "superClasses": [
-        "Light",
-        "HumanInterface"
+        "ProgrammableController"
       ],
       "ports": [
         {
-          "name": "signals",
-          "type": "DigitalSink",
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
           "is_array": true,
           "hint_position": "left",
           "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
+          "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
         },
         {
           "name": "gnd",
@@ -5460,106 +10914,23 @@ export default {
           "hint_position": "down",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "count",
-          "type": "int",
-          "default_value": null,
+          "required": false,
           "docstring": null
         },
         {
-          "name": "color",
-          "type": "str",
-          "default_value": "",
-          "docstring": null
-        },
-        {
-          "name": "current_draw",
-          "type": "range",
-          "default_value": [
-            0.001,
-            0.01
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "An array of IndicatorLed, just a convenience wrapper."
-    },
-    {
-      "name": "",
-      "type": "Tmp1075n",
-      "superClasses": [
-        "EnvironmentalSensor",
-        "Sensor"
-      ],
-      "ports": [
-        {
-          "name": "vdd",
+          "name": "pwr",
           "type": "VoltageSink",
           "is_array": false,
           "hint_position": "up",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "alert",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
           "required": false,
           "docstring": null
         }
       ],
-      "argParams": [
-        {
-          "name": "addr_lsb",
-          "type": "int",
-          "default_value": 0,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "LightSensor",
-      "superClasses": [
-        "Sensor"
-      ],
-      "ports": [],
       "argParams": [],
       "is_abstract": true,
-      "docstring": null
+      "docstring": "Structural abstract base class for a programmable controller chip (including microcontrollers that take firmware,\nand FPGAs that take gateware).\n\nThis provides the model of a grab bag of IOs on its structural interface, and supports common peripherals as\nVectors of GPIO, ADC, I2C, and SPI. The pin_assigns argument can be used to specify how to map Vector elements\nto physical (by footprint pin number) or logical pins (by pin name).\nLess common peripheral types like CAN and DAC can be added with mixins.\n\nThis defines a power input port that powers the device, though the IoControllerPowerOut mixin can be used\nfor a controller that provides power (like USB-powered dev boards)."
     },
     {
       "name": "",
@@ -5644,6 +11015,128 @@ export default {
       "argParams": [],
       "is_abstract": false,
       "docstring": "ST7735S-based LCD module with a 8-pin 0.5mm-pitch FPC connector"
+    },
+    {
+      "name": "",
+      "type": "DigitalFilter",
+      "superClasses": [
+        "Filter"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Digital signal conditioning block."
+    },
+    {
+      "name": "",
+      "type": "SmdStandardPackage",
+      "superClasses": [],
+      "ports": [],
+      "argParams": [
+        {
+          "name": "smd_min_package",
+          "type": "str",
+          "default_value": "",
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": "A base mixin for any device that can generate into a standard SMT package, the 0402/0603/0805/etc series.\nThis provides a parameter that can be globally set to specify a minimum package size.\nDevices may generate into nonstandard packages, those are not affected.\nIf this parameter is empty, no minimums are applied.\n\nInheriting this class does not provide any behavior, it only adds the minimum parameter.\n\nFor non-generators classes that inherit this, the minimum size should be used as an assertion."
+    },
+    {
+      "name": "",
+      "type": "Max98357a",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "i2s",
+          "type": "I2sTargetReceiver",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "SpeakerDriverPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "MAX98357A I2S speaker driver with default gain."
+    },
+    {
+      "name": "",
+      "type": "As7341",
+      "superClasses": [
+        "LightSensor",
+        "Sensor"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "11-channel spectral sensor, from 350nm to 1000nm, with 8 visible light channels,\na NIR channel, a non-filtered (\"clear\" wideband) channel, and a flicker detection channel"
     },
     {
       "name": "",
@@ -5745,12 +11238,130 @@ export default {
     },
     {
       "name": "",
-      "type": "SwitchingVoltageRegulator",
+      "type": "Microcontroller",
       "superClasses": [
-        "VoltageRegulator",
+        "ProgrammableController"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Microcontroller (with embedded-class processor) with its surrounding application circuit."
+    },
+    {
+      "name": "",
+      "type": "VoltageTestPoint",
+      "superClasses": [
+        "TypedTestPoint",
+        "Testing"
+      ],
+      "ports": [
+        {
+          "name": "io",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Test point with a VoltageSink port."
+    },
+    {
+      "name": "",
+      "type": "SwdCortexTargetHeader",
+      "superClasses": [
+        "SwdCortexTargetConnector",
+        "ProgrammingConnector",
+        "Connector",
+        "Testing"
+      ],
+      "ports": [
+        {
+          "name": "tdi",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "swo",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "swd",
+          "type": "SwdHostPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Lm2664",
+      "superClasses": [
         "PowerConditioner"
       ],
       "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
         {
           "name": "pwr_in",
           "type": "VoltageSink",
@@ -5770,29 +11381,13 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
         }
       ],
       "argParams": [
         {
-          "name": "ripple_current_factor",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "input_ripple_limit",
+          "name": "output_resistance_limit",
           "type": "float",
-          "default_value": 0.075,
+          "default_value": 25.0,
           "docstring": null
         },
         {
@@ -5802,34 +11397,22 @@ export default {
           "docstring": null
         }
       ],
-      "is_abstract": true,
-      "docstring": null
+      "is_abstract": false,
+      "docstring": "Switched capacitor inverter"
     },
     {
       "name": "",
-      "type": "Ld1117",
+      "type": "Sn74lvc1g74",
       "superClasses": [
-        "LinearRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
+        "Interface"
       ],
       "ports": [
         {
-          "name": "pwr_in",
+          "name": "pwr",
           "type": "VoltageSink",
           "is_array": false,
           "hint_position": "up",
           "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
@@ -5843,18 +11426,80 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
-        }
-      ],
-      "argParams": [
+        },
         {
-          "name": "output_voltage",
-          "type": "range",
-          "default_value": null,
+          "name": "clk",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "d",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "nset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "nclr",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "q",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "nq",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
           "docstring": null
         }
       ],
+      "argParams": [],
       "is_abstract": false,
-      "docstring": null
+      "docstring": "D flip-flop with clear and preset\n\nTODO: should extend an abstract flip-lop interface, with async (n)set and (n)clear mixins"
+    },
+    {
+      "name": "",
+      "type": "Radiofrequency",
+      "superClasses": [],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Radiofrequency devices."
     },
     {
       "name": "",
@@ -5894,6 +11539,2819 @@ export default {
       ],
       "is_abstract": false,
       "docstring": "Pull-up resistor with an VoltageSink for automatic implicit connect to a Power line."
+    },
+    {
+      "name": "",
+      "type": "Ice40TargetHeader",
+      "superClasses": [
+        "ProgrammingConnector",
+        "Connector",
+        "Testing"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "cs",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Custom programming header for iCE40 loosely based on the SWD pinning"
+    },
+    {
+      "name": "",
+      "type": "Tlv9152",
+      "superClasses": [
+        "MultipackOpamp",
+        "Analog"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": true,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": true,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "inp",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "inn",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "AnalogSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Dual RRIO opamps.\n  "
+    },
+    {
+      "name": "",
+      "type": "PowerConditioner",
+      "superClasses": [],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Power conditioning circuits that provide a stable and/or safe power supply, eg voltage regulators"
+    },
+    {
+      "name": "",
+      "type": "AnalogRfTestPoint",
+      "superClasses": [
+        "TypedTestPoint",
+        "Testing"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "io",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Test point with a AnalogSink port and 50-ohm matching resistor."
+    },
+    {
+      "name": "",
+      "type": "VoltageDivider",
+      "superClasses": [
+        "Analog"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "input",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "output",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "output_voltage",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "impedance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Voltage divider that takes in an output voltage and parallel impedance spec, and produces an output analog signal\nof the appropriate magnitude (as a fraction of the input voltage)"
+    },
+    {
+      "name": "",
+      "type": "SwdCortexTargetTagConnect",
+      "superClasses": [
+        "SwdCortexTargetConnector",
+        "ProgrammingConnector",
+        "Connector",
+        "Testing"
+      ],
+      "ports": [
+        {
+          "name": "swo",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "swd",
+          "type": "SwdHostPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "OFFICIAL tag connect SWD header using the TC2030 series cables.\nhttps://www.tag-connect.com/wp-content/uploads/bsk-pdf-manager/TC2030-CTX_1.pdf"
+    },
+    {
+      "name": "",
+      "type": "OpenDrainDriver",
+      "superClasses": [
+        "PowerSwitch"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "control",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "output",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "max_rds",
+          "type": "float",
+          "default_value": 1.0,
+          "docstring": null
+        },
+        {
+          "name": "frequency",
+          "type": "range",
+          "default_value": [
+            0.0,
+            0.0
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "NFET configured as an open-drain driver. Potentially useful for voltage translation applications."
+    },
+    {
+      "name": "",
+      "type": "Esp32_Wroom_32",
+      "superClasses": [
+        "Microcontroller",
+        "Radiofrequency",
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2s",
+          "type": "I2sController",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2S controller ports, each element is an independent I2S controller"
+        },
+        {
+          "name": "dvp8",
+          "type": "Dvp8Host",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller 8-bit DVP digital video ports"
+        },
+        {
+          "name": "can",
+          "type": "CanControllerPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller CAN controller ports"
+        },
+        {
+          "name": "dac",
+          "type": "AnalogSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog output pins"
+        },
+        {
+          "name": "touch",
+          "type": "TouchDriver",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller touch input"
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "spi_peripheral",
+          "type": "SpiPeripheral",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Wrapper around Esp32c3_Wroom02 with external capacitors and UART programming header.\nNOT COMPATIBLE WITH QSPI PSRAM VARIANTS - for those, GPIO16 needs to be pulled up."
+    },
+    {
+      "name": "",
+      "type": "Pam8302a",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "sig",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "spk",
+          "type": "SpeakerDriverPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "PAM8302A configured in single-ended input mode."
+    },
+    {
+      "name": "",
+      "type": "Ap3418",
+      "superClasses": [
+        "DiscreteBuckConverter",
+        "VoltageRegulator",
+        "BuckConverter",
+        "SwitchingVoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Adjustable synchronous buck converter in SOT-23-5 with integrated switch"
+    },
+    {
+      "name": "",
+      "type": "Lmv331",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "inn",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "inp",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "General purpose comparator\n\nTODO: should extend an abstract comparator interface, note output is open-drain"
+    },
+    {
+      "name": "",
+      "type": "PulldownResistorArray",
+      "superClasses": [
+        "TypedTestPoint",
+        "Testing"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "io",
+          "type": "DigitalSingleSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "resistance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Array of PulldownResistors, sized from the port array's connections."
+    },
+    {
+      "name": "",
+      "type": "ConnectorResistiveSensor",
+      "superClasses": [
+        "Analog"
+      ],
+      "ports": [
+        {
+          "name": "input",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "output",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "resistance_range",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "fixed_resistance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Senses the resistance of an external resistor (through an abstract connector\nthat is part of this block) using a simple voltage divider circuit.\nThe external resistor is on the bottom (which makes this of a classic Wheatstone Bridge\nas drawn on Wikipedia)."
+    },
+    {
+      "name": "",
+      "type": "Lpc1549Base",
+      "superClasses": [
+        "Microcontroller",
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "can",
+          "type": "CanControllerPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller CAN controller ports"
+        },
+        {
+          "name": "dac",
+          "type": "AnalogSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog output pins"
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "spi_peripheral",
+          "type": "SpiPeripheral",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Ov2640",
+      "superClasses": [
+        "Camera",
+        "Sensor"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_analog",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_digital",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "dvp8",
+          "type": "Dvp8Camera",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "sio",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwdn",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "OV2640 digital camera with DVP interface, commonly used with ESP32 devices"
+    },
+    {
+      "name": "",
+      "type": "PowerSwitch",
+      "superClasses": [],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Power switching circuits, eg FET switches and motor drivers"
+    },
+    {
+      "name": "",
+      "type": "DigitalJumper",
+      "superClasses": [
+        "TypedJumper",
+        "Testing"
+      ],
+      "ports": [
+        {
+          "name": "input",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "output",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Mcp4921",
+      "superClasses": [
+        "DigitalToAnalog",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "ref",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "spi",
+          "type": "SpiPeripheral",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "cs",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "ldac",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "MCP4921 12-bit 4.5uS DAC.\nOther chips in series:\nMCP4901 (8 bits), MCP4911 (10 bits), and others with 2 channels or internal Vref"
+    },
+    {
+      "name": "",
+      "type": "MicroSdSocket",
+      "superClasses": [
+        "SdCard",
+        "Memory"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "spi",
+          "type": "SpiPeripheral",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "cs",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "MicroSD socket"
+    },
+    {
+      "name": "",
+      "type": "DiscreteBuckConverter",
+      "superClasses": [
+        "BuckConverter",
+        "SwitchingVoltageRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "ripple_current_factor",
+          "type": "range",
+          "default_value": "(0.2, 0.5)",
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": "Category for discrete buck converter subcircuits (as opposed to integrated components)"
+    },
+    {
+      "name": "",
+      "type": "VoltageIsolatedSwitch",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "signal",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Digitally controlled solid state relay that switches a voltage signal.\nIncludes a ballasting resistor.\n\nThe ports are not tagged with Input/Output/InOut, because of potential for confusion between\nthe digital side and the analog side."
+    },
+    {
+      "name": "",
+      "type": "Er_Oled_096_1_1",
+      "superClasses": [
+        "Oled",
+        "Display",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "spi",
+          "type": "SpiPeripheral",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "cs",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "dc",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "SSD1306-based 0.96\" 128x64 monochrome OLED, in either I2C or SPI mode."
+    },
+    {
+      "name": "",
+      "type": "Memory",
+      "superClasses": [],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Memory device (including sockets and card sockets) with its surrounding application circuit."
+    },
+    {
+      "name": "",
+      "type": "FetHalfBridge",
+      "superClasses": [
+        "HalfBridge",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_logic",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "frequency",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "fet_rds",
+          "type": "range",
+          "default_value": [
+            0.0,
+            1.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "gate_res",
+          "type": "range",
+          "default_value": [
+            20.9,
+            23.1
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": "Implementation of a half-bridge with two NFETs and a gate driver."
+    },
+    {
+      "name": "",
+      "type": "BananaSafetyJack",
+      "superClasses": [
+        "BananaJack",
+        "Connector"
+      ],
+      "ports": [
+        {
+          "name": "port",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Base class for a single terminal 4mm banana jack supporting a safety sheath,\nsuch as on multimeter leads."
+    },
+    {
+      "name": "",
+      "type": "BrushedMotorDriver",
+      "superClasses": [
+        "MotorDriver",
+        "PowerSwitch"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "A brushed motor driver, or at least the power stage for one."
+    },
+    {
+      "name": "",
+      "type": "FeedbackVoltageDivider",
+      "superClasses": [
+        "Analog"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "input",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "output",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "output_voltage",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "impedance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "assumed_input_voltage",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Voltage divider that takes in a ratio and parallel impedance spec, and produces an output analog signal\nof the appropriate magnitude (as a fraction of the input voltage)"
+    },
+    {
+      "name": "",
+      "type": "Tpd2e009",
+      "superClasses": [
+        "UsbEsdDiode",
+        "Protection"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "usb",
+          "type": "UsbPassivePort",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "SwdCortexTargetTc2050",
+      "superClasses": [
+        "SwdCortexTargetConnector",
+        "ProgrammingConnector",
+        "Connector",
+        "Testing"
+      ],
+      "ports": [
+        {
+          "name": "tdi",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "swo",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalBidir",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "swd",
+          "type": "SwdHostPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "UNOFFICIAL tag connect SWD header, maintaining physical pin compatibility with the 2x05 1.27mm header."
+    },
+    {
+      "name": "",
+      "type": "DiscreteBoostConverter",
+      "superClasses": [
+        "BoostConverter",
+        "SwitchingVoltageRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "ripple_current_factor",
+          "type": "range",
+          "default_value": "(0.2, 0.5)",
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": "Category for discrete boost converter subcircuits (as opposed to integrated components)"
+    },
+    {
+      "name": "",
+      "type": "DigitalSwitch",
+      "superClasses": [
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Wrapper around Switch that provides a digital port which is pulled low (to GND) when pressed."
+    },
+    {
+      "name": "",
+      "type": "Stm32g031_G",
+      "superClasses": [
+        "Stm32g031Base",
+        "Microcontroller",
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "BldcDriver",
+      "superClasses": [
+        "MotorDriver",
+        "PowerSwitch"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "A brushless motor driver, or at least the power stage for one - may be as simple a 3 half-bridges."
+    },
+    {
+      "name": "",
+      "type": "FetHalfBridgeIndependent",
+      "superClasses": [
+        "FetHalfBridge",
+        "HalfBridge",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "low_ctl",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "high_ctl",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_logic",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "frequency",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "fet_rds",
+          "type": "range",
+          "default_value": [
+            0.0,
+            1.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "gate_res",
+          "type": "range",
+          "default_value": [
+            20.9,
+            23.1
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Ice40up5k_Sg48",
+      "superClasses": [
+        "Ice40up",
+        "Fpga",
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "cdone",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Connector",
+      "superClasses": [],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Connectors, including card sockets."
+    },
+    {
+      "name": "",
+      "type": "UsbHostConnector",
+      "superClasses": [
+        "Connector"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Abstract base class for a USB 2.0 device-side port connector"
+    },
+    {
+      "name": "",
+      "type": "Fcr7350",
+      "superClasses": [
+        "BananaSafetyJack",
+        "BananaJack",
+        "Connector"
+      ],
+      "ports": [
+        {
+          "name": "port",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "FCR7350x PTH right-angle safety banana jack connector.\nx indicates the color code.\n\nPotentially footprint compatible with Pomona 73099 (~$9)?\n\nTODO: automatically support color code generation?"
+    },
+    {
+      "name": "",
+      "type": "BuckBoostConverter",
+      "superClasses": [
+        "SwitchingVoltageRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "ripple_current_factor",
+          "type": "range",
+          "default_value": "(0.2, 0.5)",
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": "Step-up or switch-down switching converter"
+    },
+    {
+      "name": "",
+      "type": "DigitalRotaryEncoder",
+      "superClasses": [
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "a",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "b",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Wrapper around RotaryEncoder that provides digital ports that are pulled low (to GND) when pressed."
+    },
+    {
+      "name": "",
+      "type": "MotorDriver",
+      "superClasses": [
+        "PowerSwitch"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "LedDriver",
+      "superClasses": [
+        "PowerConditioner",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "leda",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "ledk",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "max_current",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": "Abstract current-regulated high-power LED driver.\nLED ports are passive and should be directly connected to the LED (or LED string)."
+    },
+    {
+      "name": "",
+      "type": "CurrentSenseResistor",
+      "superClasses": [
+        "DiscreteApplication"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "sense_in",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "sense_out",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "resistance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "sense_in_reqd",
+          "type": "bool",
+          "default_value": 1.0,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Current sense resistor with a power passthrough resistor and positive and negative sense temrinals."
+    },
+    {
+      "name": "",
+      "type": "JacdacEdgeConnector",
+      "superClasses": [
+        "Connector",
+        "JacdacSubcircuit",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "gnd_src",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "jd_pwr_src",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "gnd_sink",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "jd_pwr_sink",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "jd_data",
+          "type": "JacdacDataPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "jd_status",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "is_power_provider",
+          "type": "bool",
+          "default_value": 0.0,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Jacdac edge connector, in power sink or source mode (both available, but both may not be connected simultaneously).\nThis includes the required per-port application circuitry, including status LEDs and ESD diodes.\nThis does NOT include device-wide application circuitry like EMI filters.\n\nRequires this KiCad footprint library to be available: https://github.com/mattoppenheim/jacdac"
+    },
+    {
+      "name": "",
+      "type": "PowerSource",
+      "superClasses": [],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Power sources, including connectors that also supply power."
+    },
+    {
+      "name": "",
+      "type": "DigitalArrayTestPoint",
+      "superClasses": [
+        "TypedTestPoint",
+        "Testing"
+      ],
+      "ports": [
+        {
+          "name": "io",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "tp_name",
+          "type": "str",
+          "default_value": "",
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Creates an array of Digital test points, sized from the port array's connections."
+    },
+    {
+      "name": "",
+      "type": "DigitalLowPassRcArray",
+      "superClasses": [
+        "DigitalFilter",
+        "Filter"
+      ],
+      "ports": [
+        {
+          "name": "input",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "output",
+          "type": "DigitalSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "impedance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "cutoff_freq",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Array of DigitalLowPassRc, currently takes its size from the output.\nTODO: properly size when either input or output is sized?"
+    },
+    {
+      "name": "",
+      "type": "UsbCReceptacle",
+      "superClasses": [
+        "UsbDeviceConnector",
+        "Connector",
+        "PowerSource"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "usb",
+          "type": "UsbHostPort",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "cc",
+          "type": "UsbCcPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "voltage_out",
+          "type": "range",
+          "default_value": [
+            4.75,
+            5.25
+          ],
+          "docstring": null
+        },
+        {
+          "name": "current_limits",
+          "type": "range",
+          "default_value": [
+            0.0,
+            0.5
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "USB Type-C Receptacle that automatically generates the CC resistors if CC is not connected."
+    },
+    {
+      "name": "",
+      "type": "Dm3btDsfPejs",
+      "superClasses": [
+        "MicroSdSocket",
+        "Connector",
+        "SdCard",
+        "Memory"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "spi",
+          "type": "SpiPeripheral",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "cs",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "OpampFollower",
+      "superClasses": [
+        "OpampApplication",
+        "Analog"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "input",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "output",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Opamp follower circuit, outputs the same signal as the input (but probably stronger)."
+    },
+    {
+      "name": "",
+      "type": "Ltc3429",
+      "superClasses": [
+        "DiscreteBoostConverter",
+        "VoltageRegulator",
+        "BoostConverter",
+        "SwitchingVoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Low-input-voltage boost converter (starts as low as 0.85V).\nPin-compatible with the less-expensive UM3429S"
     },
     {
       "name": "",
@@ -5991,746 +14449,17 @@ export default {
     },
     {
       "name": "",
-      "type": "Light",
-      "superClasses": [
-        "HumanInterface"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Discrete lights."
-    },
-    {
-      "name": "",
-      "type": "IndicatorSinkLedResistor",
-      "superClasses": [
-        "IndicatorSinkLed",
-        "Light",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "signal",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "TODO: should the resistor sided-ness be configurable, eg as a generator? Similar for IndicatorLed"
-    },
-    {
-      "name": "",
-      "type": "DistanceSensor",
-      "superClasses": [
-        "Sensor"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Neopixel",
-      "superClasses": [
-        "Light",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "vdd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "din",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dout",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Abstract base class for Neopixel-type LEDs including the Vdd/Gnd/Din/Dout interface."
-    },
-    {
-      "name": "",
-      "type": "FeedbackVoltageDivider",
-      "superClasses": [
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "input",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "output_voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "impedance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "assumed_input_voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Voltage divider that takes in a ratio and parallel impedance spec, and produces an output analog signal\nof the appropriate magnitude (as a fraction of the input voltage)"
-    },
-    {
-      "name": "",
-      "type": "HalfBridgeDriver",
-      "superClasses": [
-        "PowerSwitch"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "low_out",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "high_pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "high_gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "high_out",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "has_boot_diode",
-          "type": "bool",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": "Half-bridge driver with independent low / high control for driving two NMOS devices,\nwith a high-side driver that allows a voltage offset from the main gnd.\n\nA parameter controls whether a boot diode is required (chip-internal or generated component) or disallowed.\nDevices with an internal boot diode must require has_boot_diode=False.\nDevices without an internal boot diode may generate an external one.\n\nThis device:\n- may or may not have shoot-through protection\n- may or may not have an internal bootstrap diode or controller\n- may or may not support non-half-bridge topologies (eg, high-side ground required to be the FET common node)\n\nTODO: auto-generate parameters based on switching frequencies and FET parameters?"
-    },
-    {
-      "name": "",
-      "type": "Radiofrequency",
+      "type": "HumanInterface",
       "superClasses": [],
       "ports": [],
       "argParams": [],
       "is_abstract": true,
-      "docstring": "Radiofrequency devices."
+      "docstring": "Devices for human interface, eg switches, displays, LEDs"
     },
     {
       "name": "",
-      "type": "UsbHostConnector",
+      "type": "Battery",
       "superClasses": [
-        "Connector"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Abstract base class for a USB 2.0 device-side port connector"
-    },
-    {
-      "name": "",
-      "type": "SwitchMatrix",
-      "superClasses": [
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "rows",
-          "type": "DigitalSingleSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "cols",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "nrows",
-          "type": "int",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "ncols",
-          "type": "int",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "voltage_drop",
-          "type": "range",
-          "default_value": [
-            0.0,
-            0.7
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "A switch matrix, such as for a keyboard, that generates (nrows * ncols) switches while only\nusing max(nrows, ncols) IOs.\n\nInternally, the switches are in a matrix, with the driver driving one col low at a time while\nreading which rows are low (with the other cols weakly pulled high).\nThis uses the Switch abstract class, which can be refined into e.g. a tactile switch or mechanical keyswitch.\n\nThis generates per-switch diodes which allows multiple keys to be pressed simultaneously.\nDiode anodes are attached to the rows, while cathodes go through each switch to the cols."
-    },
-    {
-      "name": "",
-      "type": "Testing",
-      "superClasses": [],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Blocks for testing (eg, test points) and programming (eg, programming headers)."
-    },
-    {
-      "name": "",
-      "type": "Stm32f103Base",
-      "superClasses": [
-        "Microcontroller",
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanControllerPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Er_Epd027_2",
-      "superClasses": [
-        "EInk",
-        "Display",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiPeripheral",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "cs",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dc",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "busy",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "EK79651AB-based white/black/red 2.7\" 176x264 e-paper display.\n(Probably) compatible with https://www.waveshare.com/w/upload/b/ba/2.7inch_e-Paper_V2_Specification.pdf,\nand https://www.waveshare.com/w/upload/7/7b/2.7inch-e-paper-b-v2-specification.pdf"
-    },
-    {
-      "name": "",
-      "type": "PullupDelayRc",
-      "superClasses": [
-        "DigitalFilter",
-        "Filter"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "io",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "impedance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "time_constant",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Pull-up resistor with capacitor for delay.\n  "
-    },
-    {
-      "name": "",
-      "type": "Xc9142",
-      "superClasses": [
-        "DiscreteBoostConverter",
-        "BoostConverter",
-        "SwitchingVoltageRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Low-input-voltage boost converter (starts as low as 0.9V) with fixed output.\nXC9142 has PWM/PFM functionality, compared to PWM only for XC9141.\nSemi pin compatible with XC9140, LTC3525, MAX1724."
-    },
-    {
-      "name": "",
-      "type": "Bh1750",
-      "superClasses": [
-        "LightSensor",
-        "Sensor"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "MotorDriver",
-      "superClasses": [
-        "PowerSwitch"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "PowerBarrelJack",
-      "superClasses": [
-        "Connector",
         "PowerSource"
       ],
       "ports": [
@@ -6756,2469 +14485,6 @@ export default {
         }
       ],
       "argParams": [
-        {
-          "name": "voltage_out",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "current_limits",
-          "type": "range",
-          "default_value": [
-            -Infinity,
-            Infinity
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": "Barrel jack that models a configurable voltage / max current power supply."
-    },
-    {
-      "name": "",
-      "type": "IndicatorLed",
-      "superClasses": [
-        "Light",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "signal",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "color",
-          "type": "str",
-          "default_value": "",
-          "docstring": null
-        },
-        {
-          "name": "current_draw",
-          "type": "range",
-          "default_value": [
-            0.001,
-            0.01
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "High-side-driven (default, \"common cathode\") indicator LED"
-    },
-    {
-      "name": "",
-      "type": "UsbDeviceConnector",
-      "superClasses": [
-        "Connector",
-        "PowerSource"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbHostPort",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Abstract base class for a USB 2.0 device-side port connector"
-    },
-    {
-      "name": "",
-      "type": "ConnectorResistiveSensor",
-      "superClasses": [
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "input",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "resistance_range",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "fixed_resistance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Senses the resistance of an external resistor (through an abstract connector\nthat is part of this block) using a simple voltage divider circuit.\nThe external resistor is on the bottom (which makes this of a classic Wheatstone Bridge\nas drawn on Wikipedia)."
-    },
-    {
-      "name": "",
-      "type": "Opa2333",
-      "superClasses": [
-        "MultipackOpamp",
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": true,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": true,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "inp",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "inn",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "AnalogSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Dual precision RRIO (including negative input) opamps.\n  "
-    },
-    {
-      "name": "",
-      "type": "NeopixelArrayCircular",
-      "superClasses": [
-        "NeopixelArray",
-        "Light",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "din",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dout",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "vdd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "count",
-          "type": "int",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "An array of Neopixels, with a circular layout template"
-    },
-    {
-      "name": "",
-      "type": "Stm32l432Base",
-      "superClasses": [
-        "Microcontroller",
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanControllerPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "dac",
-          "type": "AnalogSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "LowPassRc",
-      "superClasses": [
-        "AnalogFilter",
-        "Filter"
-      ],
-      "ports": [
-        {
-          "name": "input",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "impedance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "cutoff_freq",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Passive-typed low-pass RC specified by the resistor value (impedance) and -3dB (~70%) cutoff frequency."
-    },
-    {
-      "name": "",
-      "type": "MicroSdSocket",
-      "superClasses": [
-        "SdCard",
-        "Memory"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiPeripheral",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "cs",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "MicroSD socket"
-    },
-    {
-      "name": "",
-      "type": "DigitalLowPassRcArray",
-      "superClasses": [
-        "DigitalFilter",
-        "Filter"
-      ],
-      "ports": [
-        {
-          "name": "input",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "DigitalSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "impedance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "cutoff_freq",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Array of DigitalLowPassRc, currently takes its size from the output.\nTODO: properly size when either input or output is sized?"
-    },
-    {
-      "name": "",
-      "type": "Li18650",
-      "superClasses": [
-        "Battery",
-        "PowerSource"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "voltage",
-          "type": "range",
-          "default_value": [
-            2.5,
-            4.2
-          ],
-          "docstring": null
-        },
-        {
-          "name": "actual_voltage",
-          "type": "range",
-          "default_value": [
-            2.5,
-            4.2
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "ProgrammingConnector",
-      "superClasses": [
-        "Connector",
-        "Testing"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Programming / debug / JTAG connectors."
-    },
-    {
-      "name": "",
-      "type": "Pj_102ah",
-      "superClasses": [
-        "PowerBarrelJack",
-        "Connector",
-        "PowerSource"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "voltage_out",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "current_limits",
-          "type": "range",
-          "default_value": [
-            -Infinity,
-            Infinity
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Barrel jack for 2.1mm ID and 5.5mm OD"
-    },
-    {
-      "name": "",
-      "type": "IndicatorSinkRgbLed",
-      "superClasses": [
-        "Light",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "signals",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "current_draw",
-          "type": "range",
-          "default_value": [
-            0.001,
-            0.01
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Common anode indicator RGB LED"
-    },
-    {
-      "name": "",
-      "type": "DigitalLowPassRc",
-      "superClasses": [
-        "DigitalFilter",
-        "Filter"
-      ],
-      "ports": [
-        {
-          "name": "input",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "impedance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "cutoff_freq",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Low-pass RC filter attached to a digital line.\nDoes not change the signal, only performs filtering"
-    },
-    {
-      "name": "",
-      "type": "Ldl1117",
-      "superClasses": [
-        "LinearRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "output_voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "A series of fixed-output, general-purpose, low-dropout linear regulators in SOT-223 and\nsupporting up to 18V input and 1.2A draw."
-    },
-    {
-      "name": "",
-      "type": "Nlas4157",
-      "superClasses": [
-        "AnalogSwitch",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "control",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "com",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "inputs",
-          "type": "Passive",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "NLAS4157 2:1 analog switch, 1ohm Ron, in SOT-363.\nPin compatible with:\n- TS5A3159: 5v tolerant, 1 ohm\n- TS5A3160: 5v tolerant, 1 ohm"
-    },
-    {
-      "name": "",
-      "type": "Esp32_Base",
-      "superClasses": [],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2s",
-          "type": "I2sController",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "dvp8",
-          "type": "Dvp8Host",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanControllerPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "dac",
-          "type": "AnalogSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "touch",
-          "type": "TouchDriver",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi_peripheral",
-          "type": "SpiPeripheral",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "chip_pu",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "io0",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "io2",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart0",
-          "type": "UartPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Base class for ESP32 series microcontrollers with WiFi and Bluetooth (classic and LE)\n\nChip datasheet: https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf"
-    },
-    {
-      "name": "",
-      "type": "LowPassRcDac",
-      "superClasses": [
-        "DigitalToAnalog",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "input",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "impedance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "cutoff_freq",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Low-pass RC filter used as a simple DAC by filtering out a PWM signal.\nThe cutoff frequency of the filter should be sufficiently beneath the PWM frequency,\nbut enough above baseband to not distort the signal.\nLower frequencies will result in either higher impedance or larger caps.\nThis must be manually specified, since PWM frequency data is not part of the electronics model."
-    },
-    {
-      "name": "",
-      "type": "SoftPowerGate",
-      "superClasses": [
-        "PowerSwitch"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": "Gate controlled power out"
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "btn_out",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": "Allows the button state to be read independently of the control signal"
-        },
-        {
-          "name": "btn_in",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": "Should be connected to a button output. Do not connect IO"
-        },
-        {
-          "name": "control",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": "external control to latch the power on"
-        }
-      ],
-      "argParams": [
-        {
-          "name": "pull_resistance",
-          "type": "range",
-          "default_value": [
-            9500.0,
-            10500.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "amp_resistance",
-          "type": "range",
-          "default_value": [
-            9500.0,
-            10500.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "diode_drop",
-          "type": "range",
-          "default_value": [
-            0.0,
-            0.4
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "A high-side PFET power gate that has a button to power on, can be latched on by an external signal,\nand provides the button output as a signal."
-    },
-    {
-      "name": "",
-      "type": "ProgrammableController",
-      "superClasses": [],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "General programmable controller."
-    },
-    {
-      "name": "",
-      "type": "LipoConnector",
-      "superClasses": [
-        "Connector",
-        "Battery",
-        "PowerSource"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "chg",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "voltage",
-          "type": "range",
-          "default_value": [
-            2.5,
-            4.2
-          ],
-          "docstring": null
-        },
-        {
-          "name": "actual_voltage",
-          "type": "range",
-          "default_value": [
-            2.5,
-            4.2
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "PassiveConnector (abstract connector) that is expected to have a LiPo on one end.\nBoth the voltage specification and the actual voltage can be specified as parameters.\nTHERE IS NO STANDARD LIPO PINNING OR CONNECTOR - MAKE SURE TO VERIFY THIS!\nBE PREPARED FOR REVERSE POLARITY CONNECTIONS.\nDefault pinning has ground being pin 1, and power being pin 2.\n\nConnector type not specified, up to the user through a refinement."
-    },
-    {
-      "name": "",
-      "type": "VoltageIndicatorLed",
-      "superClasses": [
-        "Light",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "signal",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "color",
-          "type": "str",
-          "default_value": "",
-          "docstring": null
-        },
-        {
-          "name": "current_draw",
-          "type": "range",
-          "default_value": [
-            0.001,
-            0.01
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "LED connected to a voltage rail as an indicator that there is voltage present"
-    },
-    {
-      "name": "",
-      "type": "UsbEsdDiode",
-      "superClasses": [
-        "Protection"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbPassivePort",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Antenna",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "a",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "frequency",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "impedance",
-          "type": "range",
-          "default_value": [
-            -Infinity,
-            Infinity
-          ],
-          "docstring": null
-        },
-        {
-          "name": "power",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Mdbt50q_1mv2",
-      "superClasses": [
-        "Microcontroller",
-        "Radiofrequency",
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2s",
-          "type": "I2sController",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi_peripheral",
-          "type": "SpiPeripheral",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr_usb",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Wrapper around the Mdbt50q_1mv2 that includes the reference schematic"
-    },
-    {
-      "name": "",
-      "type": "AnalogLowPassRc",
-      "superClasses": [
-        "DigitalFilter",
-        "Filter"
-      ],
-      "ports": [
-        {
-          "name": "input",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "impedance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "cutoff_freq",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Low-pass RC filter attached to an analog line.\n  "
-    },
-    {
-      "name": "",
-      "type": "Esp32s3_Base",
-      "superClasses": [],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "dvp8",
-          "type": "Dvp8Host",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2s",
-          "type": "I2sController",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanControllerPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "touch",
-          "type": "TouchDriver",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi_peripheral",
-          "type": "SpiPeripheral",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "chip_pu",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "io0",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart0",
-          "type": "UartPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Base class for ESP32-S3 series microcontrollers with WiFi and Bluetooth (classic and LE)\nand AI acceleration\n\nChip datasheet: https://www.espressif.com/documentation/esp32-s3_datasheet_en.pdf"
-    },
-    {
-      "name": "",
-      "type": "I2cPullup",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cPullupPort",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "BuckBoostConverter",
-      "superClasses": [
-        "SwitchingVoltageRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "ripple_current_factor",
-          "type": "range",
-          "default_value": "(0.2, 0.5)",
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": "Step-up or switch-down switching converter"
-    },
-    {
-      "name": "",
-      "type": "SoftPowerSwitch",
-      "superClasses": [
-        "PowerSwitch"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "btn_out",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "control",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "pull_resistance",
-          "type": "range",
-          "default_value": [
-            9500.0,
-            10500.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "amp_resistance",
-          "type": "range",
-          "default_value": [
-            9500.0,
-            10500.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "diode_drop",
-          "type": "range",
-          "default_value": [
-            0.0,
-            0.4
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "A software power switch that adds a power button a user can turn on\n  "
-    },
-    {
-      "name": "",
-      "type": "Memory",
-      "superClasses": [],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Memory device (including sockets and card sockets) with its surrounding application circuit."
-    },
-    {
-      "name": "",
-      "type": "Ice40up5k_Sg48",
-      "superClasses": [
-        "Ice40up",
-        "Fpga",
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "cdone",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "AnalogDemuxer",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "control",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "outputs",
-          "type": "AnalogSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "input",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Wrapper around AnalogSwitch that provides demuxing functionality - multiple source ports, one sink port.\n  "
-    },
-    {
-      "name": "",
-      "type": "Nhd_312_25664uc",
-      "superClasses": [
-        "Oled",
-        "Display",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dc",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "cs",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiPeripheral",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "256x64 3.12\" passive-matrix OLED"
-    },
-    {
-      "name": "",
-      "type": "Stm32g031Base",
-      "superClasses": [
-        "Microcontroller",
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "PiLowPassFilter",
-      "superClasses": [
-        "AnalogFilter",
-        "Filter"
-      ],
-      "ports": [
-        {
-          "name": "input",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "frequency",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "src_resistance",
-          "type": "float",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "src_reactance",
-          "type": "float",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "load_resistance",
-          "type": "float",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "tolerance",
-          "type": "float",
-          "default_value": null,
-          "docstring": null
-        },
         {
           "name": "voltage",
           "type": "range",
@@ -9228,220 +14494,30 @@ export default {
         {
           "name": "current",
           "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Passive-typed pi impedance matching network.\nBased on equations from https://www.silabs.com/documents/public/application-notes/an1275-imp-match-for-network-arch.pdf\nand also referencing https://www.electronicdesign.com/technologies/communications/article/21801154/back-to-basics-impedance-matching-part-3\nand https://www.qsl.net/zl1an/CH1.pdf\nFrequency defines the entire bandwidth this filter should work across.\n\nWORK IN PROGRESS. NON-STABLE API.\n\nTODO: use ranges and tolerances throughout"
-    },
-    {
-      "name": "",
-      "type": "SwdCortexTargetTc2050",
-      "superClasses": [
-        "SwdCortexTargetConnector",
-        "ProgrammingConnector",
-        "Connector",
-        "Testing"
-      ],
-      "ports": [
-        {
-          "name": "tdi",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "swo",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "swd",
-          "type": "SwdHostPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "UNOFFICIAL tag connect SWD header, maintaining physical pin compatibility with the 2x05 1.27mm header."
-    },
-    {
-      "name": "",
-      "type": "PmosReverseProtection",
-      "superClasses": [
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "gate_resistor",
-          "type": "range",
-          "default_value": [
-            9500.0,
-            10500.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "rds_on",
-          "type": "range",
           "default_value": [
             0.0,
-            0.1
+            0.0
           ],
+          "docstring": null
+        },
+        {
+          "name": "capacity",
+          "type": "float",
+          "default_value": 0.0,
           "docstring": null
         }
       ],
-      "is_abstract": false,
-      "docstring": "Reverse polarity protection using a PMOS. This method has lower power loss over diode-based protection.\n100R-330R is good but 1k-50k can be used for continuous load.\nRef: https://components101.com/articles/design-guide-pmos-mosfet-for-reverse-voltage-polarity-protection"
+      "is_abstract": true,
+      "docstring": null
     },
     {
       "name": "",
-      "type": "SolidStateRelay",
+      "type": "Pcf8574",
       "superClasses": [
         "Interface"
       ],
       "ports": [
         {
-          "name": "leda",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "ledk",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "feta",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "fetb",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Base class for solid state relays.\nLED pins are passive (like the abstract LED) and the enclosing class should provide\nthe circuitry to make it a DigitalSink port."
-    },
-    {
-      "name": "",
-      "type": "RealtimeClock",
-      "superClasses": [],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Realtime clock device."
-    },
-    {
-      "name": "",
-      "type": "Ice40TargetHeader",
-      "superClasses": [
-        "ProgrammingConnector",
-        "Connector",
-        "Testing"
-      ],
-      "ports": [
-        {
           "name": "pwr",
           "type": "VoltageSink",
           "is_array": false,
@@ -9462,120 +14538,40 @@ export default {
           "docstring": null
         },
         {
-          "name": "spi",
-          "type": "SpiController",
+          "name": "i2c",
+          "type": "I2cTarget",
           "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
         },
-        {
-          "name": "cs",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Custom programming header for iCE40 loosely based on the SWD pinning"
-    },
-    {
-      "name": "",
-      "type": "VoltageTestPoint",
-      "superClasses": [
-        "TypedTestPoint",
-        "Testing"
-      ],
-      "ports": [
         {
           "name": "io",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Test point with a VoltageSink port."
-    },
-    {
-      "name": "",
-      "type": "DigitalWrapperRotaryEncoderWithSwitch",
-      "superClasses": [
-        "DigitalWrapperRotaryEncoder",
-        "DigitalRotaryEncoder",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "a",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "b",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "sw",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "source",
           "required": false,
           "docstring": null
         }
       ],
-      "argParams": [],
+      "argParams": [
+        {
+          "name": "addr_lsb",
+          "type": "int",
+          "default_value": 0,
+          "docstring": null
+        }
+      ],
       "is_abstract": false,
-      "docstring": null
+      "docstring": "8 bit I2C IO expander with 'quasi-bidirectional IOs'"
     },
     {
       "name": "",
-      "type": "Opa2171",
+      "type": "Opa2197",
       "superClasses": [
         "MultipackOpamp",
         "Analog"
@@ -9634,694 +14630,7 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "Dual precision general purpose RRO opamp.\n  "
-    },
-    {
-      "name": "",
-      "type": "SignalDivider",
-      "superClasses": [
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "input",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "ratio",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "impedance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Specialization of ResistiveDivider for Analog signals"
-    },
-    {
-      "name": "",
-      "type": "HalfBridge",
-      "superClasses": [
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_logic",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Half bridge circuit with logic-level inputs and current draw calculated from the output node.\nTwo power rails: logic power (which can be used to power gate drivers), and the power rail."
-    },
-    {
-      "name": "",
-      "type": "PmosChargerReverseProtection",
-      "superClasses": [
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": "Power output for a load which will be also reverse protected from the battery"
-        },
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": "Power input from the battery"
-        },
-        {
-          "name": "chg_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": "Charger input to charge the battery. Must be connected to pwr_out."
-        },
-        {
-          "name": "chg_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": "Charging output to the battery chg port. Must be connected to pwr_in,"
-        }
-      ],
-      "argParams": [
-        {
-          "name": "r1_val",
-          "type": "range",
-          "default_value": [
-            99000.0,
-            101000.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "r2_val",
-          "type": "range",
-          "default_value": [
-            99000.0,
-            101000.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "rds_on",
-          "type": "range",
-          "default_value": [
-            0.0,
-            0.1
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Charging capable a battery reverse protection using PMOS transistors. The highest battery voltage is bounded by the\ntransistors' Vgs/Vds. There is also a rare case when this circuit being disconnected when a charger is connected first.\nBut always reverse protect. R1 and R2 are the pullup bias resistors for mp1 and mp2 PFet.\nMore info at: https://www.edn.com/reverse-voltage-protection-for-battery-chargers/"
-    },
-    {
-      "name": "",
-      "type": "Lsm6ds3trc",
-      "superClasses": [
-        "Accelerometer",
-        "Gyroscope",
-        "Sensor"
-      ],
-      "ports": [
-        {
-          "name": "vdd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "vddio",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "int1",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "int2",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "DigitalToAnalog",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "CpuFan3Pin",
-      "superClasses": [
-        "CpuFanConnector",
-        "Connector"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "sense",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "3-pin fan controller"
-    },
-    {
-      "name": "",
-      "type": "SpiTestPoint",
-      "superClasses": [
-        "TypedTestPoint",
-        "Testing"
-      ],
-      "ports": [
-        {
-          "name": "io",
-          "type": "SpiPeripheral",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "tp_name",
-          "type": "str",
-          "default_value": "",
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Test points for SPI"
-    },
-    {
-      "name": "",
-      "type": "JacdacDataInterface",
-      "superClasses": [
-        "JacdacSubcircuit",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "signal",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "jd_data",
-          "type": "JacdacDataPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Interface from a Jacdac data bus to a device, including protection and EMI filtering.\nDoes NOT include per-port circuitry like ESD diodes and status LEDs."
-    },
-    {
-      "name": "",
-      "type": "DigitalDirectionSwitch",
-      "superClasses": [
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "a",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "b",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "c",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "d",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Wrapper around DirectionSwitch that provides digital ports that are pulled low (to GND) when pressed."
-    },
-    {
-      "name": "",
-      "type": "TypedJumper",
-      "superClasses": [
-        "Testing"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Jumper with typed ports (eg, VoltageSource-VoltageSink, instead of Passive)."
-    },
-    {
-      "name": "",
-      "type": "S8261A",
-      "superClasses": [
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "1-cell LiIon/LiPo Battery protection IC protecting against overcharge, overdischarge, over current.\n  "
-    },
-    {
-      "name": "",
-      "type": "Vl53l0xBase",
-      "superClasses": [
-        "DistanceSensor",
-        "Sensor"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "xshut",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gpio1",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Abstract base class for VL53L0x application circuits"
-    },
-    {
-      "name": "",
-      "type": "EspAutoProgram",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "dtr",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "rts",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "en",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "boot",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Auto-programming circuit for the ESP series, to drive the target EN (reset) and BOOT (e.g., IO0) pins."
-    },
-    {
-      "name": "",
-      "type": "SeriesPowerPptcFuse",
-      "superClasses": [
-        "Protection"
-      ],
-      "ports": [
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "trip_current",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Series fuse for power applications"
+      "docstring": "Dual precision RRO opamps.\n  "
     },
     {
       "name": "",
@@ -10469,53 +14778,104 @@ export default {
     },
     {
       "name": "",
-      "type": "PowerSwitch",
-      "superClasses": [],
+      "type": "Display",
+      "superClasses": [
+        "HumanInterface"
+      ],
       "ports": [],
       "argParams": [],
       "is_abstract": true,
-      "docstring": "Power switching circuits, eg FET switches and motor drivers"
+      "docstring": "Pixel displays."
     },
     {
       "name": "",
-      "type": "SwdCortexTargetHeader",
+      "type": "AnalogTestPoint",
       "superClasses": [
-        "SwdCortexTargetConnector",
-        "ProgrammingConnector",
-        "Connector",
+        "TypedTestPoint",
         "Testing"
       ],
       "ports": [
         {
-          "name": "tdi",
-          "type": "DigitalBidir",
+          "name": "io",
+          "type": "AnalogSink",
           "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": false,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Test point with a AnalogSink port"
+    },
+    {
+      "name": "",
+      "type": "LowPassRcDac",
+      "superClasses": [
+        "DigitalToAnalog",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "input",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
           "docstring": null
         },
         {
-          "name": "swo",
-          "type": "DigitalBidir",
+          "name": "output",
+          "type": "AnalogSource",
           "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
+          "hint_position": "right",
+          "hint_signal_direction": "source",
           "hint_array_direction": null,
-          "required": false,
+          "required": true,
           "docstring": null
         },
         {
-          "name": "reset",
-          "type": "DigitalBidir",
+          "name": "gnd",
+          "type": "VoltageSink",
           "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": false,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "impedance",
+          "type": "range",
+          "default_value": null,
           "docstring": null
         },
+        {
+          "name": "cutoff_freq",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Low-pass RC filter used as a simple DAC by filtering out a PWM signal.\nThe cutoff frequency of the filter should be sufficiently beneath the PWM frequency,\nbut enough above baseband to not distort the signal.\nLower frequencies will result in either higher impedance or larger caps.\nThis must be manually specified, since PWM frequency data is not part of the electronics model."
+    },
+    {
+      "name": "",
+      "type": "Molex1040310811",
+      "superClasses": [
+        "MicroSdSocket",
+        "Connector",
+        "SdCard",
+        "Memory"
+      ],
+      "ports": [
         {
           "name": "pwr",
           "type": "VoltageSink",
@@ -10537,11 +14897,21 @@ export default {
           "docstring": null
         },
         {
-          "name": "swd",
-          "type": "SwdHostPort",
+          "name": "spi",
+          "type": "SpiPeripheral",
           "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "source",
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "cs",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
@@ -10553,11 +14923,10 @@ export default {
     },
     {
       "name": "",
-      "type": "Vl53l0xConnector",
+      "type": "Amplifier",
       "superClasses": [
-        "Vl53l0xBase",
-        "DistanceSensor",
-        "Sensor"
+        "OpampApplication",
+        "Analog"
       ],
       "ports": [
         {
@@ -10581,8 +14950,8 @@ export default {
           "docstring": null
         },
         {
-          "name": "i2c",
-          "type": "I2cTarget",
+          "name": "input",
+          "type": "AnalogSink",
           "is_array": false,
           "hint_position": "left",
           "hint_signal_direction": "sink",
@@ -10591,7 +14960,223 @@ export default {
           "docstring": null
         },
         {
-          "name": "xshut",
+          "name": "output",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reference",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "amplification",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "impedance",
+          "type": "range",
+          "default_value": [
+            10000.0,
+            100000.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "series",
+          "type": "int",
+          "default_value": 24,
+          "docstring": null
+        },
+        {
+          "name": "tolerance",
+          "type": "float",
+          "default_value": 0.01,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Opamp non-inverting amplifier, outputs a scaled-up version of the input signal.\n\nFrom https://en.wikipedia.org/wiki/Operational_amplifier_applications#Non-inverting_amplifier:\nVout = Vin (1 + R1/R2)\n\nThe input and output impedances given are a bit more complex, so this simplifies it to\nthe opamp's specified pin impedances - TODO: is this correct(ish)?"
+    },
+    {
+      "name": "",
+      "type": "DigitalWrapperRotaryEncoder",
+      "superClasses": [
+        "DigitalRotaryEncoder",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "a",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "b",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Basic implementation for DigitalRotaryEncoder as a wrapper around a passive-typed RotaryEncoder."
+    },
+    {
+      "name": "",
+      "type": "Holyiot_18010",
+      "superClasses": [
+        "Microcontroller",
+        "Radiofrequency",
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2s",
+          "type": "I2sController",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2S controller ports, each element is an independent I2S controller"
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "spi_peripheral",
+          "type": "SpiPeripheral",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
+        },
+        {
+          "name": "reset",
           "type": "DigitalSink",
           "is_array": false,
           "hint_position": "left",
@@ -10601,11 +15186,11 @@ export default {
           "docstring": null
         },
         {
-          "name": "gpio1",
-          "type": "DigitalBidir",
+          "name": "pwr_usb",
+          "type": "VoltageSink",
           "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": false,
           "docstring": null
@@ -10613,21 +15198,35 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "Connector to an external VL53L0X breakout board.\nUses the pinout from the Adafruit product: https://www.adafruit.com/product/3317\nThis has an onboard 2.8v regulator, but thankfully the IO tolerance is not referenced to Vdd"
+      "docstring": "Wrapper around the Holyiot 18010 that includes supporting components (programming port)"
     },
     {
       "name": "",
-      "type": "Pcf8574",
+      "type": "Tps61040",
       "superClasses": [
-        "Interface"
+        "DiscreteBoostConverter",
+        "VoltageRegulator",
+        "BoostConverter",
+        "SwitchingVoltageRegulator",
+        "PowerConditioner"
       ],
       "ports": [
         {
-          "name": "pwr",
+          "name": "pwr_in",
           "type": "VoltageSink",
           "is_array": false,
           "hint_position": "up",
           "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
@@ -10643,10 +15242,44 @@ export default {
           "docstring": null
         },
         {
-          "name": "i2c",
-          "type": "I2cTarget",
+          "name": "reset",
+          "type": "DigitalSink",
           "is_array": false,
           "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "PFM (DCM, discontinuous mode) boost converter in SOT-23-5"
+    },
+    {
+      "name": "",
+      "type": "Lcd",
+      "superClasses": [
+        "Display",
+        "HumanInterface"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "LCD display, where pixels absorb / reflect light, but do not directly emit light (eg, use a backlight, or are transflective)."
+    },
+    {
+      "name": "",
+      "type": "PulldownResistor",
+      "superClasses": [
+        "DiscreteApplication"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
@@ -10654,25 +15287,25 @@ export default {
         },
         {
           "name": "io",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "source",
-          "required": false,
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
           "docstring": null
         }
       ],
       "argParams": [
         {
-          "name": "addr_lsb",
-          "type": "int",
-          "default_value": 0,
+          "name": "resistance",
+          "type": "range",
+          "default_value": null,
           "docstring": null
         }
       ],
       "is_abstract": false,
-      "docstring": "8 bit I2C IO expander with 'quasi-bidirectional IOs'"
+      "docstring": "Pull-down resistor with an VoltageSink for automatic implicit connect to a Ground line."
     },
     {
       "name": "",
@@ -10750,225 +15383,14 @@ export default {
     },
     {
       "name": "",
-      "type": "Lmv331",
+      "type": "CurrentSensor",
       "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "inn",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "inp",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "General purpose comparator\n\nTODO: should extend an abstract comparator interface, note output is open-drain"
-    },
-    {
-      "name": "",
-      "type": "DigitalWrapperDirectionSwitch",
-      "superClasses": [
-        "DigitalDirectionSwitch",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "a",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "b",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "c",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "d",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Basic implementation for DigitalDirectionSwitch as a wrapper around a passive-typed DirectionSwitch."
-    },
-    {
-      "name": "",
-      "type": "Max98357a",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "i2s",
-          "type": "I2sTargetReceiver",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "SpeakerDriverPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "MAX98357A I2S speaker driver with default gain."
-    },
-    {
-      "name": "",
-      "type": "EInk",
-      "superClasses": [
-        "Display",
-        "HumanInterface"
+        "Sensor"
       ],
       "ports": [],
       "argParams": [],
       "is_abstract": true,
-      "docstring": "E-ink display, which retains the image after power is removed."
-    },
-    {
-      "name": "",
-      "type": "Pesd5v0x1bt",
-      "superClasses": [
-        "UsbEsdDiode",
-        "Protection"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbPassivePort",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Ultra low capacitance ESD protection diode (0.9pF typ), suitable for USB and GbE"
+      "docstring": null
     },
     {
       "name": "",
@@ -11002,414 +15424,7 @@ export default {
     },
     {
       "name": "",
-      "type": "JacdacEdgeConnector",
-      "superClasses": [
-        "Connector",
-        "JacdacSubcircuit",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "gnd_src",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "jd_pwr_src",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd_sink",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "jd_pwr_sink",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "jd_data",
-          "type": "JacdacDataPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "jd_status",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "is_power_provider",
-          "type": "bool",
-          "default_value": 0.0,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Jacdac edge connector, in power sink or source mode (both available, but both may not be connected simultaneously).\nThis includes the required per-port application circuitry, including status LEDs and ESD diodes.\nThis does NOT include device-wide application circuitry like EMI filters.\n\nRequires this KiCad footprint library to be available: https://github.com/mattoppenheim/jacdac"
-    },
-    {
-      "name": "",
-      "type": "IoController",
-      "superClasses": [
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Structural abstract base class for a programmable controller chip (including microcontrollers that take firmware,\nand FPGAs that take gateware).\n\nThis provides the model of a grab bag of IOs on its structural interface, and supports common peripherals as\nVectors of GPIO, ADC, I2C, and SPI. The pin_assigns argument can be used to specify how to map Vector elements\nto physical (by footprint pin number) or logical pins (by pin name).\nLess common peripheral types like CAN and DAC can be added with mixins.\n\nThis defines a power input port that powers the device, though the IoControllerPowerOut mixin can be used\nfor a controller that provides power, for example a development board powered from onboard USB."
-    },
-    {
-      "name": "",
-      "type": "Nrf52840_Base",
-      "superClasses": [],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2s",
-          "type": "I2sController",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi_peripheral",
-          "type": "SpiPeripheral",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_usb",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "xtal",
-          "type": "CrystalDriver",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "xtal_rtc",
-          "type": "CrystalDriver",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "swd",
-          "type": "SwdTargetPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "nreset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Vl53l0x",
-      "superClasses": [
-        "Vl53l0xBase",
-        "DistanceSensor",
-        "Sensor"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "xshut",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gpio1",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Board-mount laser ToF sensor"
-    },
-    {
-      "name": "",
-      "type": "QwiicTarget",
+      "type": "CpuFanConnector",
       "superClasses": [
         "Connector"
       ],
@@ -11435,299 +15450,27 @@ export default {
           "docstring": null
         },
         {
-          "name": "i2c",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "A Qwiic (https://www.sparkfun.com/qwiic) connector to a I2C target.\nThis would be on a board with a host controller."
-    },
-    {
-      "name": "",
-      "type": "CustomSyncBuckConverterIndependent",
-      "superClasses": [
-        "DiscreteBoostConverter",
-        "BoostConverter",
-        "SwitchingVoltageRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_logic",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwm_low",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwm_high",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "frequency",
-          "type": "range",
-          "default_value": [
-            100000.0,
-            1000000.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "voltage_drop",
-          "type": "range",
-          "default_value": [
-            0.0,
-            1.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "rds_on",
-          "type": "range",
-          "default_value": [
-            0.0,
-            1.0
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Custom synchronous buck with two PWM inputs for the high and low side gate drivers.\nBecause of the MOSFET body diode, will probably be fine-ish if the low side FET is not driven."
-    },
-    {
-      "name": "",
-      "type": "DigitalWrapperDirectionSwitchWithCenter",
-      "superClasses": [
-        "DigitalWrapperDirectionSwitch",
-        "DigitalDirectionSwitch",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "a",
+          "name": "sense",
           "type": "DigitalSingleSource",
           "is_array": false,
           "hint_position": "right",
           "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "b",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "c",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "d",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "center",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Magnetometer",
-      "superClasses": [
-        "Sensor"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Pgb102st23",
-      "superClasses": [
-        "UsbEsdDiode",
-        "Protection"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbPassivePort",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "passive",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
         }
       ],
       "argParams": [],
-      "is_abstract": false,
-      "docstring": "ESD suppressor, suitable for high speed protocols including USB2.0, 0.12pF typ"
+      "is_abstract": true,
+      "docstring": "Abstract block for a 3-pin CPU fan connector."
     },
     {
       "name": "",
-      "type": "FootprintToucbPad",
+      "type": "SdCard",
       "superClasses": [
-        "HumanInterface"
+        "Memory"
       ],
       "ports": [
-        {
-          "name": "pad",
-          "type": "TouchPadPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "touch_footprint",
-          "type": "str",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Ad8418a",
-      "superClasses": [
-        "CurrentSensor",
-        "Sensor"
-      ],
-      "ports": [
-        {
-          "name": "sense_pos",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "sense_neg",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
         {
           "name": "pwr",
           "type": "VoltageSink",
@@ -11746,266 +15489,38 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
-          "docstring": null
-        },
-        {
-          "name": "ref",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "in_diff_range",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Lpc1549Base",
-      "superClasses": [
-        "Microcontroller",
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
           "docstring": null
         },
         {
           "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanControllerPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "dac",
-          "type": "AnalogSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi_peripheral",
           "type": "SpiPeripheral",
-          "is_array": true,
+          "is_array": false,
           "hint_position": "left",
           "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
+          "hint_array_direction": null,
+          "required": true,
           "docstring": null
         },
         {
-          "name": "reset",
+          "name": "cs",
           "type": "DigitalSink",
           "is_array": false,
           "hint_position": "left",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": false,
+          "required": true,
           "docstring": null
         }
       ],
       "argParams": [],
       "is_abstract": true,
-      "docstring": null
+      "docstring": "Minimum connections for SD card, with IOs definitions set according to SD card spec"
     },
     {
       "name": "",
-      "type": "Vl53l0xArray",
+      "type": "Li18650",
       "superClasses": [
-        "DistanceSensor",
-        "Sensor"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "xshut",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gpio1",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "count",
-          "type": "int",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "first_xshut_fixed",
-          "type": "bool",
-          "default_value": 0.0,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Array of Vl53l0x with common I2C but individually exposed XSHUT pins and optionally GPIO1 (interrupt)."
-    },
-    {
-      "name": "",
-      "type": "UsbMicroBReceptacle",
-      "superClasses": [
-        "UsbDeviceConnector",
-        "Connector",
+        "Battery",
         "PowerSource"
       ],
       "ports": [
@@ -12016,7 +15531,7 @@ export default {
           "hint_position": "right",
           "hint_signal_direction": "source",
           "hint_array_direction": null,
-          "required": false,
+          "required": true,
           "docstring": null
         },
         {
@@ -12028,393 +15543,28 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbHostPort",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Tpa2005d1",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "sig",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "spk",
-          "type": "SpeakerDriverPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
         }
       ],
       "argParams": [
         {
-          "name": "gain",
+          "name": "voltage",
           "type": "range",
           "default_value": [
-            16.0,
-            24.0
+            2.5,
+            4.2
+          ],
+          "docstring": null
+        },
+        {
+          "name": "actual_voltage",
+          "type": "range",
+          "default_value": [
+            2.5,
+            4.2
           ],
           "docstring": null
         }
       ],
-      "is_abstract": false,
-      "docstring": "TPA2005D1 configured in single-ended input mode.\nPossible semi-pin-compatible with PAM8302AASCR (C113367), but which has internal resistor."
-    },
-    {
-      "name": "",
-      "type": "Camera",
-      "superClasses": [
-        "Sensor"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Imaging sensors, including visible / RGB, IR, and thermal."
-    },
-    {
-      "name": "",
-      "type": "CanTransceiver",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "controller",
-          "type": "CanTransceiverPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanDiffPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Abstract CAN transceiver"
-    },
-    {
-      "name": "",
-      "type": "JacdacEdgeConnectorBare",
-      "superClasses": [
-        "JacdacSubcircuit",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "gnd_src",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "jd_pwr_src",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd_sink",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "jd_pwr_sink",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "jd_data",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "is_power_provider",
-          "type": "bool",
-          "default_value": 0.0,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Jacdac connector, in power sink or source mode (both available, but both may not be connected simultaneously).\nThis is the bare connector, you should use the non-bare one with the recommended interface circuitry in most cases!\nUses the recessed connector, which is the default used by the device outline generator.\n\nRequires this KiCad footprint library to be available: https://github.com/mattoppenheim/jacdac\n\nAll specs from from https://microsoft.github.io/jacdac-docs/reference/electrical-spec\n\nIf the power sink (power is sunk into the port and off-board) is connected, is_power_provider\nindicates whether this port should model the maximum downstream current draw"
-    },
-    {
-      "name": "",
-      "type": "OpampFollower",
-      "superClasses": [
-        "OpampApplication",
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "input",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Opamp follower circuit, outputs the same signal as the input (but probably stronger)."
-    },
-    {
-      "name": "",
-      "type": "Cbmud1200l",
-      "superClasses": [
-        "DigitalIsolator",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr_a",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd_a",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "in_a",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "out_a",
-          "type": "DigitalSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr_b",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd_b",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "in_b",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "out_b",
-          "type": "DigitalSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Tpd2e009",
-      "superClasses": [
-        "UsbEsdDiode",
-        "Protection"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbPassivePort",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
       "is_abstract": false,
       "docstring": null
     },
@@ -12534,244 +15684,14 @@ export default {
     },
     {
       "name": "",
-      "type": "Interface",
-      "superClasses": [],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Interface devices, eg CAN transceiver (CAN <-> SPI / I2C interface),\nand including analog interfaces (ADCs, DACs)."
-    },
-    {
-      "name": "",
-      "type": "Ct3151",
+      "type": "Er_Oled022_1",
       "superClasses": [
-        "BananaSafetyJack",
-        "BananaJack",
-        "Connector"
-      ],
-      "ports": [
-        {
-          "name": "port",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "CT3151-x PTH right-angle safety banana jack connector.\nx indicates the color code.\n\nTODO: automatically support color code generation?"
-    },
-    {
-      "name": "",
-      "type": "AnalogTestPoint",
-      "superClasses": [
-        "TypedTestPoint",
-        "Testing"
-      ],
-      "ports": [
-        {
-          "name": "io",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Test point with a AnalogSink port"
-    },
-    {
-      "name": "",
-      "type": "IntegratorInverting",
-      "superClasses": [
-        "OpampApplication",
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "input",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "reference",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "factor",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "capacitance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "series",
-          "type": "int",
-          "default_value": 6,
-          "docstring": null
-        },
-        {
-          "name": "tolerance",
-          "type": "float",
-          "default_value": 0.05,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Opamp integrator, outputs the negative integral of the input signal, relative to some reference signal.\nWill clip to the input voltage rails.\n\nFrom https://en.wikipedia.org/wiki/Operational_amplifier_applications#Inverting_integrator:\nVout = - 1/RC * int(Vin) (integrating over time)\n\nSeries is lower and tolerance is higher because there's a cap involved\nTODO - separate series for cap, and series and tolerance by decade?"
-    },
-    {
-      "name": "",
-      "type": "SwdCortexTargetTagConnect",
-      "superClasses": [
-        "SwdCortexTargetConnector",
-        "ProgrammingConnector",
-        "Connector",
-        "Testing"
-      ],
-      "ports": [
-        {
-          "name": "swo",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "swd",
-          "type": "SwdHostPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "OFFICIAL tag connect SWD header using the TC2030 series cables.\nhttps://www.tag-connect.com/wp-content/uploads/bsk-pdf-manager/TC2030-CTX_1.pdf"
-    },
-    {
-      "name": "",
-      "type": "TypedTestPoint",
-      "superClasses": [
-        "Testing"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Test point with a typed port (eg, VoltageSink, instead of Passive)."
-    },
-    {
-      "name": "",
-      "type": "E2154fs091",
-      "superClasses": [
-        "EInk",
+        "Oled",
         "Display",
         "HumanInterface"
       ],
       "ports": [
         {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
           "name": "gnd",
           "type": "VoltageSink",
           "is_array": false,
@@ -12782,37 +15702,27 @@ export default {
           "docstring": null
         },
         {
-          "name": "busy",
-          "type": "DigitalSource",
+          "name": "vcc",
+          "type": "VoltageSink",
           "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
         },
         {
           "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dc",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "cs",
           "type": "DigitalSink",
           "is_array": false,
           "hint_position": "left",
@@ -12828,56 +15738,32 @@ export default {
           "hint_position": "left",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "1.54\" 152x152px red/black/white e-ink display with 24-pin FPC connector, 0.5mm pitch"
-    },
-    {
-      "name": "",
-      "type": "Ap2204k",
-      "superClasses": [
-        "LinearRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
+          "required": false,
           "docstring": null
         },
         {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "reset",
+          "name": "cs",
           "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "dc",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
           "is_array": false,
           "hint_position": "left",
           "hint_signal_direction": "sink",
@@ -12888,7 +15774,7 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "AP2204K block providing the LinearRegulator interface and optional enable (tied high if not connected).\n  "
+      "docstring": "SSD1305-based 2.2\" 128x32 monochrome OLED in SPI or I2C mode."
     },
     {
       "name": "",
@@ -12992,42 +15878,9 @@ export default {
     },
     {
       "name": "",
-      "type": "Pesd1can",
+      "type": "Pca9554",
       "superClasses": [
-        "CanEsdDiode",
-        "Protection"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanDiffPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "BufferedSupply",
-      "superClasses": [
-        "PowerConditioner"
+        "Interface"
       ],
       "ports": [
         {
@@ -13041,64 +15894,116 @@ export default {
           "docstring": null
         },
         {
-          "name": "pwr_out",
-          "type": "VoltageSource",
+          "name": "gnd",
+          "type": "VoltageSink",
           "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
         },
         {
-          "name": "sc_out",
-          "type": "VoltageSource",
+          "name": "i2c",
+          "type": "I2cTarget",
           "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
           "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "io",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "addr_lsb",
+          "type": "int",
+          "default_value": 0,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "8 bit I2C IO expander"
+    },
+    {
+      "name": "",
+      "type": "Opa2189",
+      "superClasses": [
+        "MultipackOpamp",
+        "Analog"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": true,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
           "required": false,
           "docstring": null
         },
         {
           "name": "gnd",
           "type": "VoltageSink",
-          "is_array": false,
+          "is_array": true,
           "hint_position": "down",
           "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "charging_current",
-          "type": "range",
-          "default_value": null,
+          "hint_array_direction": "source",
+          "required": false,
           "docstring": null
         },
         {
-          "name": "sense_resistance",
-          "type": "range",
-          "default_value": null,
+          "name": "inp",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
           "docstring": null
         },
         {
-          "name": "voltage_drop",
-          "type": "range",
-          "default_value": null,
+          "name": "inn",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "AnalogSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "source",
+          "required": false,
           "docstring": null
         }
       ],
+      "argParams": [],
       "is_abstract": false,
-      "docstring": "Implements a current limiting source with an opamp for charging a supercap, and a Vf-limited diode\nfor discharging\n\nSee https://electronics.stackexchange.com/questions/178605/op-amp-mosfet-constant-current-power-source"
+      "docstring": "Dual precision RRO opamps.\n  "
     },
     {
       "name": "",
-      "type": "L74Ahct1g125",
+      "type": "Hdc1080",
       "superClasses": [
-        "Interface"
+        "EnvironmentalSensor",
+        "Sensor"
       ],
       "ports": [
         {
@@ -13122,93 +16027,8 @@ export default {
           "docstring": null
         },
         {
-          "name": "input",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Single buffer, useful as a level shifter"
-    },
-    {
-      "name": "",
-      "type": "Cr2032",
-      "superClasses": [
-        "Battery",
-        "PowerSource"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "voltage",
-          "type": "range",
-          "default_value": [
-            2.0,
-            3.0
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Protection",
-      "superClasses": [],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Circuit protection elements, eg TVS diodes, fuses"
-    },
-    {
-      "name": "",
-      "type": "DigitalTestPoint",
-      "superClasses": [
-        "TypedTestPoint",
-        "Testing"
-      ],
-      "ports": [
-        {
-          "name": "io",
-          "type": "DigitalSink",
+          "name": "i2c",
+          "type": "I2cTarget",
           "is_array": false,
           "hint_position": "left",
           "hint_signal_direction": "sink",
@@ -13219,224 +16039,12 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "Test point with a DigitalSink port."
+      "docstring": "Temperature and humidity sensor with +/- 0.2C and +/- 2% RH typical accuracy"
     },
     {
       "name": "",
-      "type": "JacdacMountingGnd2",
+      "type": "Nucleo_F303k8",
       "superClasses": [
-        "JacdacSubcircuit",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "SpiMemory",
-      "superClasses": [
-        "Memory"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiPeripheral",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "cs",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "size",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": "Base class for SPI memory, with acceptable sizes (in bits) as a range."
-    },
-    {
-      "name": "",
-      "type": "Battery",
-      "superClasses": [
-        "PowerSource"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "current",
-          "type": "range",
-          "default_value": [
-            0.0,
-            0.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "capacity",
-          "type": "float",
-          "default_value": 0.0,
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Iso1050dub",
-      "superClasses": [
-        "IsolatedCanTransceiver",
-        "CanTransceiver",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "controller",
-          "type": "CanTransceiverPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanDiffPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "can_pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "can_gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Lpc1549_48",
-      "superClasses": [
-        "Lpc1549Base",
-        "Microcontroller",
         "IoController",
         "ProgrammableController"
       ],
@@ -13449,7 +16057,7 @@ export default {
           "hint_signal_direction": "bidir",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller digital GPIO pins"
         },
         {
           "name": "adc",
@@ -13459,7 +16067,7 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller analog input pins"
         },
         {
           "name": "spi",
@@ -13469,7 +16077,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
         },
         {
           "name": "i2c",
@@ -13479,7 +16087,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
         },
         {
           "name": "uart",
@@ -13489,7 +16097,7 @@ export default {
           "hint_signal_direction": "bidir",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller UARTs"
         },
         {
           "name": "usb",
@@ -13499,27 +16107,7 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
+          "docstring": "Microcontroller USB device ports"
         },
         {
           "name": "can",
@@ -13529,7 +16117,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller CAN controller ports"
         },
         {
           "name": "dac",
@@ -13539,7 +16127,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller analog output pins"
         },
         {
           "name": "i2c_target",
@@ -13549,59 +16137,16 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
         },
         {
-          "name": "spi_peripheral",
-          "type": "SpiPeripheral",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
+          "name": "gnd",
+          "type": "VoltageSink",
           "is_array": false,
-          "hint_position": "left",
+          "hint_position": "down",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Ncp3420",
-      "superClasses": [
-        "HalfBridgeDriver",
-        "PowerSwitch"
-      ],
-      "ports": [
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwm_in",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
           "docstring": null
         },
         {
@@ -13611,63 +16156,54 @@ export default {
           "hint_position": "up",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "low_out",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "high_pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
           "required": false,
           "docstring": null
         },
         {
-          "name": "high_gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "high_out",
-          "type": "DigitalSource",
+          "name": "gnd_out",
+          "type": "VoltageSource",
           "is_array": false,
           "hint_position": "right",
           "hint_signal_direction": "source",
           "hint_array_direction": null,
-          "required": true,
-          "docstring": null
+          "required": false,
+          "docstring": "Ground for power output ports, when the device is acting as a power source"
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Power output port, typically of the device's Vdd or VddIO rail; must be used with gnd_out"
+        },
+        {
+          "name": "vusb_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Power output port of the device's Vbus, typically 5v; must be used with gnd_out"
         }
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "Half-bridge driver supporting 35V offset, 4.6-13.2v input, external boot diode, auto-deadtime."
+      "docstring": "Nucleo32 F303K8 configured as power source from USB."
+    },
+    {
+      "name": "",
+      "type": "Accelerometer",
+      "superClasses": [
+        "Sensor"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": null
     },
     {
       "name": "",
@@ -13709,260 +16245,6 @@ export default {
       ],
       "is_abstract": false,
       "docstring": "BAT WIRELESS IPEX connector"
-    },
-    {
-      "name": "",
-      "type": "SingleDiodePowerMerge",
-      "superClasses": [
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_in_diode",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "voltage_drop",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "reverse_recovery_time",
-          "type": "range",
-          "default_value": [
-            -Infinity,
-            Infinity
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Single-diode power merge block for two voltage sources, where the lower voltage one is diode-gated and less\npreferred if both are connected."
-    },
-    {
-      "name": "",
-      "type": "ConnectorSpeaker",
-      "superClasses": [
-        "Speaker",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "input",
-          "type": "SpeakerPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "impedance",
-          "type": "range",
-          "default_value": [
-            8.0,
-            8.0
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Speaker that delegates to a PassiveConnector and with configurable impedance."
-    },
-    {
-      "name": "",
-      "type": "Analog",
-      "superClasses": [],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Analog blocks that don't fit into one of the other categories"
-    },
-    {
-      "name": "",
-      "type": "IsolatedCanTransceiver",
-      "superClasses": [
-        "CanTransceiver",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "controller",
-          "type": "CanTransceiverPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanDiffPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "can_pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "can_gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "JacdacMountingData1",
-      "superClasses": [
-        "JacdacSubcircuit",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "jd_data",
-          "type": "JacdacPassivePort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Jacdac mounting hole for data, with a passive-typed port so it doesn't count as a connection\nfor validation purposes."
-    },
-    {
-      "name": "",
-      "type": "OpenDrainDriver",
-      "superClasses": [
-        "PowerSwitch"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "control",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "max_rds",
-          "type": "float",
-          "default_value": 1.0,
-          "docstring": null
-        },
-        {
-          "name": "frequency",
-          "type": "range",
-          "default_value": [
-            0.0,
-            0.0
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "NFET configured as an open-drain driver. Potentially useful for voltage translation applications."
     },
     {
       "name": "",
@@ -14040,13 +16322,43 @@ export default {
     },
     {
       "name": "",
-      "type": "BananaJack",
+      "type": "SolidStateRelay",
       "superClasses": [
-        "Connector"
+        "Interface"
       ],
       "ports": [
         {
-          "name": "port",
+          "name": "leda",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "ledk",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "feta",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "fetb",
           "type": "Passive",
           "is_array": false,
           "hint_position": null,
@@ -14058,7 +16370,975 @@ export default {
       ],
       "argParams": [],
       "is_abstract": true,
-      "docstring": "Base class for a single terminal 4mm banana jack, such as used on test equipment."
+      "docstring": "Base class for solid state relays.\nLED pins are passive (like the abstract LED) and the enclosing class should provide\nthe circuitry to make it a DigitalSink port."
+    },
+    {
+      "name": "",
+      "type": "JlcOscillator",
+      "superClasses": [
+        "Oscillator",
+        "DiscreteApplication"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "DigitalSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "PullupResistorArray",
+      "superClasses": [
+        "TypedTestPoint",
+        "Testing"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "io",
+          "type": "DigitalSingleSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "resistance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Array of PullupResistors, sized from the port array's connections."
+    },
+    {
+      "name": "",
+      "type": "Xiao_Esp32c3",
+      "superClasses": [
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2s",
+          "type": "I2sController",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2S controller ports, each element is an independent I2S controller"
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "spi_peripheral",
+          "type": "SpiPeripheral",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
+        },
+        {
+          "name": "gnd_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Ground for power output ports, when the device is acting as a power source"
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Power output port, typically of the device's Vdd or VddIO rail; must be used with gnd_out"
+        },
+        {
+          "name": "vusb_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Power output port of the device's Vbus, typically 5v; must be used with gnd_out"
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "ESP32-C3 development board, a tiny development (21x17.5mm) daughterboard with a RISC-V microcontroller\nsupporting WiFi and BLE. Has an onboard USB connector, so this can also source power.\n\nLimited pins (only 11 for IOs, of which 6 are usable as the other 5 have boot requirements).\n\nRequires Seeed Studio's KiCad library for the footprint: https://github.com/Seeed-Studio/OPL_Kicad_Library\nThe 'Seeed Studio XIAO Series Library' must have been added as a footprint library of the same name.\n\nPinning data: https://www.seeedstudio.com/blog/wp-content/uploads/2022/08/Seeed-Studio-XIAO-Series-Package-and-PCB-Design.pdf"
+    },
+    {
+      "name": "",
+      "type": "Oled",
+      "superClasses": [
+        "Display",
+        "HumanInterface"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "OLED display, with the pixel density of an LCD but with infinite contrast and no backlight."
+    },
+    {
+      "name": "",
+      "type": "PiLowPassFilter",
+      "superClasses": [
+        "AnalogFilter",
+        "Filter"
+      ],
+      "ports": [
+        {
+          "name": "input",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "output",
+          "type": "Passive",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "frequency",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "src_resistance",
+          "type": "float",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "src_reactance",
+          "type": "float",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "load_resistance",
+          "type": "float",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "tolerance",
+          "type": "float",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "voltage",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "current",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Passive-typed pi impedance matching network.\nBased on equations from https://www.silabs.com/documents/public/application-notes/an1275-imp-match-for-network-arch.pdf\nand also referencing https://www.electronicdesign.com/technologies/communications/article/21801154/back-to-basics-impedance-matching-part-3\nand https://www.qsl.net/zl1an/CH1.pdf\nFrequency defines the entire bandwidth this filter should work across.\n\nWORK IN PROGRESS. NON-STABLE API.\n\nTODO: use ranges and tolerances throughout"
+    },
+    {
+      "name": "",
+      "type": "Ref30xx",
+      "superClasses": [
+        "VoltageReference",
+        "LinearRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "output_voltage",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Ad8418a",
+      "superClasses": [
+        "CurrentSensor",
+        "Sensor"
+      ],
+      "ports": [
+        {
+          "name": "sense_pos",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "sense_neg",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "ref",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "in_diff_range",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Xiao_Rp2040",
+      "superClasses": [
+        "IoController",
+        "ProgrammableController"
+      ],
+      "ports": [
+        {
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "gnd_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Ground for power output ports, when the device is acting as a power source"
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Power output port, typically of the device's Vdd or VddIO rail; must be used with gnd_out"
+        },
+        {
+          "name": "vusb_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Power output port of the device's Vbus, typically 5v; must be used with gnd_out"
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "RP2040 development board, a tiny development (21x17.5mm) daughterboard.\nHas an onboard USB connector, so this can also source power.\n\nLimited pins (only 11 for IOs, of which 6 are usable as the other 5 have boot requirements).\n\nRequires Seeed Studio's KiCad library for the footprint: https://github.com/Seeed-Studio/OPL_Kicad_Library\nThe 'Seeed Studio XIAO Series Library' must have been added as a footprint library of the same name.\n\nPinning data: https://www.seeedstudio.com/blog/wp-content/uploads/2022/08/Seeed-Studio-XIAO-Series-Package-and-PCB-Design.pdf"
+    },
+    {
+      "name": "",
+      "type": "IndicatorLedArray",
+      "superClasses": [
+        "Light",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "signals",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "count",
+          "type": "int",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "color",
+          "type": "str",
+          "default_value": "",
+          "docstring": null
+        },
+        {
+          "name": "current_draw",
+          "type": "range",
+          "default_value": [
+            0.001,
+            0.01
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "An array of IndicatorLed, just a convenience wrapper."
+    },
+    {
+      "name": "",
+      "type": "Gyroscope",
+      "superClasses": [
+        "Sensor"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "CanTransceiver",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "controller",
+          "type": "CanTransceiverPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "can",
+          "type": "CanDiffPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Abstract CAN transceiver"
+    },
+    {
+      "name": "",
+      "type": "UsbAPlugPads",
+      "superClasses": [
+        "UsbDeviceConnector",
+        "Connector",
+        "PowerSource"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "usb",
+          "type": "UsbHostPort",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "OpampCurrentSensor",
+      "superClasses": [
+        "CurrentSensor",
+        "Sensor"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "ref",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "AnalogSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "resistance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "ratio",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "input_impedance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Current sensor block using a resistive sense element and an opamp-based differential amplifier.\nFor a positive current (flowing from pwr_in -> pwr_out), this generates a positive voltage on the output.\nOutput reference can be floating (eg, at Vdd/2) to allow bidirectional current sensing.\n\nDiscrete diffamp circuits generally have poor accuracy as a result of resistor tolerances, including\nvery poor common-mode rejection."
+    },
+    {
+      "name": "",
+      "type": "EspProgrammingHeader",
+      "superClasses": [
+        "ProgrammingConnector",
+        "Connector",
+        "Testing"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Abstract programming header for ESP series micros, defining a UART connection.\nCircuitry to reset / enter programming mode must be external."
+    },
+    {
+      "name": "",
+      "type": "BufferedSupply",
+      "superClasses": [
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "sc_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "charging_current",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "sense_resistance",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "voltage_drop",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Implements a current limiting source with an opamp for charging a supercap, and a Vf-limited diode\nfor discharging\n\nSee https://electronics.stackexchange.com/questions/178605/op-amp-mosfet-constant-current-power-source"
     },
     {
       "name": "",
@@ -14146,8 +17426,61 @@ export default {
     },
     {
       "name": "",
-      "type": "Feather_Nrf52840",
+      "type": "HalfBridge",
       "superClasses": [
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_logic",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Half bridge circuit with logic-level inputs and current draw calculated from the output node.\nTwo power rails: logic power (which can be used to power gate drivers), and the power rail."
+    },
+    {
+      "name": "",
+      "type": "Ice40up",
+      "superClasses": [
+        "Fpga",
         "IoController",
         "ProgrammableController"
       ],
@@ -14160,7 +17493,7 @@ export default {
           "hint_signal_direction": "bidir",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller digital GPIO pins"
         },
         {
           "name": "adc",
@@ -14170,7 +17503,7 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller analog input pins"
         },
         {
           "name": "spi",
@@ -14180,7 +17513,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
         },
         {
           "name": "i2c",
@@ -14190,7 +17523,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
         },
         {
           "name": "uart",
@@ -14200,7 +17533,7 @@ export default {
           "hint_signal_direction": "bidir",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller UARTs"
         },
         {
           "name": "usb",
@@ -14210,6 +17543,16 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
           "docstring": null
         },
         {
@@ -14223,666 +17566,31 @@ export default {
           "docstring": null
         },
         {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2s",
-          "type": "I2sController",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi_peripheral",
-          "type": "SpiPeripheral",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "vusb_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Feather nRF52840 socketed dev board as either power source or sink"
-    },
-    {
-      "name": "",
-      "type": "AABattery",
-      "superClasses": [
-        "Battery",
-        "PowerSource"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "voltage",
-          "type": "range",
-          "default_value": [
-            1.3,
-            1.7
-          ],
-          "docstring": null
-        },
-        {
-          "name": "actual_voltage",
-          "type": "range",
-          "default_value": [
-            1.3,
-            1.7
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "AA Alkaline battery"
-    },
-    {
-      "name": "",
-      "type": "Pca9554",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "io",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "addr_lsb",
-          "type": "int",
-          "default_value": 0,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "8 bit I2C IO expander"
-    },
-    {
-      "name": "",
-      "type": "ProtectionTvsDiode",
-      "superClasses": [
-        "Protection"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "working_voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "TVS diode across a power rail"
-    },
-    {
-      "name": "",
-      "type": "OscillatorReference",
-      "superClasses": [
-        "DiscreteApplication"
-      ],
-      "ports": [
-        {
-          "name": "crystal",
-          "type": "CrystalPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "frequency",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "DiodePowerMerge",
-      "superClasses": [
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in1",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_in2",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "voltage_drop",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "reverse_recovery_time",
-          "type": "range",
-          "default_value": "(0, inf)",
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Diode power merge block for two voltage sources.\n  "
-    },
-    {
-      "name": "",
-      "type": "Sd18ob261",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "clk",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "lr",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "data",
+          "name": "cdone",
           "type": "DigitalSource",
           "is_array": false,
           "hint_position": "right",
           "hint_signal_direction": "source",
           "hint_array_direction": null,
-          "required": true,
+          "required": false,
           "docstring": null
         }
       ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "SD18OB261-060 PDM microphone, probably footprint-compatible with similar Knowles devices.\nApplication circuit is not specified in the datasheet, this uses the one from SPH0655LM4H\n(single 0.1uF decap)."
-    },
-    {
-      "name": "",
-      "type": "DigitalFilter",
-      "superClasses": [
-        "Filter"
-      ],
-      "ports": [],
       "argParams": [],
       "is_abstract": true,
-      "docstring": "Digital signal conditioning block."
+      "docstring": "Application circuit for the iCE40UP series FPGAs, pre-baked for 'common' applications\n(3.3v supply with 1.2v core not shared, external FLASH programming, no NVCM programming).\n\nTODO: generator support for CRAM (volatile) programming mode, diode 2v5 NVCM supply."
     },
     {
       "name": "",
-      "type": "DigitalJumper",
+      "type": "JacdacMountingData1",
       "superClasses": [
-        "TypedJumper",
-        "Testing"
+        "JacdacSubcircuit",
+        "Interface"
       ],
       "ports": [
         {
-          "name": "input",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Stm32f103_48",
-      "superClasses": [
-        "Stm32f103Base",
-        "Microcontroller",
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanControllerPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "VoltageRegulator",
-      "superClasses": [
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "output_voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": "Structural abstract base class for DC-DC voltage regulators with shared ground (non-isolated).\nThis takes some input voltage and produces a stable voltage at output_voltage on its output.\n\nWhile this abstract class does not define any limitations on the output voltage, subclasses and concrete\nimplementations commonly have restrictions, for example linear regulators can only produce voltages lower\nthan the input voltage."
-    },
-    {
-      "name": "",
-      "type": "Ap7215",
-      "superClasses": [
-        "LinearRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "output_voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "AP7215 fixed 3.3v LDO in SOT-89 providing the LinearRegulator interface.\n  "
-    },
-    {
-      "name": "",
-      "type": "BananaSafetyJack",
-      "superClasses": [
-        "BananaJack",
-        "Connector"
-      ],
-      "ports": [
-        {
-          "name": "port",
-          "type": "Passive",
+          "name": "jd_data",
+          "type": "JacdacPassivePort",
           "is_array": false,
           "hint_position": null,
           "hint_signal_direction": "passive",
@@ -14892,289 +17600,8 @@ export default {
         }
       ],
       "argParams": [],
-      "is_abstract": true,
-      "docstring": "Base class for a single terminal 4mm banana jack supporting a safety sheath,\nsuch as on multimeter leads."
-    },
-    {
-      "name": "",
-      "type": "VoltageDivider",
-      "superClasses": [
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "input",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "output_voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "impedance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
       "is_abstract": false,
-      "docstring": "Voltage divider that takes in an output voltage and parallel impedance spec, and produces an output analog signal\nof the appropriate magnitude (as a fraction of the input voltage)"
-    },
-    {
-      "name": "",
-      "type": "Lp5907",
-      "superClasses": [
-        "LinearRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "High-PSRR LDO in SOT-23-5.\nOther pin-compatible high-PSRR LDOs:\n- LP5907\n- AP139\n- TCR2EF"
-    },
-    {
-      "name": "",
-      "type": "Mcp73831",
-      "superClasses": [
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_bat",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "stat",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "charging_current",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Single-cell Li-ion / Li-poly charger, seemingly popular on Adafruit and Sparkfun boards."
-    },
-    {
-      "name": "",
-      "type": "DigitalTvsDiode",
-      "superClasses": [
-        "Protection"
-      ],
-      "ports": [
-        {
-          "name": "io",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "working_voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "capacitance",
-          "type": "range",
-          "default_value": [
-            -Infinity,
-            Infinity
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "TVS diode protecting a signal line"
-    },
-    {
-      "name": "",
-      "type": "PriorityPowerOr",
-      "superClasses": [
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_hi",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_lo",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "diode_voltage_drop",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "fet_rds_on",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Power merge block for two power inputs, where the high priority input (e.g. USB) is higher voltage and\nthe low priority input is lower voltage (e.g. battery).\nThe higher priority input incurs a diode drop, while the lower priority input has a FET.\nAs a side effect, the FET power path also acts as reverse polarity protection."
+      "docstring": "Jacdac mounting hole for data, with a passive-typed port so it doesn't count as a connection\nfor validation purposes."
     },
     {
       "name": "",
@@ -15302,55 +17729,20 @@ export default {
     },
     {
       "name": "",
-      "type": "Lcd",
+      "type": "EnvironmentalSensor",
       "superClasses": [
-        "Display",
-        "HumanInterface"
+        "Sensor"
       ],
       "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "LCD display, where pixels absorb / reflect light, but do not directly emit light (eg, use a backlight, or are transflective)."
-    },
-    {
-      "name": "",
-      "type": "CanEsdDiode",
-      "superClasses": [
-        "Protection"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanDiffPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
       "argParams": [],
       "is_abstract": true,
       "docstring": null
     },
     {
       "name": "",
-      "type": "EspProgrammingHeader",
+      "type": "I2cPullup",
       "superClasses": [
-        "ProgrammingConnector",
-        "Connector",
-        "Testing"
+        "Interface"
       ],
       "ports": [
         {
@@ -15364,66 +17756,11 @@ export default {
           "docstring": null
         },
         {
-          "name": "gnd",
-          "type": "VoltageSink",
+          "name": "i2c",
+          "type": "I2cPullupPort",
           "is_array": false,
           "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Abstract programming header for ESP series micros, defining a UART connection.\nCircuitry to reset / enter programming mode must be external."
-    },
-    {
-      "name": "",
-      "type": "EspProgrammingPinHeader254",
-      "superClasses": [
-        "EspProgrammingHeader",
-        "ProgrammingConnector",
-        "Connector",
-        "Testing"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
+          "hint_signal_direction": "passive",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
@@ -15431,13 +17768,138 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "Programming header for ESP series micros using 2.54mm headers, matching the pinning in the reference schematics."
+      "docstring": null
     },
     {
       "name": "",
-      "type": "L78l",
+      "type": "Fusb302b",
+      "superClasses": [
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "vbus",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "cc",
+          "type": "UsbCcPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "int",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Ap2204k",
       "superClasses": [
         "LinearRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "AP2204K block providing the LinearRegulator interface and optional enable (tied high if not connected).\n  "
+    },
+    {
+      "name": "",
+      "type": "LinearRegulator",
+      "superClasses": [
         "VoltageRegulator",
         "PowerConditioner"
       ],
@@ -15481,42 +17943,22 @@ export default {
           "docstring": null
         }
       ],
-      "is_abstract": false,
-      "docstring": "L78Lxx high(er) input voltage linear regulator in SOT-89.\n  "
+      "is_abstract": true,
+      "docstring": "Structural abstract base class for linear regulators, a voltage regulator that can produce some\noutput voltage lower than its input voltage (minus some dropout) by 'burning' the excess voltage as heat.\n\nCompared to switching converters like buck and boost converters, linear regulators usually have lower\ncomplexity, lower parts count, and higher stability. However, depending on the application, they are\ntypically less efficient, and at higher loads may require thermal design considerations."
     },
     {
       "name": "",
-      "type": "CpuFanConnector",
+      "type": "Speaker",
       "superClasses": [
-        "Connector"
+        "HumanInterface"
       ],
       "ports": [
         {
-          "name": "gnd",
-          "type": "VoltageSink",
+          "name": "input",
+          "type": "SpeakerPort",
           "is_array": false,
-          "hint_position": "down",
+          "hint_position": null,
           "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "sense",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
@@ -15524,203 +17966,122 @@ export default {
       ],
       "argParams": [],
       "is_abstract": true,
-      "docstring": "Abstract block for a 3-pin CPU fan connector."
+      "docstring": "Abstract speaker part with speaker input port."
     },
     {
       "name": "",
-      "type": "ProtectionZenerDiode",
-      "superClasses": [
-        "Protection"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Zener diode reversed across a power rail to provide transient overvoltage protection (and become an incandescent\nindicator on a reverse voltage)"
-    },
-    {
-      "name": "",
-      "type": "FetHalfBridgeIndependent",
-      "superClasses": [
-        "FetHalfBridge",
-        "HalfBridge",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "low_ctl",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "high_ctl",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_logic",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "frequency",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "fet_rds",
-          "type": "range",
-          "default_value": [
-            0.0,
-            1.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "gate_res",
-          "type": "range",
-          "default_value": [
-            20.9,
-            23.1
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "VoltageIsolatedSwitch",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "signal",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
+      "type": "DiscreteApplication",
+      "superClasses": [],
+      "ports": [],
       "argParams": [],
-      "is_abstract": false,
-      "docstring": "Digitally controlled solid state relay that switches a voltage signal.\nIncludes a ballasting resistor.\n\nThe ports are not tagged with Input/Output/InOut, because of potential for confusion between\nthe digital side and the analog side."
+      "is_abstract": true,
+      "docstring": "Subcircuit around a single discrete (and usually passive) component."
     },
     {
       "name": "",
-      "type": "AnalogToDigital",
+      "type": "PowerBarrelJack",
       "superClasses": [
-        "Interface"
+        "Connector",
+        "PowerSource"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "voltage_out",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "current_limits",
+          "type": "range",
+          "default_value": [
+            -Infinity,
+            Infinity
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": true,
+      "docstring": "Barrel jack that models a configurable voltage / max current power supply."
+    },
+    {
+      "name": "",
+      "type": "CharlieplexedLedMatrix",
+      "superClasses": [
+        "Light",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "ios",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "nrows",
+          "type": "int",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "ncols",
+          "type": "int",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "color",
+          "type": "str",
+          "default_value": "",
+          "docstring": null
+        },
+        {
+          "name": "current_draw",
+          "type": "range",
+          "default_value": [
+            0.001,
+            0.01
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "A LED matrix that saves on IO pins by charlieplexing, only requiring max(rows + 1, cols) GPIOs to control.\nRequires IOs that can tri-state, and requires scanning through rows (so not all LEDs are simultaneously on).\n\nAnodes (columns) are directly connected to the IO line, while the cathodes (rows) are connected through a resistor.\nA generalization of https://en.wikipedia.org/wiki/Charlieplexing#/media/File:3-pin_Charlieplexing_matrix_with_common_resistors.svg"
+    },
+    {
+      "name": "",
+      "type": "Magnetometer",
+      "superClasses": [
+        "Sensor"
       ],
       "ports": [],
       "argParams": [],
@@ -15729,146 +18090,67 @@ export default {
     },
     {
       "name": "",
-      "type": "DigitalIsolator",
+      "type": "SpiTestPoint",
       "superClasses": [
-        "Interface"
+        "TypedTestPoint",
+        "Testing"
       ],
       "ports": [
         {
-          "name": "pwr_a",
-          "type": "VoltageSink",
+          "name": "io",
+          "type": "SpiPeripheral",
           "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd_a",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "in_a",
-          "type": "DigitalSink",
-          "is_array": true,
           "hint_position": "left",
           "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "out_a",
-          "type": "DigitalSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr_b",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
-        },
+        }
+      ],
+      "argParams": [
         {
-          "name": "gnd_b",
-          "type": "VoltageSink",
+          "name": "tp_name",
+          "type": "str",
+          "default_value": "",
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Test points for SPI"
+    },
+    {
+      "name": "",
+      "type": "Ct3151",
+      "superClasses": [
+        "BananaSafetyJack",
+        "BananaJack",
+        "Connector"
+      ],
+      "ports": [
+        {
+          "name": "port",
+          "type": "Passive",
           "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
+          "hint_position": null,
+          "hint_signal_direction": "passive",
           "hint_array_direction": null,
           "required": true,
-          "docstring": null
-        },
-        {
-          "name": "in_b",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "out_b",
-          "type": "DigitalSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "source",
-          "required": false,
           "docstring": null
         }
       ],
       "argParams": [],
-      "is_abstract": true,
-      "docstring": "Multichannel digital isolator, shifts logic signals between different logic voltages\nand isolation domains. Supports arbitrary channels in either direction, but it needs to\nmap down to a single chip (or be multipacked).\nin_a -> out_b, and in_b -> out_a must each have the same array elements, which is how\nchannels will be matched to pins."
+      "is_abstract": false,
+      "docstring": "CT3151-x PTH right-angle safety banana jack connector.\nx indicates the color code.\n\nTODO: automatically support color code generation?"
     },
     {
       "name": "",
-      "type": "OpampCurrentSensor",
+      "type": "AnalogClampResistor",
       "superClasses": [
-        "CurrentSensor",
-        "Sensor"
+        "Protection"
       ],
       "ports": [
         {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "ref",
+          "name": "signal_in",
           "type": "AnalogSink",
           "is_array": false,
           "hint_position": "left",
@@ -15878,7 +18160,7 @@ export default {
           "docstring": null
         },
         {
-          "name": "out",
+          "name": "signal_out",
           "type": "AnalogSource",
           "is_array": false,
           "hint_position": "right",
@@ -15890,40 +18172,235 @@ export default {
       ],
       "argParams": [
         {
-          "name": "resistance",
+          "name": "clamp_target",
           "type": "range",
-          "default_value": null,
+          "default_value": [
+            0.0,
+            3.0
+          ],
           "docstring": null
         },
         {
-          "name": "ratio",
+          "name": "clamp_current",
           "type": "range",
-          "default_value": null,
+          "default_value": [
+            0.00025,
+            0.0025
+          ],
           "docstring": null
         },
         {
-          "name": "input_impedance",
+          "name": "protection_voltage",
           "type": "range",
-          "default_value": null,
+          "default_value": [
+            0.0,
+            0.0
+          ],
+          "docstring": null
+        },
+        {
+          "name": "zero_out",
+          "type": "bool",
+          "default_value": 0.0,
           "docstring": null
         }
       ],
       "is_abstract": false,
-      "docstring": "Current sensor block using a resistive sense element and an opamp-based differential amplifier.\nFor a positive current (flowing from pwr_in -> pwr_out), this generates a positive voltage on the output.\nOutput reference can be floating (eg, at Vdd/2) to allow bidirectional current sensing.\n\nDiscrete diffamp circuits generally have poor accuracy as a result of resistor tolerances, including\nvery poor common-mode rejection."
+      "docstring": "Inline resistor that limits the current (to a parameterized amount) which works in concert\nwith ESD diodes in the downstream device to clamp the signal voltage to allowable levels.\n\nThe protection voltage can be extended beyond the modeled range from the input signal,\nand can also be specified to allow zero output voltage (for when the downstream device\nis powered down)\n\nTODO: clamp_target should be inferred from the target voltage_limits,\nbut voltage_limits doesn't always get propagated"
     },
     {
       "name": "",
-      "type": "RfConnector",
+      "type": "Mdbt50q_1mv2",
       "superClasses": [
-        "Connector"
+        "Microcontroller",
+        "Radiofrequency",
+        "IoController",
+        "ProgrammableController"
       ],
       "ports": [
         {
-          "name": "sig",
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "i2s",
+          "type": "I2sController",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2S controller ports, each element is an independent I2S controller"
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "spi_peripheral",
+          "type": "SpiPeripheral",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwr_usb",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Wrapper around the Mdbt50q_1mv2 that includes the reference schematic"
+    },
+    {
+      "name": "",
+      "type": "JlcAntenna",
+      "superClasses": [
+        "Antenna",
+        "Interface"
+      ],
+      "ports": [
+        {
+          "name": "a",
           "type": "Passive",
           "is_array": false,
           "hint_position": null,
           "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Lp5907",
+      "superClasses": [
+        "LinearRegulator",
+        "VoltageRegulator",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
@@ -15937,20 +18414,28 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
         }
       ],
       "argParams": [],
-      "is_abstract": true,
-      "docstring": "Base class for a RF connector, with a signal and ground. Signal is passive-typed."
+      "is_abstract": false,
+      "docstring": "High-PSRR LDO in SOT-23-5.\nOther pin-compatible high-PSRR LDOs:\n- LP5907\n- AP139\n- TCR2EF"
     },
     {
       "name": "",
-      "type": "EspProgrammingTc2030",
+      "type": "Sn65hvd230",
       "superClasses": [
-        "EspProgrammingHeader",
-        "ProgrammingConnector",
-        "Connector",
-        "Testing"
+        "CanTransceiver",
+        "Interface"
       ],
       "ports": [
         {
@@ -15974,43 +18459,122 @@ export default {
           "docstring": null
         },
         {
-          "name": "uart",
-          "type": "UartPort",
+          "name": "controller",
+          "type": "CanTransceiverPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "can",
+          "type": "CanDiffPort",
           "is_array": false,
           "hint_position": null,
           "hint_signal_direction": "bidir",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
-        },
-        {
-          "name": "en",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "boot",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
         }
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "UNOFFICIAL tag connect header, based on a modification of the FT232 cable\n(https://www.tag-connect.com/product/tc2030-ftdi-ttl-232rg-vsw3v3)\nbut adding the auto-programming pins (and using DTR instead of CTS into the cable).\nPower pins compatible with the official SWD header.\n\nPer boot docs, EN is connected to RTS and boot is connected to DTR (CTS on the original pinning,\nsince it doesn't have a DTR pin)."
+      "docstring": null
     },
     {
       "name": "",
-      "type": "Mcp6001",
+      "type": "SeriesPowerPptcFuse",
+      "superClasses": [
+        "Protection"
+      ],
+      "ports": [
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_in",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "trip_current",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Series fuse for power applications"
+    },
+    {
+      "name": "",
+      "type": "Pj_102ah",
+      "superClasses": [
+        "PowerBarrelJack",
+        "Connector",
+        "PowerSource"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "voltage_out",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "current_limits",
+          "type": "range",
+          "default_value": [
+            -Infinity,
+            Infinity
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "Barrel jack for 2.1mm ID and 5.5mm OD"
+    },
+    {
+      "name": "",
+      "type": "Lmv321",
       "superClasses": [
         "Opamp",
         "Analog"
@@ -16069,36 +18633,15 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "MCP6001 RRO op-amp in SOT-23-5\n  "
+      "docstring": "RRO op-amp in SOT-23-5.\n  "
     },
     {
       "name": "",
-      "type": "CpuFan4Pin",
+      "type": "ProtectionTvsDiode",
       "superClasses": [
-        "CpuFanConnector",
-        "Connector"
+        "Protection"
       ],
       "ports": [
-        {
-          "name": "control",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
         {
           "name": "pwr",
           "type": "VoltageSink",
@@ -16110,63 +18653,10 @@ export default {
           "docstring": null
         },
         {
-          "name": "sense",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "3-pin fan controller"
-    },
-    {
-      "name": "",
-      "type": "FetHalfBridge",
-      "superClasses": [
-        "HalfBridge",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
           "name": "gnd",
           "type": "VoltageSink",
           "is_array": false,
           "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_logic",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
@@ -16175,49 +18665,83 @@ export default {
       ],
       "argParams": [
         {
-          "name": "frequency",
+          "name": "working_voltage",
           "type": "range",
           "default_value": null,
           "docstring": null
-        },
-        {
-          "name": "fet_rds",
-          "type": "range",
-          "default_value": [
-            0.0,
-            1.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "gate_res",
-          "type": "range",
-          "default_value": [
-            20.9,
-            23.1
-          ],
-          "docstring": null
         }
       ],
-      "is_abstract": true,
-      "docstring": "Implementation of a half-bridge with two NFETs and a gate driver."
+      "is_abstract": false,
+      "docstring": "TVS diode across a power rail"
     },
     {
       "name": "",
-      "type": "AnalogSwitch",
+      "type": "Stm32f103Base",
       "superClasses": [
-        "Interface"
+        "Microcontroller",
+        "IoController",
+        "ProgrammableController"
       ],
       "ports": [
         {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
+          "name": "gpio",
+          "type": "DigitalBidir",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller digital GPIO pins"
+        },
+        {
+          "name": "adc",
+          "type": "AnalogSink",
+          "is_array": true,
+          "hint_position": "left",
           "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog input pins"
+        },
+        {
+          "name": "spi",
+          "type": "SpiController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
+        },
+        {
+          "name": "i2c",
+          "type": "I2cController",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller UARTs"
+        },
+        {
+          "name": "usb",
+          "type": "UsbDevicePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
         },
         {
           "name": "gnd",
@@ -16226,52 +18750,62 @@ export default {
           "hint_position": "down",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "control",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
           "required": false,
           "docstring": null
         },
         {
-          "name": "com",
-          "type": "Passive",
+          "name": "pwr",
+          "type": "VoltageSink",
           "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
           "hint_array_direction": null,
-          "required": true,
+          "required": false,
           "docstring": null
         },
         {
-          "name": "inputs",
-          "type": "Passive",
+          "name": "can",
+          "type": "CanControllerPort",
           "is_array": true,
           "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": "source",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller CAN controller ports"
+        },
+        {
+          "name": "i2c_target",
+          "type": "I2cTarget",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
           "required": false,
           "docstring": null
         }
       ],
       "argParams": [],
       "is_abstract": true,
-      "docstring": "Base class for a n-ported analog switch with passive-typed ports."
+      "docstring": null
     },
     {
       "name": "",
-      "type": "DiscreteApplication",
+      "type": "Sensor",
       "superClasses": [],
       "ports": [],
       "argParams": [],
       "is_abstract": true,
-      "docstring": "Subcircuit around a single discrete (and usually passive) component."
+      "docstring": "Any kind of sensor with any interface. Multi-packed sensors may inherit from multiple categories"
     },
     {
       "name": "",
@@ -16348,195 +18882,8 @@ export default {
     },
     {
       "name": "",
-      "type": "UsbBitBang",
+      "type": "Xc6206p",
       "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dp",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dm",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dp_pull",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Bit-bang circuit for USB, from the UPduino3.0 circuit and for 3.3v.\nPresumably generalizes to any digital pin that can be driven fast enough.\n\nTODO: a more formal analysis of tolerances"
-    },
-    {
-      "name": "",
-      "type": "LinearRegulator",
-      "superClasses": [
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "output_voltage",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": "Structural abstract base class for linear regulators, a voltage regulator that can produce some\noutput voltage lower than its input voltage (minus some dropout) by 'burning' the excess voltage as heat.\n\nCompared to switching converters like buck and boost converters, linear regulators usually have lower\ncomplexity, lower parts count, and higher stability. However, depending on the application, they are\ntypically less efficient, and at higher loads may require thermal design considerations."
-    },
-    {
-      "name": "",
-      "type": "Waveshare_Epd",
-      "superClasses": [
-        "EInk",
-        "Display",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiPeripheral",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "cs",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dc",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "busy",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Multi-device-compatible driver circuitry based on the Waveshare E-Paper Driver HAT\nhttps://www.waveshare.com/wiki/E-Paper_Driver_HAT\nexcluding the \"clever\" reset circuit"
-    },
-    {
-      "name": "",
-      "type": "Ref30xx",
-      "superClasses": [
-        "VoltageReference",
         "LinearRegulator",
         "VoltageRegulator",
         "PowerConditioner"
@@ -16582,146 +18929,12 @@ export default {
         }
       ],
       "is_abstract": false,
-      "docstring": null
+      "docstring": "XC6206P LDOs in SOT-23 which seem popular in some open-source designs and some are JLC basic parts."
     },
     {
       "name": "",
-      "type": "Xiao_Rp2040",
+      "type": "MultipackOpamp",
       "superClasses": [
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "vusb_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "RP2040 development board, a tiny development (21x17.5mm) daughterboard.\nHas an onboard USB connector, so this can also source power.\n\nLimited pins (only 11 for IOs, of which 6 are usable as the other 5 have boot requirements).\n\nRequires Seeed Studio's KiCad library for the footprint: https://github.com/Seeed-Studio/OPL_Kicad_Library\nThe 'Seeed Studio XIAO Series Library' must have been added as a footprint library of the same name.\n\nPinning data: https://www.seeedstudio.com/blog/wp-content/uploads/2022/08/Seeed-Studio-XIAO-Series-Package-and-PCB-Design.pdf"
-    },
-    {
-      "name": "",
-      "type": "Tlv9152",
-      "superClasses": [
-        "MultipackOpamp",
         "Analog"
       ],
       "ports": [
@@ -16777,26 +18990,58 @@ export default {
         }
       ],
       "argParams": [],
-      "is_abstract": false,
-      "docstring": "Dual RRIO opamps.\n  "
-    },
-    {
-      "name": "",
-      "type": "BldcDriver",
-      "superClasses": [
-        "MotorDriver",
-        "PowerSwitch"
-      ],
-      "ports": [],
-      "argParams": [],
       "is_abstract": true,
-      "docstring": "A brushless motor driver, or at least the power stage for one - may be as simple a 3 half-bridges."
+      "docstring": "Base class for packed opamps - devices that have multiple opamps in a single package,\nwith shared power and ground connections. Typically used with the multipack feature to\nfit individual opamps across the design hierarchy into one of these."
     },
     {
       "name": "",
-      "type": "Mcp4921",
+      "type": "EspProgrammingPinHeader254",
       "superClasses": [
-        "DigitalToAnalog",
+        "EspProgrammingHeader",
+        "ProgrammingConnector",
+        "Connector",
+        "Testing"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "uart",
+          "type": "UartPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Programming header for ESP series micros using 2.54mm headers, matching the pinning in the reference schematics."
+    },
+    {
+      "name": "",
+      "type": "Lm4871",
+      "superClasses": [
         "Interface"
       ],
       "ports": [
@@ -16821,10 +19066,121 @@ export default {
           "docstring": null
         },
         {
-          "name": "ref",
+          "name": "sig",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "spk",
+          "type": "SpeakerDriverPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "DigitalTvsDiode",
+      "superClasses": [
+        "Protection"
+      ],
+      "ports": [
+        {
+          "name": "io",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "working_voltage",
+          "type": "range",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "capacitance",
+          "type": "range",
+          "default_value": [
+            -Infinity,
+            Infinity
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "TVS diode protecting a signal line"
+    },
+    {
+      "name": "",
+      "type": "Opa189",
+      "superClasses": [
+        "Opamp",
+        "Analog"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
           "type": "VoltageSink",
           "is_array": false,
           "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "inp",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "inn",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
@@ -16839,527 +19195,21 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiPeripheral",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "cs",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "ldac",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
         }
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "MCP4921 12-bit 4.5uS DAC.\nOther chips in series:\nMCP4901 (8 bits), MCP4911 (10 bits), and others with 2 channels or internal Vref"
+      "docstring": "High voltage (4.5-36V), low-noise opamp in SOIC-8.\n  "
     },
     {
       "name": "",
-      "type": "UflConnector",
+      "type": "Bh1750",
       "superClasses": [
-        "RfConnector",
-        "Connector"
-      ],
-      "ports": [
-        {
-          "name": "sig",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Base class for a U.FL / IPEX / UMCC connector, miniature RF connector."
-    },
-    {
-      "name": "",
-      "type": "Er_Oled_096_1_1",
-      "superClasses": [
-        "Oled",
-        "Display",
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiPeripheral",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "cs",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "dc",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "SSD1306-based 0.96\" 128x64 monochrome OLED, in either I2C or SPI mode."
-    },
-    {
-      "name": "",
-      "type": "Ir2301",
-      "superClasses": [
-        "HalfBridgeDriver",
-        "PowerSwitch"
-      ],
-      "ports": [
-        {
-          "name": "low_in",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "high_in",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "low_out",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "high_pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "high_gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "high_out",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "has_boot_diode",
-          "type": "bool",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "IR2301 half-bridge driver supporting 600V offset, 5-20v input, external boot diode,\nno shoot through protect, no deadtime."
-    },
-    {
-      "name": "",
-      "type": "Rp2040",
-      "superClasses": [
-        "Microcontroller",
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "DiscreteBoostConverter",
-      "superClasses": [
-        "BoostConverter",
-        "SwitchingVoltageRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "ripple_current_factor",
-          "type": "range",
-          "default_value": "(0.2, 0.5)",
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": "Category for discrete boost converter subcircuits (as opposed to integrated components)"
-    },
-    {
-      "name": "",
-      "type": "Ov2640_Fpc24",
-      "superClasses": [
-        "Ov2640",
-        "Camera",
+        "LightSensor",
         "Sensor"
       ],
       "ports": [
         {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_analog",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_digital",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dvp8",
-          "type": "Dvp8Camera",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "sio",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwdn",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "OV2640 camera as a 24-pin FPC bottom contact connector, as seems to be common on ESP32 with camera boards.\nElectrical parameters from https://www.uctronics.com/download/OV2640_DS.pdf\nPinning and interface circuit from https://github.com/Freenove/Freenove_ESP32_WROVER_Board/blob/f710fd6976e76ab76c29c2ee3042cd7bac22c3d6/Datasheet/ESP32_Schematic.pdf\n  and https://www.waveshare.com/w/upload/9/99/OV2640-Camera-Board-Schematic.pdf\nOn many boards, Y0 and Y1 (LSBs) are left unconnected to save IOs."
-    },
-    {
-      "name": "",
-      "type": "AnalogMuxer",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
           "name": "pwr",
           "type": "VoltageSink",
           "is_array": false,
@@ -17377,632 +19227,6 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
-          "docstring": null
-        },
-        {
-          "name": "control",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "inputs",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Wrapper around AnalogSwitch that provides muxing functionality - multiple sink ports, one source port.\n  "
-    },
-    {
-      "name": "",
-      "type": "HumanInterface",
-      "superClasses": [],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Devices for human interface, eg switches, displays, LEDs"
-    },
-    {
-      "name": "",
-      "type": "Apx803s",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "nreset",
-          "type": "DigitalSingleSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "reset_threshold",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "HighSideSwitch",
-      "superClasses": [
-        "PowerSwitch"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "control",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "output",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "pull_resistance",
-          "type": "range",
-          "default_value": [
-            9500.0,
-            10500.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "max_rds",
-          "type": "float",
-          "default_value": 1.0,
-          "docstring": null
-        },
-        {
-          "name": "frequency",
-          "type": "range",
-          "default_value": [
-            0.0,
-            0.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "clamp_voltage",
-          "type": "range",
-          "default_value": [
-            0.0,
-            0.0
-          ],
-          "docstring": null
-        },
-        {
-          "name": "clamp_resistance_ratio",
-          "type": "float",
-          "default_value": 10,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "A high-side FET switch, using a two switch architecture, a main pass PFET with a amplifier NFET to drive its gate.\nIf clamp_voltage is nonzero, a zener clamp is generated to limit the PFET gate voltage.\nThe clamp resistor is specified as a ratio from the pull resistance.\n\nTODO: clamp_voltage should be compared against the actual voltage so the clamp is automatically generated,\nbut generators don't support link terms (yet?)"
-    },
-    {
-      "name": "",
-      "type": "Dg468",
-      "superClasses": [
-        "AnalogSwitch",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "control",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "com",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "inputs",
-          "type": "Passive",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "DG468 36V 10ohm SPST switch in normally-open configuration\n  "
-    },
-    {
-      "name": "",
-      "type": "W25q",
-      "superClasses": [
-        "SpiMemory",
-        "Memory"
-      ],
-      "ports": [
-        {
-          "name": "io2",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "io3",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiPeripheral",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "cs",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Winbond W25Q series of SPI memory devices\n  "
-    },
-    {
-      "name": "",
-      "type": "UsbAReceptacle",
-      "superClasses": [
-        "UsbHostConnector",
-        "Connector"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Sn74lvc1g74",
-      "superClasses": [
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "clk",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "d",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "nset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "nclr",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "q",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "nq",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "D flip-flop with clear and preset\n\nTODO: should extend an abstract flip-lop interface, with async (n)set and (n)clear mixins"
-    },
-    {
-      "name": "",
-      "type": "AnalogSwitchTree",
-      "superClasses": [
-        "AnalogSwitch",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "control",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "com",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "inputs",
-          "type": "Passive",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "switch_size",
-          "type": "int",
-          "default_value": 0,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Generates an n-ported analog switch by creating a tree of individual, smaller switches.\nParameterized by the size of the element switches."
-    },
-    {
-      "name": "",
-      "type": "BrushedMotorDriver",
-      "superClasses": [
-        "MotorDriver",
-        "PowerSwitch"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "A brushed motor driver, or at least the power stage for one."
-    },
-    {
-      "name": "",
-      "type": "Mcp47f",
-      "superClasses": [
-        "DigitalToAnalog",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "ref0",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "ref1",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "out0",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "out1",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "out2",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "out3",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
           "docstring": null
         },
         {
@@ -18014,504 +19238,31 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
-        },
-        {
-          "name": "lat0",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "lat1",
-          "type": "DigitalBidir",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
         }
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "MCP47FxBx4/8 quad / octal 8/10/12-bit I2C DAC, with selectable internal or external Vref\n  "
+      "docstring": "16-bit ambient light sensor, 1-65535 lx"
     },
     {
       "name": "",
-      "type": "JacdacSubcircuit",
+      "type": "IndicatorLed",
       "superClasses": [
-        "Interface"
-      ],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Category for Jacdac subcircuits"
-    },
-    {
-      "name": "",
-      "type": "Opamp",
-      "superClasses": [
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "inp",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "inn",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Base class for opamps. Parameters need to be more restricted in subclasses.\n  "
-    },
-    {
-      "name": "",
-      "type": "Tps54202h",
-      "superClasses": [
-        "DiscreteBuckConverter",
-        "BuckConverter",
-        "SwitchingVoltageRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Adjustable synchronous buck converter in SOT-23-6 with integrated switch, 4.5-24v capable\nNote: TPS54202 has frequency spread-spectrum operation and internal pull-up on EN\nTPS54202H has no internal EN pull-up but a Zener diode clamp to limit voltage."
-    },
-    {
-      "name": "",
-      "type": "Ice40up",
-      "superClasses": [
-        "Fpga",
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "cdone",
-          "type": "DigitalSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Application circuit for the iCE40UP series FPGAs, pre-baked for 'common' applications\n(3.3v supply with 1.2v core not shared, external FLASH programming, no NVCM programming).\n\nTODO: generator support for CRAM (volatile) programming mode, diode 2v5 NVCM supply."
-    },
-    {
-      "name": "",
-      "type": "FetHalfBridgePwmReset",
-      "superClasses": [
-        "FetHalfBridge",
-        "HalfBridge",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwm_ctl",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_logic",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Tps61040",
-      "superClasses": [
-        "DiscreteBoostConverter",
-        "VoltageRegulator",
-        "BoostConverter",
-        "SwitchingVoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "PFM (DCM, discontinuous mode) boost converter in SOT-23-5"
-    },
-    {
-      "name": "",
-      "type": "PowerConditioner",
-      "superClasses": [],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Power conditioning circuits that provide a stable and/or safe power supply, eg voltage regulators"
-    },
-    {
-      "name": "",
-      "type": "JacdacMountingGnd4",
-      "superClasses": [
-        "JacdacSubcircuit",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "BuckConverter",
-      "superClasses": [
-        "SwitchingVoltageRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "ripple_current_factor",
-          "type": "range",
-          "default_value": "(0.2, 0.5)",
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": "Step-down switching converter"
-    },
-    {
-      "name": "",
-      "type": "SmdStandardPackage",
-      "superClasses": [],
-      "ports": [],
-      "argParams": [
-        {
-          "name": "smd_min_package",
-          "type": "str",
-          "default_value": "",
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": "A base mixin for any device that can generate into a standard SMT package, the 0402/0603/0805/etc series.\nThis provides a parameter that can be globally set to specify a minimum package size.\nDevices may generate into nonstandard packages, those are not affected.\nIf this parameter is empty, no minimums are applied.\n\nInheriting this class does not provide any behavior, it only adds the minimum parameter.\n\nFor non-generators classes that inherit this, the minimum size should be used as an assertion."
-    },
-    {
-      "name": "",
-      "type": "Er_Oled_091_3",
-      "superClasses": [
-        "Oled",
-        "Display",
+        "Light",
         "HumanInterface"
       ],
       "ports": [
         {
+          "name": "signal",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
           "name": "gnd",
           "type": "VoltageSink",
           "is_array": false,
@@ -18520,68 +19271,34 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
-        },
+        }
+      ],
+      "argParams": [
         {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
+          "name": "color",
+          "type": "str",
+          "default_value": "",
           "docstring": null
         },
         {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiPeripheral",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "cs",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "dc",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
+          "name": "current_draw",
+          "type": "range",
+          "default_value": [
+            0.001,
+            0.01
+          ],
           "docstring": null
         }
       ],
-      "argParams": [],
       "is_abstract": false,
-      "docstring": "SSD1306-based 0.91\" 128x32 monochrome OLED.\nTODO (maybe?) add the power gating circuit in the reference schematic"
+      "docstring": "High-side-driven (default, \"common cathode\") indicator LED"
     },
     {
       "name": "",
-      "type": "Esp32c3_Wroom02",
+      "type": "Lpc1549_64",
       "superClasses": [
+        "Lpc1549Base",
         "Microcontroller",
-        "Radiofrequency",
         "IoController",
         "ProgrammableController"
       ],
@@ -18594,7 +19311,7 @@ export default {
           "hint_signal_direction": "bidir",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller digital GPIO pins"
         },
         {
           "name": "adc",
@@ -18604,7 +19321,7 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller analog input pins"
         },
         {
           "name": "spi",
@@ -18614,7 +19331,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
         },
         {
           "name": "i2c",
@@ -18624,7 +19341,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
         },
         {
           "name": "uart",
@@ -18634,7 +19351,7 @@ export default {
           "hint_signal_direction": "bidir",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller UARTs"
         },
         {
           "name": "usb",
@@ -18643,6 +19360,16 @@ export default {
           "hint_position": "left",
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
           "required": false,
           "docstring": null
         },
@@ -18657,24 +19384,24 @@ export default {
           "docstring": null
         },
         {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2s",
-          "type": "I2sController",
+          "name": "can",
+          "type": "CanControllerPort",
           "is_array": true,
           "hint_position": null,
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller CAN controller ports"
+        },
+        {
+          "name": "dac",
+          "type": "AnalogSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller analog output pins"
         },
         {
           "name": "i2c_target",
@@ -18684,7 +19411,7 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
         },
         {
           "name": "spi_peripheral",
@@ -18694,7 +19421,7 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
         },
         {
           "name": "reset",
@@ -18709,196 +19436,7 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "Wrapper around Esp32c3_Wroom02 with external capacitors and UART programming header."
-    },
-    {
-      "name": "",
-      "type": "UsbCReceptacle",
-      "superClasses": [
-        "UsbDeviceConnector",
-        "Connector",
-        "PowerSource"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbHostPort",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "cc",
-          "type": "UsbCcPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "voltage_out",
-          "type": "range",
-          "default_value": [
-            4.75,
-            5.25
-          ],
-          "docstring": null
-        },
-        {
-          "name": "current_limits",
-          "type": "range",
-          "default_value": [
-            0.0,
-            0.5
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "USB Type-C Receptacle that automatically generates the CC resistors if CC is not connected."
-    },
-    {
-      "name": "",
-      "type": "LedDriver",
-      "superClasses": [
-        "PowerConditioner",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "leda",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "ledk",
-          "type": "Passive",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "max_current",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": "Abstract current-regulated high-power LED driver.\nLED ports are passive and should be directly connected to the LED (or LED string)."
-    },
-    {
-      "name": "",
-      "type": "Lm2733",
-      "superClasses": [
-        "DiscreteBoostConverter",
-        "VoltageRegulator",
-        "BoostConverter",
-        "SwitchingVoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Adjustable boost converter in SOT-23-5 with integrated switch"
+      "docstring": null
     },
     {
       "name": "",
@@ -19006,109 +19544,26 @@ export default {
     },
     {
       "name": "",
-      "type": "Tlv9061",
+      "type": "Camera",
       "superClasses": [
-        "Opamp",
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "inp",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "inn",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "RRIO op-amp in SOT-23-6.\n  "
-    },
-    {
-      "name": "",
-      "type": "Microcontroller",
-      "superClasses": [
-        "ProgrammableController"
+        "Sensor"
       ],
       "ports": [],
       "argParams": [],
       "is_abstract": true,
-      "docstring": "Microcontroller (with embedded-class processor) with its surrounding application circuit."
+      "docstring": "Imaging sensors, including visible / RGB, IR, and thermal."
     },
     {
       "name": "",
-      "type": "As7341",
+      "type": "DigitalTestPoint",
       "superClasses": [
-        "LightSensor",
-        "Sensor"
+        "TypedTestPoint",
+        "Testing"
       ],
       "ports": [
         {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
+          "name": "io",
+          "type": "DigitalSink",
           "is_array": false,
           "hint_position": "left",
           "hint_signal_direction": "sink",
@@ -19119,283 +19574,26 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": null
+      "docstring": "Test point with a DigitalSink port."
     },
     {
       "name": "",
-      "type": "Xiao_Esp32c3",
+      "type": "CpuFan4Pin",
       "superClasses": [
-        "IoController",
-        "ProgrammableController"
+        "CpuFanConnector",
+        "Connector"
       ],
       "ports": [
         {
-          "name": "gpio",
+          "name": "control",
           "type": "DigitalBidir",
-          "is_array": true,
+          "is_array": false,
           "hint_position": null,
           "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2s",
-          "type": "I2sController",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi_peripheral",
-          "type": "SpiPeripheral",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "vusb_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "ESP32-C3 development board, a tiny development (21x17.5mm) daughterboard with a RISC-V microcontroller\nsupporting WiFi and BLE. Has an onboard USB connector, so this can also source power.\n\nLimited pins (only 11 for IOs, of which 6 are usable as the other 5 have boot requirements).\n\nRequires Seeed Studio's KiCad library for the footprint: https://github.com/Seeed-Studio/OPL_Kicad_Library\nThe 'Seeed Studio XIAO Series Library' must have been added as a footprint library of the same name.\n\nPinning data: https://www.seeedstudio.com/blog/wp-content/uploads/2022/08/Seeed-Studio-XIAO-Series-Package-and-PCB-Design.pdf"
-    },
-    {
-      "name": "",
-      "type": "Xc6209",
-      "superClasses": [
-        "LinearRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
         },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "XC6209F (F: 300mA version, no pull-down resistor; 2: +/-2% accuracy)\nLow-ESR ceramic cap compatible"
-    },
-    {
-      "name": "",
-      "type": "E93Lc_B",
-      "superClasses": [
-        "SpiMemory",
-        "Memory"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiPeripheral",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "cs",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "size",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "93LCxxB series of SPI EEPROMs. The E prefix is because Python identifiers can't start with numbers\nNote, A variant is 8-bit word, B variant is 16-bit word"
-    },
-    {
-      "name": "",
-      "type": "JlcOscillator",
-      "superClasses": [
-        "Oscillator",
-        "DiscreteApplication"
-      ],
-      "ports": [
         {
           "name": "gnd",
           "type": "VoltageSink",
@@ -19417,8 +19615,8 @@ export default {
           "docstring": null
         },
         {
-          "name": "out",
-          "type": "DigitalSource",
+          "name": "sense",
+          "type": "DigitalSingleSource",
           "is_array": false,
           "hint_position": "right",
           "hint_signal_direction": "source",
@@ -19429,473 +19627,75 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": null
+      "docstring": "3-pin fan controller"
     },
     {
       "name": "",
-      "type": "UsbAPlugPads",
+      "type": "DigitalDirectionSwitch",
       "superClasses": [
-        "UsbDeviceConnector",
-        "Connector",
-        "PowerSource"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbHostPort",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "BoostConverter",
-      "superClasses": [
-        "SwitchingVoltageRegulator",
-        "VoltageRegulator",
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "ripple_current_factor",
-          "type": "range",
-          "default_value": "(0.2, 0.5)",
-          "docstring": null
-        }
-      ],
-      "is_abstract": true,
-      "docstring": "Step-up switching converter"
-    },
-    {
-      "name": "",
-      "type": "Lm2664",
-      "superClasses": [
-        "PowerConditioner"
-      ],
-      "ports": [
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_in",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pwr_out",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "output_resistance_limit",
-          "type": "float",
-          "default_value": 25.0,
-          "docstring": null
-        },
-        {
-          "name": "output_ripple_limit",
-          "type": "float",
-          "default_value": 0.025,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Switched capacitor inverter"
-    },
-    {
-      "name": "",
-      "type": "Shtc3",
-      "superClasses": [
-        "EnvironmentalSensor",
-        "Sensor"
-      ],
-      "ports": [
-        {
-          "name": "vdd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Opa197",
-      "superClasses": [
-        "Opamp",
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "inp",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "inn",
-          "type": "AnalogSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "AnalogSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "High voltage opamp (4.5-36V) in SOIC-8.\n(part also available in SOT-23-5)"
-    },
-    {
-      "name": "",
-      "type": "Filter",
-      "superClasses": [],
-      "ports": [],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Signal conditioning subcircuit."
-    },
-    {
-      "name": "",
-      "type": "Lpc1549_64",
-      "superClasses": [
-        "Lpc1549Base",
-        "Microcontroller",
-        "IoController",
-        "ProgrammableController"
-      ],
-      "ports": [
-        {
-          "name": "gpio",
-          "type": "DigitalBidir",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "adc",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi",
-          "type": "SpiController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cController",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "uart",
-          "type": "UartPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "usb",
-          "type": "UsbDevicePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "can",
-          "type": "CanControllerPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "dac",
-          "type": "AnalogSource",
-          "is_array": true,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "i2c_target",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "spi_peripheral",
-          "type": "SpiPeripheral",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "sink",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "CharlieplexedLedMatrix",
-      "superClasses": [
-        "Light",
         "HumanInterface"
       ],
       "ports": [
         {
-          "name": "ios",
-          "type": "DigitalSink",
-          "is_array": true,
-          "hint_position": "left",
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
           "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "a",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "b",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "c",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "d",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
           "docstring": null
         }
       ],
-      "argParams": [
-        {
-          "name": "nrows",
-          "type": "int",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "ncols",
-          "type": "int",
-          "default_value": null,
-          "docstring": null
-        },
-        {
-          "name": "color",
-          "type": "str",
-          "default_value": "",
-          "docstring": null
-        },
-        {
-          "name": "current_draw",
-          "type": "range",
-          "default_value": [
-            0.001,
-            0.01
-          ],
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "A LED matrix that saves on IO pins by charlieplexing, only requiring max(rows + 1, cols) GPIOs to control.\nRequires IOs that can tri-state, and requires scanning through rows (so not all LEDs are simultaneously on).\n\nAnodes (columns) are directly connected to the IO line, while the cathodes (rows) are connected through a resistor.\nA generalization of https://en.wikipedia.org/wiki/Charlieplexing#/media/File:3-pin_Charlieplexing_matrix_with_common_resistors.svg"
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": "Wrapper around DirectionSwitch that provides digital ports that are pulled low (to GND) when pressed."
     },
     {
       "name": "",
-      "type": "DiscreteBuckConverter",
+      "type": "Tps54202h",
       "superClasses": [
+        "DiscreteBuckConverter",
         "BuckConverter",
         "SwitchingVoltageRegulator",
         "VoltageRegulator",
@@ -19931,22 +19731,401 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Adjustable synchronous buck converter in SOT-23-6 with integrated switch, 4.5-24v capable\nNote: TPS54202 has frequency spread-spectrum operation and internal pull-up on EN\nTPS54202H has no internal EN pull-up but a Zener diode clamp to limit voltage."
+    },
+    {
+      "name": "",
+      "type": "Er_Oled_091_3",
+      "superClasses": [
+        "Oled",
+        "Display",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "spi",
+          "type": "SpiPeripheral",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "cs",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "dc",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "SSD1306-based 0.91\" 128x32 monochrome OLED.\nTODO (maybe?) add the power gating circuit in the reference schematic"
+    },
+    {
+      "name": "",
+      "type": "Vl53l0xConnector",
+      "superClasses": [
+        "Vl53l0xBase",
+        "DistanceSensor",
+        "Sensor"
+      ],
+      "ports": [
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "i2c",
+          "type": "I2cTarget",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "int",
+          "type": "DigitalSingleSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Interrupt output for new data available"
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Connector to an external VL53L0X breakout board.\nUses the pinout from the Adafruit product: https://www.adafruit.com/product/3317\nThis has an onboard 2.8v regulator, but thankfully the IO tolerance is not referenced to Vdd"
+    },
+    {
+      "name": "",
+      "type": "FetHalfBridgePwmReset",
+      "superClasses": [
+        "FetHalfBridge",
+        "HalfBridge",
+        "PowerConditioner"
+      ],
+      "ports": [
+        {
+          "name": "reset",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "pwm_ctl",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr_logic",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "Pj_036ah",
+      "superClasses": [
+        "PowerBarrelJack",
+        "Connector",
+        "PowerSource"
+      ],
+      "ports": [
+        {
+          "name": "pwr",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
         }
       ],
       "argParams": [
         {
-          "name": "ripple_current_factor",
+          "name": "voltage_out",
           "type": "range",
-          "default_value": "(0.2, 0.5)",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "current_limits",
+          "type": "range",
+          "default_value": [
+            -Infinity,
+            Infinity
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "SMT Barrel jack for 2.1mm ID and 5.5mm OD"
+    },
+    {
+      "name": "",
+      "type": "SwitchMatrix",
+      "superClasses": [
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "rows",
+          "type": "DigitalSingleSource",
+          "is_array": true,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "cols",
+          "type": "DigitalSink",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "nrows",
+          "type": "int",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "ncols",
+          "type": "int",
+          "default_value": null,
+          "docstring": null
+        },
+        {
+          "name": "voltage_drop",
+          "type": "range",
+          "default_value": [
+            0.0,
+            0.7
+          ],
+          "docstring": null
+        }
+      ],
+      "is_abstract": false,
+      "docstring": "A switch matrix, such as for a keyboard, that generates (nrows * ncols) switches while only\nusing max(nrows, ncols) IOs.\n\nInternally, the switches are in a matrix, with the driver driving one col low at a time while\nreading which rows are low (with the other cols weakly pulled high).\nThis uses the Switch abstract class, which can be refined into e.g. a tactile switch or mechanical keyswitch.\n\nThis generates per-switch diodes which allows multiple keys to be pressed simultaneously.\nDiode anodes are attached to the rows, while cathodes go through each switch to the cols."
+    },
+    {
+      "name": "",
+      "type": "IndicatorSinkLed",
+      "superClasses": [
+        "Light",
+        "HumanInterface"
+      ],
+      "ports": [
+        {
+          "name": "signal",
+          "type": "DigitalSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [
+        {
+          "name": "color",
+          "type": "str",
+          "default_value": "",
+          "docstring": null
+        },
+        {
+          "name": "current_draw",
+          "type": "range",
+          "default_value": [
+            0.001,
+            0.01
+          ],
           "docstring": null
         }
       ],
       "is_abstract": true,
-      "docstring": "Category for discrete buck converter subcircuits (as opposed to integrated components)"
+      "docstring": "Abstract part for an low-side-driven (\"common anode\") indicator LED"
     },
     {
       "name": "",
-      "type": "Sn65hvd230",
+      "type": "DistanceSensor",
+      "superClasses": [
+        "Sensor"
+      ],
+      "ports": [],
+      "argParams": [],
+      "is_abstract": true,
+      "docstring": null
+    },
+    {
+      "name": "",
+      "type": "IsolatedCanTransceiver",
       "superClasses": [
         "CanTransceiver",
         "Interface"
@@ -19991,20 +20170,38 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
+        },
+        {
+          "name": "can_pwr",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "can_gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "up",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
         }
       ],
       "argParams": [],
-      "is_abstract": false,
+      "is_abstract": true,
       "docstring": null
     },
     {
       "name": "",
-      "type": "Ap3418",
+      "type": "Ap7215",
       "superClasses": [
-        "DiscreteBuckConverter",
+        "LinearRegulator",
         "VoltageRegulator",
-        "BuckConverter",
-        "SwitchingVoltageRegulator",
         "PowerConditioner"
       ],
       "ports": [
@@ -20037,49 +20234,24 @@ export default {
           "hint_array_direction": null,
           "required": true,
           "docstring": null
-        },
+        }
+      ],
+      "argParams": [
         {
-          "name": "reset",
-          "type": "DigitalSink",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
+          "name": "output_voltage",
+          "type": "range",
+          "default_value": null,
           "docstring": null
         }
       ],
-      "argParams": [],
       "is_abstract": false,
-      "docstring": "Adjustable synchronous buck converter in SOT-23-5 with integrated switch"
+      "docstring": "AP7215 fixed 3.3v LDO in SOT-89 providing the LinearRegulator interface.\n  "
     },
     {
       "name": "",
-      "type": "Speaker",
+      "type": "Opamp",
       "superClasses": [
-        "HumanInterface"
-      ],
-      "ports": [
-        {
-          "name": "input",
-          "type": "SpeakerPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": true,
-      "docstring": "Abstract speaker part with speaker input port."
-    },
-    {
-      "name": "",
-      "type": "Fusb302b",
-      "superClasses": [
-        "Interface"
+        "Analog"
       ],
       "ports": [
         {
@@ -20103,28 +20275,8 @@ export default {
           "docstring": null
         },
         {
-          "name": "vbus",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "cc",
-          "type": "UsbCcPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
+          "name": "inp",
+          "type": "AnalogSink",
           "is_array": false,
           "hint_position": "left",
           "hint_signal_direction": "sink",
@@ -20133,8 +20285,18 @@ export default {
           "docstring": null
         },
         {
-          "name": "int",
-          "type": "DigitalSingleSource",
+          "name": "inn",
+          "type": "AnalogSink",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "out",
+          "type": "AnalogSource",
           "is_array": false,
           "hint_position": "right",
           "hint_signal_direction": "source",
@@ -20144,79 +20306,13 @@ export default {
         }
       ],
       "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Bme680",
-      "superClasses": [
-        "EnvironmentalSensor",
-        "Sensor"
-      ],
-      "ports": [
-        {
-          "name": "vdd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "vddio",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "i2c",
-          "type": "I2cTarget",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "Fpga",
-      "superClasses": [
-        "ProgrammableController"
-      ],
-      "ports": [],
-      "argParams": [],
       "is_abstract": true,
-      "docstring": "FPGA with its surrounding application circuit."
+      "docstring": "Base class for opamps. Parameters need to be more restricted in subclasses.\n  "
     },
     {
       "name": "",
-      "type": "Stm32g031_G",
+      "type": "Feather_Nrf52840",
       "superClasses": [
-        "Stm32g031Base",
-        "Microcontroller",
         "IoController",
         "ProgrammableController"
       ],
@@ -20229,7 +20325,7 @@ export default {
           "hint_signal_direction": "bidir",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller digital GPIO pins"
         },
         {
           "name": "adc",
@@ -20239,7 +20335,7 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller analog input pins"
         },
         {
           "name": "spi",
@@ -20249,7 +20345,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller SPI controllers, each element is an independent SPI controller"
         },
         {
           "name": "i2c",
@@ -20259,7 +20355,7 @@ export default {
           "hint_signal_direction": "source",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller I2C controllers, each element is an independent I2C controller"
         },
         {
           "name": "uart",
@@ -20269,7 +20365,7 @@ export default {
           "hint_signal_direction": "bidir",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller UARTs"
         },
         {
           "name": "usb",
@@ -20279,6 +20375,16 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
+          "docstring": "Microcontroller USB device ports"
+        },
+        {
+          "name": "gnd",
+          "type": "VoltageSink",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": false,
           "docstring": null
         },
         {
@@ -20292,14 +20398,14 @@ export default {
           "docstring": null
         },
         {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
+          "name": "i2s",
+          "type": "I2sController",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller I2S controller ports, each element is an independent I2S controller"
         },
         {
           "name": "i2c_target",
@@ -20309,117 +20415,62 @@ export default {
           "hint_signal_direction": "sink",
           "hint_array_direction": "sink",
           "required": false,
-          "docstring": null
+          "docstring": "Microcontroller I2C targets, each element is an independent I2C target"
         },
         {
-          "name": "reset",
-          "type": "DigitalSink",
+          "name": "spi_peripheral",
+          "type": "SpiPeripheral",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": "sink",
+          "required": false,
+          "docstring": "Microcontroller SPI peripherals (excluding CS pin, which must be handled separately), each element is an independent SPI peripheral"
+        },
+        {
+          "name": "gnd_out",
+          "type": "VoltageSource",
           "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "JacdacMountingPwr3",
-      "superClasses": [
-        "JacdacSubcircuit",
-        "Interface"
-      ],
-      "ports": [
-        {
-          "name": "jd_pwr",
-          "type": "VoltageSink",
-          "is_array": false,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": null
-    },
-    {
-      "name": "",
-      "type": "MultipackOpamp",
-      "superClasses": [
-        "Analog"
-      ],
-      "ports": [
-        {
-          "name": "pwr",
-          "type": "VoltageSink",
-          "is_array": true,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "gnd",
-          "type": "VoltageSink",
-          "is_array": true,
-          "hint_position": "down",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "inp",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "inn",
-          "type": "AnalogSink",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "out",
-          "type": "AnalogSource",
-          "is_array": true,
           "hint_position": "right",
           "hint_signal_direction": "source",
-          "hint_array_direction": "source",
+          "hint_array_direction": null,
           "required": false,
-          "docstring": null
+          "docstring": "Ground for power output ports, when the device is acting as a power source"
+        },
+        {
+          "name": "pwr_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Power output port, typically of the device's Vdd or VddIO rail; must be used with gnd_out"
+        },
+        {
+          "name": "vusb_out",
+          "type": "VoltageSource",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": "Power output port of the device's Vbus, typically 5v; must be used with gnd_out"
         }
       ],
       "argParams": [],
-      "is_abstract": true,
-      "docstring": "Base class for packed opamps - devices that have multiple opamps in a single package,\nwith shared power and ground connections. Typically used with the multipack feature to\nfit individual opamps across the design hierarchy into one of these."
-    },
+      "is_abstract": false,
+      "docstring": "Feather nRF52840 socketed dev board as either power source or sink"
+    }
+  ],
+  "links": [
     {
       "name": "",
-      "type": "SeriesPowerResistor",
-      "superClasses": [
-        "DiscreteApplication"
-      ],
+      "type": "VoltageLink",
+      "superClasses": [],
       "ports": [
         {
-          "name": "pwr_out",
+          "name": "source",
           "type": "VoltageSource",
           "is_array": false,
           "hint_position": "right",
@@ -20429,60 +20480,11 @@ export default {
           "docstring": null
         },
         {
-          "name": "pwr_in",
+          "name": "sinks",
           "type": "VoltageSink",
-          "is_array": false,
+          "is_array": true,
           "hint_position": "up",
           "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [
-        {
-          "name": "resistance",
-          "type": "range",
-          "default_value": null,
-          "docstring": null
-        }
-      ],
-      "is_abstract": false,
-      "docstring": "Series resistor for power applications"
-    }
-  ],
-  "links": [
-    {
-      "name": "",
-      "type": "SwdLink",
-      "superClasses": [],
-      "ports": [
-        {
-          "name": "host",
-          "type": "SwdHostPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "device",
-          "type": "SwdTargetPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "pull",
-          "type": "SwdPullPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
           "hint_array_direction": "source",
           "required": false,
           "docstring": null
@@ -20494,25 +20496,25 @@ export default {
     },
     {
       "name": "",
-      "type": "Dvp8Link",
+      "type": "UartLink",
       "superClasses": [],
       "ports": [
         {
-          "name": "host",
-          "type": "Dvp8Host",
+          "name": "a",
+          "type": "UartPort",
           "is_array": false,
           "hint_position": null,
-          "hint_signal_direction": "sink",
+          "hint_signal_direction": "bidir",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
         },
         {
-          "name": "cam",
-          "type": "Dvp8Camera",
+          "name": "b",
+          "type": "UartPort",
           "is_array": false,
           "hint_position": null,
-          "hint_signal_direction": "source",
+          "hint_signal_direction": "bidir",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
@@ -20520,7 +20522,7 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "DVP (Digital Video Port) camera link with 8-wide data connection.\nTODO: ideally this would be width-parameterized, but that core logic doesn't exist yet."
+      "docstring": "Base block that has ports (IOs), parameters, and constraints between them.\n  "
     },
     {
       "name": "",
@@ -20554,15 +20556,35 @@ export default {
     },
     {
       "name": "",
-      "type": "CanDiffLink",
+      "type": "I2cLink",
       "superClasses": [],
       "ports": [
         {
-          "name": "nodes",
-          "type": "CanDiffPort",
+          "name": "pull",
+          "type": "I2cPullupPort",
+          "is_array": false,
+          "hint_position": "down",
+          "hint_signal_direction": "passive",
+          "hint_array_direction": null,
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "controller",
+          "type": "I2cController",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "targets",
+          "type": "I2cTarget",
           "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
           "hint_array_direction": "source",
           "required": false,
           "docstring": null
@@ -20570,7 +20592,37 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "Differential CAN link, CANH and CANL signals"
+      "docstring": "I2C connection, using terminology from the auhtoritative NXP specification at\nhttps://www.nxp.com/docs/en/user-guide/UM10204.pdf."
+    },
+    {
+      "name": "",
+      "type": "TouchLink",
+      "superClasses": [],
+      "ports": [
+        {
+          "name": "driver",
+          "type": "TouchDriver",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "pad",
+          "type": "TouchPadPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Touch sensor link, consisting of one sensor (typically a PCB copper pattern) and one driver.\nThese contain no modeling."
     },
     {
       "name": "",
@@ -20644,62 +20696,22 @@ export default {
     },
     {
       "name": "",
-      "type": "PassiveLink",
+      "type": "SwdLink",
       "superClasses": [],
       "ports": [
         {
-          "name": "passives",
-          "type": "Passive",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "passive",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Copper-only connection"
-    },
-    {
-      "name": "",
-      "type": "UartLink",
-      "superClasses": [],
-      "ports": [
-        {
-          "name": "a",
-          "type": "UartPort",
+          "name": "host",
+          "type": "SwdHostPort",
           "is_array": false,
           "hint_position": null,
-          "hint_signal_direction": "bidir",
+          "hint_signal_direction": "source",
           "hint_array_direction": null,
           "required": true,
           "docstring": null
         },
         {
-          "name": "b",
-          "type": "UartPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Base block that has ports (IOs), parameters, and constraints between them.\n  "
-    },
-    {
-      "name": "",
-      "type": "TouchLink",
-      "superClasses": [],
-      "ports": [
-        {
-          "name": "driver",
-          "type": "TouchDriver",
+          "name": "device",
+          "type": "SwdTargetPort",
           "is_array": false,
           "hint_position": null,
           "hint_signal_direction": "sink",
@@ -20708,38 +20720,8 @@ export default {
           "docstring": null
         },
         {
-          "name": "pad",
-          "type": "TouchPadPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Touch sensor link, consisting of one sensor (typically a PCB copper pattern) and one driver.\nThese contain no modeling."
-    },
-    {
-      "name": "",
-      "type": "JacdacDataLink",
-      "superClasses": [],
-      "ports": [
-        {
-          "name": "nodes",
-          "type": "JacdacDataPort",
-          "is_array": true,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "passives",
-          "type": "JacdacPassivePort",
+          "name": "pull",
+          "type": "SwdPullPort",
           "is_array": true,
           "hint_position": null,
           "hint_signal_direction": "passive",
@@ -20750,7 +20732,7 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "Link for the JD_DATA line"
+      "docstring": "Base block that has ports (IOs), parameters, and constraints between them.\n  "
     },
     {
       "name": "",
@@ -20784,46 +20766,6 @@ export default {
     },
     {
       "name": "",
-      "type": "UsbLink",
-      "superClasses": [],
-      "ports": [
-        {
-          "name": "host",
-          "type": "UsbHostPort",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "device",
-          "type": "UsbDevicePort",
-          "is_array": false,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "passive",
-          "type": "UsbPassivePort",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "passive",
-          "hint_array_direction": "source",
-          "required": false,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Base block that has ports (IOs), parameters, and constraints between them.\n  "
-    },
-    {
-      "name": "",
       "type": "SpeakerLink",
       "superClasses": [],
       "ports": [
@@ -20851,6 +20793,96 @@ export default {
       "argParams": [],
       "is_abstract": false,
       "docstring": "Base block that has ports (IOs), parameters, and constraints between them.\n  "
+    },
+    {
+      "name": "",
+      "type": "JacdacDataLink",
+      "superClasses": [],
+      "ports": [
+        {
+          "name": "nodes",
+          "type": "JacdacDataPort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        },
+        {
+          "name": "passives",
+          "type": "JacdacPassivePort",
+          "is_array": true,
+          "hint_position": null,
+          "hint_signal_direction": "passive",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Link for the JD_DATA line"
+    },
+    {
+      "name": "",
+      "type": "UsbCcLink",
+      "superClasses": [],
+      "ports": [
+        {
+          "name": "a",
+          "type": "UsbCcPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "b",
+          "type": "UsbCcPort",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Base block that has ports (IOs), parameters, and constraints between them.\n  "
+    },
+    {
+      "name": "",
+      "type": "Dvp8Link",
+      "superClasses": [],
+      "ports": [
+        {
+          "name": "host",
+          "type": "Dvp8Host",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "cam",
+          "type": "Dvp8Camera",
+          "is_array": false,
+          "hint_position": null,
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "DVP (Digital Video Port) camera link with 8-wide data connection.\nTODO: ideally this would be width-parameterized, but that core logic doesn't exist yet."
     },
     {
       "name": "",
@@ -20904,6 +20936,46 @@ export default {
     },
     {
       "name": "",
+      "type": "UsbLink",
+      "superClasses": [],
+      "ports": [
+        {
+          "name": "host",
+          "type": "UsbHostPort",
+          "is_array": false,
+          "hint_position": "right",
+          "hint_signal_direction": "source",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "device",
+          "type": "UsbDevicePort",
+          "is_array": false,
+          "hint_position": "left",
+          "hint_signal_direction": "sink",
+          "hint_array_direction": null,
+          "required": true,
+          "docstring": null
+        },
+        {
+          "name": "passive",
+          "type": "UsbPassivePort",
+          "is_array": true,
+          "hint_position": "left",
+          "hint_signal_direction": "passive",
+          "hint_array_direction": "source",
+          "required": false,
+          "docstring": null
+        }
+      ],
+      "argParams": [],
+      "is_abstract": false,
+      "docstring": "Base block that has ports (IOs), parameters, and constraints between them.\n  "
+    },
+    {
+      "name": "",
       "type": "CrystalLink",
       "superClasses": [],
       "ports": [
@@ -20934,65 +21006,15 @@ export default {
     },
     {
       "name": "",
-      "type": "UsbCcLink",
+      "type": "PassiveLink",
       "superClasses": [],
       "ports": [
         {
-          "name": "a",
-          "type": "UsbCcPort",
-          "is_array": false,
+          "name": "passives",
+          "type": "Passive",
+          "is_array": true,
           "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "b",
-          "type": "UsbCcPort",
-          "is_array": false,
-          "hint_position": null,
-          "hint_signal_direction": "bidir",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        }
-      ],
-      "argParams": [],
-      "is_abstract": false,
-      "docstring": "Base block that has ports (IOs), parameters, and constraints between them.\n  "
-    },
-    {
-      "name": "",
-      "type": "I2cLink",
-      "superClasses": [],
-      "ports": [
-        {
-          "name": "pull",
-          "type": "I2cPullupPort",
-          "is_array": false,
-          "hint_position": "down",
           "hint_signal_direction": "passive",
-          "hint_array_direction": null,
-          "required": false,
-          "docstring": null
-        },
-        {
-          "name": "controller",
-          "type": "I2cController",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "targets",
-          "type": "I2cTarget",
-          "is_array": true,
-          "hint_position": "left",
-          "hint_signal_direction": "sink",
           "hint_array_direction": "source",
           "required": false,
           "docstring": null
@@ -21000,29 +21022,19 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "I2C connection, using terminology from the auhtoritative NXP specification at\nhttps://www.nxp.com/docs/en/user-guide/UM10204.pdf."
+      "docstring": "Copper-only connection"
     },
     {
       "name": "",
-      "type": "VoltageLink",
+      "type": "CanDiffLink",
       "superClasses": [],
       "ports": [
         {
-          "name": "source",
-          "type": "VoltageSource",
-          "is_array": false,
-          "hint_position": "right",
-          "hint_signal_direction": "source",
-          "hint_array_direction": null,
-          "required": true,
-          "docstring": null
-        },
-        {
-          "name": "sinks",
-          "type": "VoltageSink",
+          "name": "nodes",
+          "type": "CanDiffPort",
           "is_array": true,
-          "hint_position": "up",
-          "hint_signal_direction": "sink",
+          "hint_position": null,
+          "hint_signal_direction": "bidir",
           "hint_array_direction": "source",
           "required": false,
           "docstring": null
@@ -21030,7 +21042,7 @@ export default {
       ],
       "argParams": [],
       "is_abstract": false,
-      "docstring": "Base block that has ports (IOs), parameters, and constraints between them.\n  "
+      "docstring": "Differential CAN link, CANH and CANL signals"
     }
   ],
   "typeHierarchyTree": {
@@ -21285,6 +21297,23 @@ export default {
                 "children": []
               }
             ]
+          }
+        ]
+      },
+      {
+        "name": "DefaultExportBlock",
+        "children": [
+          {
+            "name": "Bme680",
+            "children": []
+          },
+          {
+            "name": "Lsm6ds3trc",
+            "children": []
+          },
+          {
+            "name": "Qmc5883l",
+            "children": []
           }
         ]
       },

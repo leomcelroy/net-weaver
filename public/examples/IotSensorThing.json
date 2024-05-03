@@ -1,0 +1,771 @@
+{
+  "nets": [
+    [
+      {
+        "nodeId": "_VHtVfK9v",
+        "portIdx": 0,
+        "name": "_VHtVfK9v",
+        "portName": "pwr"
+      },
+      {
+        "nodeId": "_qO3jWOyD",
+        "portIdx": 0,
+        "name": "_qO3jWOyD",
+        "portName": "pwr_in"
+      }
+    ],
+    [
+      {
+        "nodeId": "_qO3jWOyD",
+        "portIdx": 2,
+        "name": "_qO3jWOyD",
+        "portName": "gnd"
+      },
+      {
+        "nodeId": "_h94d1i92",
+        "portIdx": 7,
+        "name": "_h94d1i92",
+        "portName": "gnd"
+      },
+      {
+        "nodeId": "_Son1wfSx",
+        "portIdx": 1,
+        "name": "_Son1wfSx",
+        "portName": "gnd"
+      },
+      {
+        "nodeId": "_HByp5m9J",
+        "portIdx": 2,
+        "name": "_HByp5m9J",
+        "portName": "gnd"
+      },
+      {
+        "nodeId": "_LgO1uAPj",
+        "portIdx": 1,
+        "name": "_LgO1uAPj",
+        "portName": "gnd"
+      },
+      {
+        "nodeId": "_VHtVfK9v",
+        "portIdx": 1,
+        "name": "_VHtVfK9v",
+        "portName": "gnd"
+      }
+    ],
+    [
+      {
+        "nodeId": "_h94d1i92",
+        "portIdx": 16,
+        "name": "_h94d1i92",
+        "portName": "i2c_16"
+      },
+      {
+        "nodeId": "_Son1wfSx",
+        "portIdx": 2,
+        "name": "_Son1wfSx",
+        "portName": "i2c"
+      },
+      {
+        "nodeId": "_HByp5m9J",
+        "portIdx": 3,
+        "name": "_HByp5m9J",
+        "portName": "i2c"
+      },
+      {
+        "nodeId": "_LgO1uAPj",
+        "portIdx": 2,
+        "name": "_LgO1uAPj",
+        "portName": "i2c"
+      },
+      {
+        "nodeId": "_ttCQo2fd",
+        "portIdx": 1,
+        "name": "_ttCQo2fd",
+        "portName": "i2c"
+      }
+    ],
+    [
+      {
+        "nodeId": "_h94d1i92",
+        "portIdx": 6,
+        "name": "_h94d1i92",
+        "portName": "pwr"
+      },
+      {
+        "nodeId": "_ttCQo2fd",
+        "portIdx": 0,
+        "name": "_ttCQo2fd",
+        "portName": "pwr"
+      },
+      {
+        "nodeId": "_Son1wfSx",
+        "portIdx": 0,
+        "name": "_Son1wfSx",
+        "portName": "pwr"
+      },
+      {
+        "nodeId": "_HByp5m9J",
+        "portIdx": 0,
+        "name": "_HByp5m9J",
+        "portName": "pwr"
+      },
+      {
+        "nodeId": "_LgO1uAPj",
+        "portIdx": 0,
+        "name": "_LgO1uAPj",
+        "portName": "pwr"
+      },
+      {
+        "nodeId": "_qO3jWOyD",
+        "portIdx": 1,
+        "name": "_qO3jWOyD",
+        "portName": "pwr_out"
+      }
+    ]
+  ],
+  "graph": {
+    "nodes": {
+      "_h94d1i92": {
+        "data": {
+          "name": "Esp32_Wroom_32",
+          "type": "Esp32_Wroom_32",
+          "superClasses": [
+            "Microcontroller",
+            "Radiofrequency",
+            "IoController",
+            "ProgrammableController"
+          ],
+          "ports": [
+            {
+              "name": "gpio",
+              "leftRightUpDown": "left",
+              "type": "DigitalBidir",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 0
+            },
+            {
+              "name": "adc",
+              "leftRightUpDown": "left",
+              "type": "AnalogSink",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 1
+            },
+            {
+              "name": "spi",
+              "leftRightUpDown": "right",
+              "type": "SpiController",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 2
+            },
+            {
+              "name": "i2c",
+              "leftRightUpDown": "right",
+              "type": "I2cController",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 3
+            },
+            {
+              "name": "uart",
+              "leftRightUpDown": "left",
+              "type": "UartPort",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 4
+            },
+            {
+              "name": "usb",
+              "leftRightUpDown": "left",
+              "type": "UsbDevicePort",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 5
+            },
+            {
+              "name": "pwr",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "required": false,
+              "idx": 6
+            },
+            {
+              "name": "gnd",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "required": false,
+              "idx": 7
+            },
+            {
+              "name": "i2s",
+              "leftRightUpDown": "left",
+              "type": "I2sController",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 8
+            },
+            {
+              "name": "dvp8",
+              "leftRightUpDown": "left",
+              "type": "Dvp8Host",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 9
+            },
+            {
+              "name": "can",
+              "leftRightUpDown": "left",
+              "type": "CanControllerPort",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 10
+            },
+            {
+              "name": "dac",
+              "leftRightUpDown": "right",
+              "type": "AnalogSource",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 11
+            },
+            {
+              "name": "touch",
+              "leftRightUpDown": "left",
+              "type": "TouchDriver",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 12
+            },
+            {
+              "name": "i2c_target",
+              "leftRightUpDown": "left",
+              "type": "I2cTarget",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 13
+            },
+            {
+              "name": "spi_peripheral",
+              "leftRightUpDown": "left",
+              "type": "SpiPeripheral",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 14
+            },
+            {
+              "name": "reset",
+              "leftRightUpDown": "left",
+              "type": "DigitalSink",
+              "array": false,
+              "srcSinkBi": null,
+              "required": false,
+              "idx": 15
+            },
+            {
+              "name": "i2c_16",
+              "array": false,
+              "idx": 16,
+              "leftRightUpDown": "right",
+              "srcSinkBi": "bi",
+              "type": "DigitalBidir",
+              "elementOf": 3
+            }
+          ],
+          "argParams": []
+        },
+        "ports": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "id": "_h94d1i92"
+      },
+      "_VHtVfK9v": {
+        "data": {
+          "name": "UsbCReceptacle",
+          "type": "UsbCReceptacle",
+          "superClasses": [
+            "UsbDeviceConnector",
+            "Connector",
+            "PowerSource"
+          ],
+          "ports": [
+            {
+              "name": "pwr",
+              "leftRightUpDown": "right",
+              "type": "VoltageSource",
+              "array": false,
+              "srcSinkBi": null,
+              "required": false,
+              "idx": 0
+            },
+            {
+              "name": "gnd",
+              "leftRightUpDown": "right",
+              "type": "VoltageSource",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 1
+            },
+            {
+              "name": "usb",
+              "leftRightUpDown": "right",
+              "type": "UsbHostPort",
+              "array": false,
+              "srcSinkBi": null,
+              "required": false,
+              "idx": 2
+            },
+            {
+              "name": "cc",
+              "leftRightUpDown": "left",
+              "type": "UsbCcPort",
+              "array": false,
+              "srcSinkBi": null,
+              "required": false,
+              "idx": 3
+            }
+          ],
+          "argParams": [
+            {
+              "name": "voltage_out",
+              "type": "range",
+              "default_value": [
+                4.75,
+                5.25
+              ],
+              "docstring": null,
+              "value": [
+                4.75,
+                5.25
+              ]
+            },
+            {
+              "name": "current_limits",
+              "type": "range",
+              "default_value": [
+                0,
+                0.5
+              ],
+              "docstring": null,
+              "value": [
+                0,
+                0.5
+              ]
+            }
+          ]
+        },
+        "ports": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "id": "_VHtVfK9v"
+      },
+      "_qO3jWOyD": {
+        "data": {
+          "name": "Ldl1117",
+          "type": "Ldl1117",
+          "superClasses": [
+            "LinearRegulator",
+            "VoltageRegulator",
+            "PowerConditioner"
+          ],
+          "ports": [
+            {
+              "name": "pwr_in",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 0
+            },
+            {
+              "name": "pwr_out",
+              "leftRightUpDown": "right",
+              "type": "VoltageSource",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 1
+            },
+            {
+              "name": "gnd",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 2
+            }
+          ],
+          "argParams": [
+            {
+              "name": "output_voltage",
+              "type": "range",
+              "default_value": null,
+              "docstring": "Target output voltage",
+              "value": [
+                3.135,
+                3.465
+              ]
+            }
+          ]
+        },
+        "ports": [
+          [],
+          [],
+          []
+        ],
+        "id": "_qO3jWOyD"
+      },
+      "_Son1wfSx": {
+        "data": {
+          "name": "Hdc1080",
+          "type": "Hdc1080",
+          "superClasses": [
+            "EnvironmentalSensor",
+            "Sensor"
+          ],
+          "ports": [
+            {
+              "name": "pwr",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 0
+            },
+            {
+              "name": "gnd",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 1
+            },
+            {
+              "name": "i2c",
+              "leftRightUpDown": "left",
+              "type": "I2cTarget",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 2
+            }
+          ],
+          "argParams": []
+        },
+        "ports": [
+          [],
+          [],
+          []
+        ],
+        "id": "_Son1wfSx"
+      },
+      "_ttCQo2fd": {
+        "data": {
+          "name": "I2cPullup",
+          "type": "I2cPullup",
+          "superClasses": [
+            "Interface"
+          ],
+          "ports": [
+            {
+              "name": "pwr",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 0
+            },
+            {
+              "name": "i2c",
+              "leftRightUpDown": "left",
+              "type": "I2cPullupPort",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 1
+            }
+          ],
+          "argParams": []
+        },
+        "ports": [
+          [],
+          []
+        ],
+        "id": "_ttCQo2fd"
+      },
+      "_HByp5m9J": {
+        "data": {
+          "name": "Bme680",
+          "type": "Bme680",
+          "superClasses": [
+            "EnvironmentalSensor",
+            "Sensor"
+          ],
+          "ports": [
+            {
+              "name": "pwr",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 0
+            },
+            {
+              "name": "pwr_io",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 1
+            },
+            {
+              "name": "gnd",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 2
+            },
+            {
+              "name": "i2c",
+              "leftRightUpDown": "left",
+              "type": "I2cTarget",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 3
+            }
+          ],
+          "argParams": []
+        },
+        "ports": [
+          [],
+          [],
+          [],
+          []
+        ],
+        "id": "_HByp5m9J"
+      },
+      "_LgO1uAPj": {
+        "data": {
+          "name": "Bh1750",
+          "type": "Bh1750",
+          "superClasses": [
+            "LightSensor",
+            "Sensor"
+          ],
+          "ports": [
+            {
+              "name": "pwr",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 0
+            },
+            {
+              "name": "gnd",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 1
+            },
+            {
+              "name": "i2c",
+              "leftRightUpDown": "left",
+              "type": "I2cTarget",
+              "array": false,
+              "srcSinkBi": null,
+              "required": true,
+              "idx": 2
+            }
+          ],
+          "argParams": []
+        },
+        "ports": [
+          [],
+          [],
+          []
+        ],
+        "id": "_LgO1uAPj"
+      }
+    },
+    "edges": {}
+  },
+  "graphUIData": {
+    "_h94d1i92": {
+      "x": 306,
+      "y": 377
+    },
+    "_VHtVfK9v": {
+      "x": -16,
+      "y": 376
+    },
+    "_qO3jWOyD": {
+      "x": -55,
+      "y": 574
+    },
+    "_Son1wfSx": {
+      "x": 783,
+      "y": 374
+    },
+    "_ttCQo2fd": {
+      "x": 570,
+      "y": 377
+    },
+    "_HByp5m9J": {
+      "x": 786,
+      "y": 503
+    },
+    "_LgO1uAPj": {
+      "x": 789,
+      "y": 649
+    }
+  },
+  "labels": {
+    "KC3xwGjf": {
+      "labelName": "pwr",
+      "nodeId": "_VHtVfK9v",
+      "portIdx": 0
+    },
+    "cAhT6Iez": {
+      "labelName": "pwr",
+      "nodeId": "_qO3jWOyD",
+      "portIdx": 0
+    },
+    "hBNoBCYC": {
+      "labelName": "gnd",
+      "nodeId": "_qO3jWOyD",
+      "portIdx": 2
+    },
+    "S5gf0BOs": {
+      "labelName": "gnd",
+      "nodeId": "_h94d1i92",
+      "portIdx": 7
+    },
+    "pCFHNEcF": {
+      "labelName": "gnd",
+      "nodeId": "_Son1wfSx",
+      "portIdx": 1
+    },
+    "FfMa8i6z": {
+      "labelName": "gnd",
+      "nodeId": "_HByp5m9J",
+      "portIdx": 2
+    },
+    "6rvWlKsL": {
+      "labelName": "gnd",
+      "nodeId": "_LgO1uAPj",
+      "portIdx": 1
+    },
+    "T1ayvcB5": {
+      "labelName": "gnd",
+      "nodeId": "_VHtVfK9v",
+      "portIdx": 1
+    },
+    "TnQV2GS6": {
+      "labelName": "i2c",
+      "nodeId": "_h94d1i92",
+      "portIdx": 16
+    },
+    "jG8TsXJO": {
+      "labelName": "i2c",
+      "nodeId": "_Son1wfSx",
+      "portIdx": 2
+    },
+    "7rttvINa": {
+      "labelName": "i2c",
+      "nodeId": "_HByp5m9J",
+      "portIdx": 3
+    },
+    "ng9ktutQ": {
+      "labelName": "i2c",
+      "nodeId": "_LgO1uAPj",
+      "portIdx": 2
+    },
+    "yPOs970o": {
+      "labelName": "i2c",
+      "nodeId": "_ttCQo2fd",
+      "portIdx": 1
+    },
+    "O2V97ZPY": {
+      "labelName": "pwr_out",
+      "nodeId": "_h94d1i92",
+      "portIdx": 6
+    },
+    "OzBvX0b2": {
+      "labelName": "pwr_out",
+      "nodeId": "_ttCQo2fd",
+      "portIdx": 0
+    },
+    "B5LsithT": {
+      "labelName": "pwr_out",
+      "nodeId": "_Son1wfSx",
+      "portIdx": 0
+    },
+    "TAVz8Bme": {
+      "labelName": "pwr_out",
+      "nodeId": "_HByp5m9J",
+      "portIdx": 0
+    },
+    "xuXqbs3D": {
+      "labelName": "pwr_out",
+      "nodeId": "_LgO1uAPj",
+      "portIdx": 0
+    },
+    "6KTp6FP8": {
+      "labelName": "pwr_out",
+      "nodeId": "_qO3jWOyD",
+      "portIdx": 1
+    }
+  }
+}

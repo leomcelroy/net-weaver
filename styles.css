@@ -24,6 +24,12 @@ body {
   font-family: sans-serif;
 }
 
+a {
+  text-decoration: none; 
+  color: inherit; 
+  cursor: pointer; 
+}
+
 .no-select {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none;   /* Safari */
@@ -176,7 +182,7 @@ TOOLBOX
 
 
 .node-search input{
-  background-color: #92a5a5;
+  background-color: #dbdbdb;
   color: var(--toolbar-color);
   width: 75%;
   border-radius: 0.4em; 
@@ -310,6 +316,7 @@ DATAFLOW
   stroke: gold;
   stroke-linecap: round;
   fill: none;
+  z-index: 99999999;
 }
 
 
@@ -423,7 +430,7 @@ PORTS
   height: 10px;
   border-radius: 50%;
   background: grey;
-  z-index: 99999;
+/*  z-index: 100;*/
   box-shadow: 0 0 0 1px rgb(75, 75, 75);
 }
 
@@ -531,4 +538,46 @@ ARGS
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.dropdown-container {
+    position: relative;
+    cursor: pointer;
+    display: inline-block; /* Allows the :hover to work properly */
+}
+
+.dropdown {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  background-color: #1e3434;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  transform: translate(0px, 8px);
+  padding: 5px;
+  border-radius: 0px 0px 5px 5px;
+  gap: .5rem;
+}
+
+.dropdown-item {
+  padding: .5rem;
+}
+
+.dropdown-item:hover {
+  background-color: #244141;
+}
+
+/* Show dropdown menu on hover */
+.dropdown-container:hover .dropdown {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s, 0s; /* No delay on hover */
+}
+
+/* Add delay on mouse out */
+.dropdown-container .dropdown {
+  transition-delay: .2s, .2s; /* Delay disappearing */
 }

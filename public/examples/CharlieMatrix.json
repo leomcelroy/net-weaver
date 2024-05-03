@@ -1,0 +1,272 @@
+{
+  "nets": [
+    [
+      {
+        "nodeId": "_IML5kDgu",
+        "portIdx": 0,
+        "name": "_IML5kDgu",
+        "portName": "ios"
+      },
+      {
+        "nodeId": "_o6DrNQan",
+        "portIdx": 14,
+        "name": "_o6DrNQan",
+        "portName": "gpio_14"
+      }
+    ]
+  ],
+  "graph": {
+    "nodes": {
+      "_o6DrNQan": {
+        "data": {
+          "name": "Xiao_Esp32c3",
+          "type": "Xiao_Esp32c3",
+          "superClasses": [
+            "IoController",
+            "ProgrammableController"
+          ],
+          "ports": [
+            {
+              "name": "gpio",
+              "leftRightUpDown": "left",
+              "type": "DigitalBidir",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 0
+            },
+            {
+              "name": "adc",
+              "leftRightUpDown": "left",
+              "type": "AnalogSink",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 1
+            },
+            {
+              "name": "spi",
+              "leftRightUpDown": "right",
+              "type": "SpiController",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 2
+            },
+            {
+              "name": "i2c",
+              "leftRightUpDown": "right",
+              "type": "I2cController",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 3
+            },
+            {
+              "name": "uart",
+              "leftRightUpDown": "left",
+              "type": "UartPort",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 4
+            },
+            {
+              "name": "usb",
+              "leftRightUpDown": "left",
+              "type": "UsbDevicePort",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 5
+            },
+            {
+              "name": "pwr",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "required": false,
+              "idx": 6
+            },
+            {
+              "name": "gnd",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "required": false,
+              "idx": 7
+            },
+            {
+              "name": "i2s",
+              "leftRightUpDown": "left",
+              "type": "I2sController",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 8
+            },
+            {
+              "name": "i2c_target",
+              "leftRightUpDown": "left",
+              "type": "I2cTarget",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 9
+            },
+            {
+              "name": "spi_peripheral",
+              "leftRightUpDown": "left",
+              "type": "SpiPeripheral",
+              "array": true,
+              "srcSinkBi": "sink",
+              "required": false,
+              "idx": 10
+            },
+            {
+              "name": "gnd_out",
+              "leftRightUpDown": "right",
+              "type": "VoltageSource",
+              "array": false,
+              "srcSinkBi": null,
+              "required": false,
+              "idx": 11
+            },
+            {
+              "name": "pwr_out",
+              "leftRightUpDown": "right",
+              "type": "VoltageSource",
+              "array": false,
+              "srcSinkBi": null,
+              "required": false,
+              "idx": 12
+            },
+            {
+              "name": "vusb_out",
+              "leftRightUpDown": "right",
+              "type": "VoltageSource",
+              "array": false,
+              "srcSinkBi": null,
+              "required": false,
+              "idx": 13
+            },
+            {
+              "name": "gpio_14",
+              "array": false,
+              "idx": 14,
+              "leftRightUpDown": "left",
+              "srcSinkBi": "bi",
+              "type": "DigitalBidir",
+              "elementOf": 0
+            }
+          ],
+          "argParams": []
+        },
+        "ports": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "id": "_o6DrNQan"
+      },
+      "_IML5kDgu": {
+        "data": {
+          "name": "CharlieplexedLedMatrix",
+          "type": "CharlieplexedLedMatrix",
+          "superClasses": [
+            "Light",
+            "HumanInterface"
+          ],
+          "ports": [
+            {
+              "name": "ios",
+              "leftRightUpDown": "left",
+              "type": "DigitalSink",
+              "array": true,
+              "srcSinkBi": "source",
+              "required": false,
+              "idx": 0
+            }
+          ],
+          "argParams": [
+            {
+              "name": "nrows",
+              "type": "int",
+              "default_value": null,
+              "docstring": null,
+              "value": 2
+            },
+            {
+              "name": "ncols",
+              "type": "int",
+              "default_value": null,
+              "docstring": null,
+              "value": 3
+            },
+            {
+              "name": "color",
+              "type": "str",
+              "default_value": "",
+              "docstring": null,
+              "value": ""
+            },
+            {
+              "name": "current_draw",
+              "type": "range",
+              "default_value": [
+                0.001,
+                0.01
+              ],
+              "docstring": null,
+              "value": [
+                0.001,
+                0.01
+              ]
+            }
+          ]
+        },
+        "ports": [
+          []
+        ],
+        "id": "_IML5kDgu"
+      }
+    },
+    "edges": {}
+  },
+  "graphUIData": {
+    "_o6DrNQan": {
+      "x": 316,
+      "y": 168
+    },
+    "_IML5kDgu": {
+      "x": 571,
+      "y": 171
+    }
+  },
+  "labels": {
+    "mOzBXUqm": {
+      "labelName": "ios",
+      "nodeId": "_IML5kDgu",
+      "portIdx": 0
+    },
+    "lfc3wuRw": {
+      "labelName": "ios",
+      "nodeId": "_o6DrNQan",
+      "portIdx": 14
+    }
+  }
+}

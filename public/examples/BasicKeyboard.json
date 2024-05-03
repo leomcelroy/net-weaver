@@ -1,0 +1,274 @@
+{
+  "nets": [
+    [
+      {
+        "nodeId": "_GbcAGW19",
+        "portIdx": 1,
+        "name": "_GbcAGW19",
+        "portName": "cols"
+      },
+      {
+        "nodeId": "_l21NtIKX",
+        "portIdx": 12,
+        "name": "_l21NtIKX",
+        "portName": "gpio_12"
+      }
+    ],
+    [
+      {
+        "nodeId": "_GbcAGW19",
+        "portIdx": 0,
+        "name": "_GbcAGW19",
+        "portName": "rows"
+      },
+      {
+        "nodeId": "_l21NtIKX",
+        "portIdx": 13,
+        "name": "_l21NtIKX",
+        "portName": "gpio_13"
+      }
+    ]
+  ],
+  "graph": {
+    "nodes": {
+      "_GbcAGW19": {
+        "data": {
+          "name": "SwitchMatrix",
+          "type": "SwitchMatrix",
+          "superClasses": [
+            "HumanInterface"
+          ],
+          "ports": [
+            {
+              "name": "rows",
+              "leftRightUpDown": "right",
+              "type": "DigitalSingleSource",
+              "array": true,
+              "srcSinkBi": "source",
+              "idx": 0
+            },
+            {
+              "name": "cols",
+              "leftRightUpDown": "left",
+              "type": "DigitalSink",
+              "array": true,
+              "srcSinkBi": "source",
+              "idx": 1
+            }
+          ],
+          "argParams": [
+            {
+              "name": "nrows",
+              "type": "int",
+              "default_value": null,
+              "docstring": null,
+              "value": 3
+            },
+            {
+              "name": "ncols",
+              "type": "int",
+              "default_value": null,
+              "docstring": null,
+              "value": 2
+            },
+            {
+              "name": "voltage_drop",
+              "type": "range",
+              "default_value": [
+                0,
+                0.7
+              ],
+              "docstring": null,
+              "value": [
+                0,
+                0.7
+              ]
+            }
+          ]
+        },
+        "ports": [
+          [],
+          []
+        ],
+        "id": "_GbcAGW19"
+      },
+      "_l21NtIKX": {
+        "data": {
+          "name": "Xiao_Rp2040",
+          "type": "Xiao_Rp2040",
+          "superClasses": [
+            "IoController",
+            "ProgrammableController"
+          ],
+          "ports": [
+            {
+              "name": "gpio",
+              "leftRightUpDown": "left",
+              "type": "DigitalBidir",
+              "array": true,
+              "srcSinkBi": "sink",
+              "idx": 0
+            },
+            {
+              "name": "adc",
+              "leftRightUpDown": "left",
+              "type": "AnalogSink",
+              "array": true,
+              "srcSinkBi": "sink",
+              "idx": 1
+            },
+            {
+              "name": "spi",
+              "leftRightUpDown": "right",
+              "type": "SpiController",
+              "array": true,
+              "srcSinkBi": "sink",
+              "idx": 2
+            },
+            {
+              "name": "i2c",
+              "leftRightUpDown": "right",
+              "type": "I2cController",
+              "array": true,
+              "srcSinkBi": "sink",
+              "idx": 3
+            },
+            {
+              "name": "uart",
+              "leftRightUpDown": "left",
+              "type": "UartPort",
+              "array": true,
+              "srcSinkBi": "sink",
+              "idx": 4
+            },
+            {
+              "name": "usb",
+              "leftRightUpDown": "left",
+              "type": "UsbDevicePort",
+              "array": true,
+              "srcSinkBi": "sink",
+              "idx": 5
+            },
+            {
+              "name": "pwr",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "idx": 6
+            },
+            {
+              "name": "gnd",
+              "leftRightUpDown": "left",
+              "type": "VoltageSink",
+              "array": false,
+              "srcSinkBi": null,
+              "idx": 7
+            },
+            {
+              "name": "i2c_target",
+              "leftRightUpDown": "left",
+              "type": "I2cTarget",
+              "array": true,
+              "srcSinkBi": "sink",
+              "idx": 8
+            },
+            {
+              "name": "gnd_out",
+              "leftRightUpDown": "right",
+              "type": "VoltageSource",
+              "array": false,
+              "srcSinkBi": null,
+              "idx": 9
+            },
+            {
+              "name": "pwr_out",
+              "leftRightUpDown": "right",
+              "type": "VoltageSource",
+              "array": false,
+              "srcSinkBi": null,
+              "idx": 10
+            },
+            {
+              "name": "vusb_out",
+              "leftRightUpDown": "right",
+              "type": "VoltageSource",
+              "array": false,
+              "srcSinkBi": null,
+              "idx": 11
+            },
+            {
+              "name": "gpio_12",
+              "array": false,
+              "idx": 12,
+              "leftRightUpDown": "left",
+              "srcSinkBi": "bi",
+              "type": "DigitalBidir",
+              "elementOf": 0
+            },
+            {
+              "name": "gpio_13",
+              "array": false,
+              "idx": 13,
+              "leftRightUpDown": "left",
+              "srcSinkBi": "bi",
+              "type": "DigitalBidir",
+              "elementOf": 0
+            }
+          ],
+          "argParams": []
+        },
+        "ports": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "id": "_l21NtIKX"
+      }
+    },
+    "edges": {}
+  },
+  "graphUIData": {
+    "_GbcAGW19": {
+      "x": 713,
+      "y": 200.79999923706055
+    },
+    "_l21NtIKX": {
+      "x": 408,
+      "y": 196.79999923706055
+    }
+  },
+  "labels": {
+    "bNBpbSaN": {
+      "labelName": "cols",
+      "nodeId": "_GbcAGW19",
+      "portIdx": 1
+    },
+    "uLsUgtZ1": {
+      "labelName": "cols",
+      "nodeId": "_l21NtIKX",
+      "portIdx": 12
+    },
+    "5nDB0VXl": {
+      "labelName": "rows",
+      "nodeId": "_GbcAGW19",
+      "portIdx": 0
+    },
+    "3sunYRko": {
+      "labelName": "rows",
+      "nodeId": "_l21NtIKX",
+      "portIdx": 13
+    }
+  }
+}

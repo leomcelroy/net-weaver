@@ -9,6 +9,7 @@ import { showModal } from "./showModal.js";
 import { searchComponents } from "../searchComponents.js";
 import componentsLibrary from "../componentsLibrary.js";
 import { createSpinner } from "./createSpinner.js";
+import { showError } from "../showError.js";
 
 function getRelative(el0, el1) {
   // Get the top, left coordinates of two elements
@@ -372,10 +373,15 @@ export function view(state) {
 
               console.log("responded", res);
 
+              if (res.errors.length > 0) {
+                showError(res.errors.map(e => `${e.details}:${e.kind}:${e.name}`));
+              }
+
               const code = generateSVGPCBcode(res);
               showModal(code);
             } catch (err) {
               spinner.remove();
+              showError([JSON.stringify(err)]);
               console.error(err);
             }
 
@@ -405,6 +411,19 @@ export function view(state) {
         }}>
           <i class="fa-solid fa-download"></i>
           download
+        </div>
+
+        <div class="menu-item dropdown-container">
+          <i class="fa-solid fa-file"></i>
+          examples
+          <div class="dropdown">
+            <a href="./?src=examples/BasicBlinky.json" class="dropdown-item">Blinky</a>
+            <a href="./?src=examples/CharlieMatrix.json" class="dropdown-item">CharliePlex</a>
+            <a href="./?src=examples/IotSensorThing.json" class="dropdown-item">Sensor</a>
+            <a href="./?src=examples/BasicKeyboard.json" class="dropdown-item">Keyboard</a>
+            <a href="./?src=examples/NeopixelArray.json" class="dropdown-item">Neopixel</a>
+            <a href="./?src=examples/I2cDevice.json" class="dropdown-item">I2C</a>
+          </div>
         </div>
 
         <div class="menu-item btn" @click=${() => {
