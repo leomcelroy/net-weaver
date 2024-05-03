@@ -252,7 +252,7 @@ function drawTempEdge(edge, state) {
   // const data = `M ${x0} ${y0} C ${x0 + xDist * (outLeftOrRight === "left" ? -1 : 1)} ${y0}, ${x1 + xDist * (inLeftOrRight === "left" ? -1 : 1)} ${y1}, ${x1} ${y1}`;
   
   // should remove set number of pixels
-  const finalPoint = interpolatePts([x0, y0], [x1, y1], .97);
+  const finalPoint = offsetPt([x0, y0], [x1, y1], 10);
 
   const data = `M ${x0} ${y0} L ${finalPoint[0]} ${finalPoint[1]}`;
 
@@ -265,6 +265,22 @@ function drawTempEdge(edge, state) {
       p1[0] + t * (p2[0] - p1[0]), 
       p1[1] + t * (p2[1] - p1[1])
     ]
+  }
+
+  function offsetPt(p1, p2, offset) {
+    const dx = p2[0] - p1[0];
+    const dy = p2[1] - p1[1];
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance === 0) {
+      return p1; // If p1 and p2 are the same point, return p1
+    }
+
+    const ratio = offset / distance;
+    return [
+      p1[0] + dx * (1-ratio),
+      p1[1] + dy * (1-ratio)
+    ];
   }
 
 }
