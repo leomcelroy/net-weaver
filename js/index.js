@@ -57,6 +57,12 @@ function init() {
       // global_state.openSearch = true;
       e.preventDefault();
     }
+
+    if (e.keyCode === 8) {
+      for (const node of state.selectedNodes) {
+        state.mutationActions.delete_node(node);
+      }
+    }
   })
 
   loadUrlParam("src").then(text => {
