@@ -52,6 +52,8 @@ function init() {
   addDropUpload(uploadJSON);
 
   domNode.addEventListener("keydown", e => {
+    if (e.target.matches("input")) return;
+    
     if (e.keyCode === 191) {
       // const container = body.querySelector(".dropdown-container");
       // global_state.openSearch = true;

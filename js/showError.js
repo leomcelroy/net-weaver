@@ -10,6 +10,7 @@ const errorModalStyle = css`
   padding: 1rem;
   border-radius: .5rem;
   z-index: 1000000001;
+  min-width: 200px;
 `
 
 const errorTop = css`

@@ -34,11 +34,11 @@ export function addNodeAdding(listen, state) {
     patchState();
   })
 
-  listen("mouseup", ".node-toolbox", () => {
-    if (dragging) {
-      state.graph.removeNode(id);
-      patchState();
-    }
+  listen("mouseup", ".node-toolbox, .node-toolbox *", () => {
+    if (dragging === false) return;
+
+    state.graph.removeNode(id);
+    patchState();
   })
 
   listen("mouseup", "", e => {
