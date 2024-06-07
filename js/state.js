@@ -127,7 +127,7 @@ function drawNode(item, state) {
       <div class="node-title">
         <div class="node-name">
           <span class="node-id-value" @click=${e => {
-            const newValue = prompt("Please insert a new name.")
+            const newValue = prompt("Please insert a new name.", node.data.name)
 
             if (newValue === "" || newValue === null) return;
 
