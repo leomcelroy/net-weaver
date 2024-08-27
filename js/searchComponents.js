@@ -1,28 +1,31 @@
-import componentsLibrary from "./componentsLibrary.js";
-import FuzzySet from 'fuzzyset'
+import { state } from "./state.js";
+import FuzzySet from "fuzzyset";
 
-export function searchComponents(searchTerm) {  
+export function searchComponents(searchTerm) {
   const searchTerms = searchTerm.toLowerCase().split(" ");
 
-  const blocks = componentsLibrary
-    .blocks
-    .filter(comp => {
-        if (
-          ["InternalSubcircuit", "InternalBlock"]
-          .some(x => comp.superClasses.includes(x))
-        ) {
-          return false;
-        }
+  const blocks = state.componentsLibrary.blocks.filter((comp) => {
+    if (
+      ["InternalSubcircuit", "InternalBlock"].some((x) =>
+        comp.superClasses.includes(x),
+      )
+    ) {
+      return false;
+    }
 
-        if (comp.is_abstract) {
-          return false;
-        }
+    if (comp.is_abstract) {
+      return false;
+    }
 
-        const termMatch = searchTerms.some(x => comp.superClasses.some(c => c.toLowerCase().includes(x)));
+    const termMatch = searchTerms.some((x) =>
+      comp.superClasses.some((c) => c.toLowerCase().includes(x)),
+    );
 
-        return termMatch || searchTerms.some(x => comp.type.toLowerCase().includes(x));
-    });
-  
+    return (
+      termMatch || searchTerms.some((x) => comp.type.toLowerCase().includes(x))
+    );
+  });
+
   return blocks;
 }
 
@@ -69,7 +72,7 @@ types.forEach(t => searchSet.add(t));
 export function searchComponents(searchTerm) {
   const results = findFuzzyMatches(searchTerm, componentsLibrary.typeHierarchyTree.children);
   const orderPreference = searchSet.get(searchTerm) ?? [];
-  
+
   results.sort((a, b) => {
     let aIndex = orderPreference.findIndex(x => x[1] === a);
     if (aIndex === -1) aIndex = results.length + 1;
@@ -78,7 +81,7 @@ export function searchComponents(searchTerm) {
 
     return aIndex - bIndex;
   });
-  
+
   const blocks = results
     .map(type => componentsLibrary.blocks.find(block => block.type === type))
     .filter(comp => {
@@ -95,7 +98,7 @@ export function searchComponents(searchTerm) {
 
         return true;
     });
-  
+
   return blocks;
 }
 
@@ -107,15 +110,15 @@ function findFuzzyMatches(inputString, treeNode) {
     function collectLeaves(node) {
         if (node.children && node.children.length > 0) {
             node.children.forEach(child => collectLeaves(child));
-        } else {      
+        } else {
             results.add(node.name);
         }
     }
-  
+
     function searchTree(nodes) {
         nodes.forEach(node => {
             if (searchResults.includes(node.name)) {
-               
+
                 collectLeaves(node);
             }
             if (node.children) {

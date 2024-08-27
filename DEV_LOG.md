@@ -1,5 +1,14 @@
 # net-weaver
 
+### Tue, Aug 27, 2024
+
+- rename all labels of same name
+- display valid ports to connect to
+- connector builder
+- names of components need to be unique
+- check names of nets and components to be valid python
+- generated net names should be unique
+
 # TODO
 
 if is_array == true and hint_array_direction == sink

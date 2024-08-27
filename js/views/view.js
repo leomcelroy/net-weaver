@@ -1,13 +1,12 @@
-import { render, html, svg } from 'lit-html';
-import { repeat } from 'lit-html/directives/repeat.js';
-import { map } from 'lit-html/directives/map.js';
+import { render, html, svg } from "lit-html";
+import { repeat } from "lit-html/directives/repeat.js";
+import { map } from "lit-html/directives/map.js";
 import { download } from "../download.js";
 import { generateNets } from "../generateNets.js";
 import { patchState } from "../state.js";
 import { generateSVGPCBcode } from "../generateSVGPCBcode.js";
 import { showModal } from "./showModal.js";
 import { searchComponents } from "../searchComponents.js";
-import componentsLibrary from "../componentsLibrary.js";
 import { createSpinner } from "./createSpinner.js";
 import { showError } from "../showError.js";
 
@@ -20,11 +19,10 @@ function getRelative(el0, el1) {
   const top = eleRect.top - targetRect.top;
   const left = eleRect.left - targetRect.left;
 
-  return [ left, top ];
+  return [left, top];
 }
 
 function drawLabel([labelId, label], state) {
-  
   const { labelName, nodeId, portIdx } = label;
 
   if (labelName === "") {
@@ -42,8 +40,8 @@ function drawLabel([labelId, label], state) {
 
   const scale = 1; // window.devicePixelRatio;
 
-  let x = (offset[0]+rect.width/2)*scale;
-  let y = (offset[1]+rect.height/2)*scale;
+  let x = (offset[0] + rect.width / 2) * scale;
+  let y = (offset[1] + rect.height / 2) * scale;
 
   const adjustedXY = state.dataflow.getPoint(x, y);
   x = adjustedXY[0];
@@ -54,23 +52,26 @@ function drawLabel([labelId, label], state) {
   const leftOrRight = node.data.ports[portIdx].leftRightUpDown;
 
   const styleLeft = `
-    left: ${x-5}px; 
+    left: ${x - 5}px;
     top: ${y}px;
     transform: translate(-100%, -50%);
     background: ${state.hoveredLabel === labelName ? "gold" : "lightgrey"};
-  `
+  `;
 
   const styleRight = `
-    left: ${x+5}px; 
+    left: ${x + 5}px;
     top: ${y}px;
     transform: translate(0, -50%);
     background: ${state.hoveredLabel === labelName ? "gold" : "lightgrey"};
-  `
+  `;
 
   let divStyle = leftOrRight === "left" ? styleLeft : styleRight;
 
-  const onClick = e => {
-    const newName = prompt("Please input a label name. Empty string will delete label.", labelName);
+  const onClick = (e) => {
+    const newName = prompt(
+      "Please input a label name. Empty string will delete label.",
+      labelName,
+    );
     if (newName === null) return;
     if (newName === "") {
       const { nodeId, portIdx } = state.labels[labelId];
@@ -78,46 +79,36 @@ function drawLabel([labelId, label], state) {
       delete state.labels[labelId];
 
       // if port now has no labels then delete it
-      let deletePort = true && state.graph
-        .getNode(nodeId)
-        .data
-        .ports
-        [portIdx]
-        .elementOf !== undefined;
-
-
+      let deletePort =
+        true &&
+        state.graph.getNode(nodeId).data.ports[portIdx].elementOf !== undefined;
 
       Object.entries(state.labels).forEach(([k, v]) => {
         const localNodeId = v.nodeId;
         const localPortIdx = v.portIdx;
-        
+
         if (localNodeId === nodeId && localPortIdx === portIdx) {
           deletePort = false;
         }
-      })
+      });
 
-      const nodeData = state.graph
-        .getNode(nodeId)
-        .data;
-
-    
+      const nodeData = state.graph.getNode(nodeId).data;
 
       // if delete port then update all labels that are after
       // this is why I should always use IDs
       if (deletePort) {
         nodeData.ports = nodeData.ports.filter((x, i) => i !== portIdx);
-        
-          Object.entries(state.labels).forEach(([k, v]) => {
-            const localNodeId = v.nodeId;
-            const localPortIdx = v.portIdx;
-            
-            if (localNodeId === nodeId && localPortIdx > portIdx) {
-              v.portIdx--;
-              nodeData.ports[v.portIdx].idx--;
-            }
-          })
-      }
 
+        Object.entries(state.labels).forEach(([k, v]) => {
+          const localNodeId = v.nodeId;
+          const localPortIdx = v.portIdx;
+
+          if (localNodeId === nodeId && localPortIdx > portIdx) {
+            v.portIdx--;
+            nodeData.ports[v.portIdx].idx--;
+          }
+        });
+      }
 
       patchState({}, true);
 
@@ -126,19 +117,22 @@ function drawLabel([labelId, label], state) {
 
     label.labelName = newName;
     patchState();
-  }
+  };
 
   return html`
-    <div class="label" @click=${onClick} data-label-name=${labelName} style=${divStyle}>
-      <span class="label-input">
-        ${labelName}
-      </span>      
+    <div
+      class="label"
+      @click=${onClick}
+      data-label-name=${labelName}
+      style=${divStyle}
+    >
+      <span class="label-input"> ${labelName} </span>
     </div>
-  `
+  `;
   /*
-  <span 
+  <span
     contenteditable
-    style=${inputStyle} 
+    style=${inputStyle}
     @blur=${e => {
       const newName = e.target.innerText;
       if (newName === "") {
@@ -151,10 +145,11 @@ function drawLabel([labelId, label], state) {
     }}>
       ${labelName}
     </span>
-  */ 
+  */
 }
 
-function drawEdge(edge, state) { // there muse be a better way to do this
+function drawEdge(edge, state) {
+  // there muse be a better way to do this
   const { nodes } = state;
   const outNode_id = edge.src.node_id;
   const outNode_idx = edge.src.idx;
@@ -163,11 +158,14 @@ function drawEdge(edge, state) { // there muse be a better way to do this
 
   if (!document.querySelector(".port") || state.dataflow === null) return "";
 
-  const el0 = state.domNode.querySelector(`[data-id="${outNode_id}:${outNode_idx}"]`);
-  const el1 = state.domNode.querySelector(`[data-id="${inNode_id}:${inNode_idx}"]`);
+  const el0 = state.domNode.querySelector(
+    `[data-id="${outNode_id}:${outNode_idx}"]`,
+  );
+  const el1 = state.domNode.querySelector(
+    `[data-id="${inNode_id}:${inNode_idx}"]`,
+  );
 
   if (!el0 || !el1) return "";
-
 
   const outNode = state.graph.getNode(outNode_id);
   const inNode = state.graph.getNode(inNode_id);
@@ -180,50 +178,50 @@ function drawEdge(edge, state) { // there muse be a better way to do this
 
   const scale = 1; // window.devicePixelRatio;
 
-  const x0 = (offset0[0]+rect0.width/2)*scale;
-  const y0 = (offset0[1]+rect0.height/2)*scale;
-  let x1 = (offset1[0]+rect1.width/2)*scale;
-  const y1 = (offset1[1]+rect1.height/2)*scale;
+  const x0 = (offset0[0] + rect0.width / 2) * scale;
+  const y0 = (offset0[1] + rect0.height / 2) * scale;
+  let x1 = (offset1[0] + rect1.width / 2) * scale;
+  const y1 = (offset1[1] + rect1.height / 2) * scale;
 
   let xDist = Math.abs(x0 - x1);
-  xDist = xDist/1.3 + 10;
+  xDist = xDist / 1.3 + 10;
   // xDist = Math.max(xDist, 10);
 
   const outLeftOrRight = outNode.data.ports[outNode_idx].leftRightUpDown;
   const inLeftOrRight = inNode.data.ports[inNode_idx].leftRightUpDown;
 
-  x1 = x1 + 5 * (inLeftOrRight === "left" ? -1 : 1)
+  x1 = x1 + 5 * (inLeftOrRight === "left" ? -1 : 1);
 
   const data = `
-    M ${x0} ${y0} 
-    C 
-      ${x0 + xDist * (outLeftOrRight === "left" ? -1 : 1)} ${y0}, 
-      ${(x1 + 15 * (inLeftOrRight === "left" ? -1 : 1))  + xDist * (inLeftOrRight === "left" ? -1 : 1)} ${y1}, 
-      ${(x1 + 15 * (inLeftOrRight === "left" ? -1 : 1)) } ${y1}
+    M ${x0} ${y0}
+    C
+      ${x0 + xDist * (outLeftOrRight === "left" ? -1 : 1)} ${y0},
+      ${x1 + 15 * (inLeftOrRight === "left" ? -1 : 1) + xDist * (inLeftOrRight === "left" ? -1 : 1)} ${y1},
+      ${x1 + 15 * (inLeftOrRight === "left" ? -1 : 1)} ${y1}
     `;
 
   const edgeArrowData = `
-    M ${x1} ${y1} 
-    L ${x1 + 15 * (inLeftOrRight === "left" ? -1 : 1)} ${y1+7} 
-    L ${x1 + 15 * (inLeftOrRight === "left" ? -1 : 1)} ${y1-7}
-  `
+    M ${x1} ${y1}
+    L ${x1 + 15 * (inLeftOrRight === "left" ? -1 : 1)} ${y1 + 7}
+    L ${x1 + 15 * (inLeftOrRight === "left" ? -1 : 1)} ${y1 - 7}
+  `;
 
   return svg`
-    <path class="edge" stroke-width=${`${3*state.dataflow.scale()}px`} vector-effect="non-scaling-stroke" d=${data}/>
-    <path 
+    <path class="edge" stroke-width=${`${3 * state.dataflow.scale()}px`} vector-effect="non-scaling-stroke" d=${data}/>
+    <path
       class="edge-arrow"
       data-id=${edge.id}
-      stroke-width=${`${3*state.dataflow.scale()}px`}
-      vector-effect="non-scaling-stroke" 
+      stroke-width=${`${3 * state.dataflow.scale()}px`}
+      vector-effect="non-scaling-stroke"
       d=${edgeArrowData}
       />
-  `
+  `;
 }
 
 function drawTempEdge(edge, state) {
   if (!state.domNode.querySelector(".port")) return;
 
-  let [ from, [x1, y1] ] = edge;
+  let [from, [x1, y1]] = edge;
 
   if (from === "" || state.dataflow === null) return svg``;
 
@@ -233,8 +231,8 @@ function drawTempEdge(edge, state) {
 
   const scale = 1; // window.devicePixelRatio;
 
-  let x0 = (offset0[0]+el0.getBoundingClientRect().width/2)*scale;
-  let y0 = (offset0[1]+el0.getBoundingClientRect().height/2)*scale;
+  let x0 = (offset0[0] + el0.getBoundingClientRect().width / 2) * scale;
+  let y0 = (offset0[1] + el0.getBoundingClientRect().height / 2) * scale;
   // x1 = x1 * scale - 5;
   // y1 = y1 * scale - 5;
 
@@ -248,23 +246,19 @@ function drawTempEdge(edge, state) {
 
   // const inLeftOrRight = x1 > x0 ? "left" : "right";
 
-
   // const data = `M ${x0} ${y0} C ${x0 + xDist * (outLeftOrRight === "left" ? -1 : 1)} ${y0}, ${x1 + xDist * (inLeftOrRight === "left" ? -1 : 1)} ${y1}, ${x1} ${y1}`;
-  
+
   // should remove set number of pixels
   const finalPoint = offsetPt([x0, y0], [x1, y1], 10);
 
   const data = `M ${x0} ${y0} L ${finalPoint[0]} ${finalPoint[1]}`;
 
   return svg`
-    <path class="edge" stroke-width=${`${3*state.dataflow.scale()}px`} vector-effect="non-scaling-stroke" d=${data}>
-  `
+    <path class="edge" stroke-width=${`${3 * state.dataflow.scale()}px`} vector-effect="non-scaling-stroke" d=${data}>
+  `;
 
   function interpolatePts(p1, p2, t) {
-    return [ 
-      p1[0] + t * (p2[0] - p1[0]), 
-      p1[1] + t * (p2[1] - p1[1])
-    ]
+    return [p1[0] + t * (p2[0] - p1[0]), p1[1] + t * (p2[1] - p1[1])];
   }
 
   function offsetPt(p1, p2, offset) {
@@ -277,15 +271,11 @@ function drawTempEdge(edge, state) {
     }
 
     const ratio = offset / distance;
-    return [
-      p1[0] + dx * (1-ratio),
-      p1[1] + dy * (1-ratio)
-    ];
+    return [p1[0] + dx * (1 - ratio), p1[1] + dy * (1 - ratio)];
   }
-
 }
 
-const drawSelectBox = box => {
+const drawSelectBox = (box) => {
   if (!box || !box.start || !box.end) return "";
 
   return html`
@@ -300,52 +290,51 @@ const drawSelectBox = box => {
         top:${box.start[1]}px;
         width: ${Math.abs(box.end[0] - box.start[0])}px;
         height:${Math.abs(box.end[1] - box.start[1])}px;
-      `}>
-    </div>
-  `
-}
-
-
+      `}
+    ></div>
+  `;
+};
 
 const filteredNodes = (state) => {
-  let filteredNodes = state.searchTerm === "" 
-    ? componentsLibrary.blocks
-    : state.searchResults;
+  let filteredNodes =
+    state.searchTerm === ""
+      ? state.componentsLibrary.blocks
+      : state.searchResults;
 
   filteredNodes = filteredNodes
-    .filter(x => x.superClasses.some(c => !["InternalBlock", "InternalSubcircuit"].includes(c)))
-    .filter(comp => {
-        if (
-          ["InternalSubcircuit", "InternalBlock"]
-          .some(x => comp.superClasses.includes(x))
-        ) {
-          return false;
-        }
+    .filter((x) =>
+      x.superClasses.some(
+        (c) => !["InternalBlock", "InternalSubcircuit"].includes(c),
+      ),
+    )
+    .filter((comp) => {
+      if (
+        ["InternalSubcircuit", "InternalBlock"].some((x) =>
+          comp.superClasses.includes(x),
+        )
+      ) {
+        return false;
+      }
 
-        if (comp.is_abstract) {
-          return false;
-        }
+      if (comp.is_abstract) {
+        return false;
+      }
 
-        return true;
+      return true;
     });
 
   const oneNodeHTML = ({ type, docstring, superClasses }) => html`
     <div class="node-result" data-type=${type}>
       <div class="node-type">${type}</div>
       <div class="node-tags">
-        ${superClasses.map(x => html`
-          <span class="node-tag">
-              ${x}
-          </span>`)}
+        ${superClasses.map((x) => html` <span class="node-tag"> ${x} </span>`)}
       </div>
-      <div class="node-docstring">
-        ${docstring}
-      </div>
+      <div class="node-docstring">${docstring}</div>
     </div>
-  `
+  `;
 
   return filteredNodes.map(oneNodeHTML);
-}
+};
 
 export function view(state) {
   const x = state.dataflow ? state.dataflow.x() : 0;
@@ -355,20 +344,25 @@ export function view(state) {
   return html`
     <div class="root">
       <div class="menu">
-        <div hidden class="menu-item btn" @click=${() => {
-          state.evaluate(...state.selectedNodes);
+        <div
+          hidden
+          class="menu-item btn"
+          @click=${() => {
+            state.evaluate(...state.selectedNodes);
 
-          console.log(state);
-        }}>
+            console.log(state);
+          }}
+        >
           <i class="fa-solid fa-play"></i>
           run
         </div>
 
-        <div class="menu-item btn" @click=${async () => { 
-
+        <div
+          class="menu-item btn"
+          @click=${async () => {
             const URL = "https://webedg.uclalemur.com/compile";
             // const URL = "http://ctb.1337.cx:7761/compile";
-            
+
             const netlist = getNetlist(state);
             console.log("sending", netlist);
 
@@ -376,12 +370,12 @@ export function view(state) {
 
             try {
               const res = await fetch(URL, {
-                method: 'POST',
+                method: "POST",
                 headers: {
-                  'Content-Type': 'application/json',
+                  "Content-Type": "application/json",
                 },
                 body: JSON.stringify(netlist),
-              }).then(res => {
+              }).then((res) => {
                 return res.json();
               });
 
@@ -390,7 +384,9 @@ export function view(state) {
               console.log("responded", res);
 
               if (res.errors.length > 0) {
-                showError(res.errors.map(e => `${e.details}:${e.kind}:${e.name}`));
+                showError(
+                  res.errors.map((e) => `${e.details}:${e.kind}:${e.name}`),
+                );
               }
 
               const code = generateSVGPCBcode(res);
@@ -400,31 +396,33 @@ export function view(state) {
               showError([JSON.stringify(err)]);
               console.error(err);
             }
-
-         }}>
+          }}
+        >
           <i class="fa-solid fa-square-share-nodes"></i>
           compile
         </div>
 
-        <div class="menu-item btn" @click=${() => { 
-          const result = getNetlist(state);
-          console.log(result);
-        }}>
+        <div
+          class="menu-item btn"
+          @click=${() => {
+            const result = getNetlist(state);
+            console.log(result);
+          }}
+        >
           <i class="fa-solid fa-print"></i>
           print graph
         </div>
 
-        <div class="menu-item btn" @click=${() => {
-          
-          const result = getNetlist(state);
+        <div
+          class="menu-item btn"
+          @click=${() => {
+            const result = getNetlist(state);
 
-          console.log(result);
+            console.log(result);
 
-          download(
-            "netlist.net-weaver.json", 
-            JSON.stringify(result)
-          );
-        }}>
+            download("netlist.net-weaver.json", JSON.stringify(result));
+          }}
+        >
           <i class="fa-solid fa-download"></i>
           download
         </div>
@@ -433,33 +431,54 @@ export function view(state) {
           <i class="fa-solid fa-file"></i>
           examples
           <div class="dropdown">
-            <a href="./?src=examples/BasicBlinky.json" class="dropdown-item">Blinky</a>
-            <a href="./?src=examples/CharlieMatrix.json" class="dropdown-item">CharliePlex</a>
-            <a href="./?src=examples/IotSensorThing.json" class="dropdown-item">Sensor</a>
-            <a href="./?src=examples/BasicKeyboard.json" class="dropdown-item">Keyboard</a>
-            <a href="./?src=examples/NeopixelArray.json" class="dropdown-item">Neopixel</a>
-            <a href="./?src=examples/I2cDevice.json" class="dropdown-item">I2C</a>
+            <a href="./?src=examples/BasicBlinky.json" class="dropdown-item"
+              >Blinky</a
+            >
+            <a href="./?src=examples/CharlieMatrix.json" class="dropdown-item"
+              >CharliePlex</a
+            >
+            <a href="./?src=examples/IotSensorThing.json" class="dropdown-item"
+              >Sensor</a
+            >
+            <a href="./?src=examples/BasicKeyboard.json" class="dropdown-item"
+              >Keyboard</a
+            >
+            <a href="./?src=examples/NeopixelArray.json" class="dropdown-item"
+              >Neopixel</a
+            >
+            <a href="./?src=examples/I2cDevice.json" class="dropdown-item"
+              >I2C</a
+            >
           </div>
         </div>
 
-        <div class="menu-item btn" @click=${() => {
-          for (const node of state.selectedNodes) {
-            state.mutationActions.delete_node(node);
-          }
-        }}>
+        <div
+          class="menu-item btn"
+          @click=${() => {
+            for (const node of state.selectedNodes) {
+              state.mutationActions.delete_node(node);
+            }
+          }}
+        >
           <i class="fa-solid fa-trash"></i>
           delete
         </div>
 
-        <div hidden class="menu-item btn" @click=${() => {
-          const newWireMode = state.wireMode === "WIRES" ? "LABELS" : "WIRES";
-          state.wireMode = newWireMode;
-        }}>
+        <div
+          hidden
+          class="menu-item btn"
+          @click=${() => {
+            const newWireMode = state.wireMode === "WIRES" ? "LABELS" : "WIRES";
+            state.wireMode = newWireMode;
+          }}
+        >
           <i class="fa-solid fa-circle-dot"></i>
           wire mode: ${state.wireMode}
         </div>
 
-        <div class="menu-item" style="position:absolute; right: 40px;">selected: ${state.selectedNodes.size}</div>
+        <div class="menu-item" style="position:absolute; right: 40px;">
+          selected: ${state.selectedNodes.size}
+        </div>
         <a class="github-logo" href="https://github.com/leomcelroy/net-weaver">
           <i class="fa-brands fa-github" style="font-size:24px"></i>
         </a>
@@ -469,81 +488,77 @@ export function view(state) {
         <div class="dataflow" style="width: 100%; height: 100%;">
           <canvas
             id="background"
-            style=${`--offset-x: ${x}px;--offset-y: ${y}px;--scale: ${scale}`}>
-            </canvas>
-
-         
+            style=${`--offset-x: ${x}px;--offset-y: ${y}px;--scale: ${scale}`}
+          >
+          </canvas>
 
           <div class="nodes">
             <div class="transform-group">
               ${repeat(
-                  Object.entries(state.graph.getGraph().nodes), 
-                  item => item[0], 
-                  (item, index) => state.drawNode(item, state)
-                )
-              }
+                Object.entries(state.graph.getGraph().nodes),
+                (item) => item[0],
+                (item, index) => state.drawNode(item, state),
+              )}
               <div class="labels">
                 ${repeat(
-                    Object.entries(state.labels), 
-                    item => item[0], 
-                    (item, index) => drawLabel(item, state)
-                  )
-                }
+                  Object.entries(state.labels),
+                  (item) => item[0],
+                  (item, index) => drawLabel(item, state),
+                )}
               </div>
 
               ${drawSelectBox(state.selectBox)}
             </div>
           </div>
 
-           <svg class="edges">
+          <svg class="edges">
             <g>
-              ${Object.entries(state.graph.getGraph().edges).map(x => drawEdge(x[1], state))}
+              ${Object.entries(state.graph.getGraph().edges).map((x) =>
+                drawEdge(x[1], state),
+              )}
               ${drawTempEdge(state.tempEdge, state)}
             </g>
           </svg>
-
         </div>
 
         <div class="node-toolbox">
           <div class="node-search">
             <span>Nodes</span>
-            <input 
-
+            <input
               placeholder="search for node..."
-              .value=${state.searchTerm} 
-              @input=${e => { 
-                state.searchTerm = e.target.value; 
+              .value=${state.searchTerm}
+              @input=${(e) => {
+                state.searchTerm = e.target.value;
                 state.searchResults = searchComponents(e.target.value);
 
                 patchState();
               }}
-              />
+            />
           </div>
-          <div class="toolbox-scroller">
-            ${filteredNodes(state)}
-          </div>
+          <div class="toolbox-scroller">${filteredNodes(state)}</div>
         </div>
       </div>
 
-      <div 
-        class="drop-modal hidden" 
+      <div
+        class="drop-modal hidden"
         style="
-          position: absolute; 
-          left: 0px; 
-          top: 0px; 
-          width: 100%; 
-          height:100%; 
-          z-index: 1000; 
-          background: lightblue; 
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          width: 100%;
+          height:100%;
+          z-index: 1000;
+          background: lightblue;
           opacity: .5;
           display: flex;
           justify-content: center;
           align-items: center;
-        ">
-          <div>drop files here</div>
-        </div>
+        "
+      >
+        <div>drop files here</div>
+      </div>
     </div>
-  `
+  `;
 }
 
 function getNetlist(state) {
@@ -552,48 +567,42 @@ function getNetlist(state) {
 
   const edgesToAdd = {};
 
-  Object.values(labels).forEach(label => {
-    const { labelName, nodeId , portIdx } = label;
+  Object.values(labels).forEach((label) => {
+    const { labelName, nodeId, portIdx } = label;
 
     if (labelName in edgesToAdd) {
-      edgesToAdd[labelName].push( [ nodeId, portIdx ] );
+      edgesToAdd[labelName].push([nodeId, portIdx]);
     } else {
-      edgesToAdd[labelName] =  [ [ nodeId, portIdx ] ];
+      edgesToAdd[labelName] = [[nodeId, portIdx]];
     }
   });
 
-  Object.values(edgesToAdd).forEach(group => {
-    const [ srcNode, srcPort ] = group[0];
-    group.slice(1).forEach(dst => {
-      const [ dstNode, dstPort ] = dst;
+  Object.values(edgesToAdd).forEach((group) => {
+    const [srcNode, srcPort] = group[0];
+    group.slice(1).forEach((dst) => {
+      const [dstNode, dstPort] = dst;
 
-      copiedGraph.addEdge(
-        {}, 
-        srcNode, 
-        srcPort, 
-        dstNode, 
-        dstPort
-      );
-    })
-  })
+      copiedGraph.addEdge({}, srcNode, srcPort, dstNode, dstPort);
+    });
+  });
 
   const graph = copiedGraph.getGraph();
 
   const nets = generateNets(graph);
 
-  nets.forEach(net => {
-    net.forEach(port => {
+  nets.forEach((net) => {
+    net.forEach((port) => {
       const id = port.nodeId;
       port.name = id;
-      port.portName = graph.nodes[id].data.ports[port.portIdx].name
-    })
-  })
+      port.portName = graph.nodes[id].data.ports[port.portIdx].name;
+    });
+  });
 
   // add port name to graph;
 
   const graphToReturn = state.graph.copy().getGraph();
 
-  Object.entries(graphToReturn.edges).forEach(edge => {
+  Object.entries(graphToReturn.edges).forEach((edge) => {
     const [edgeId, data] = edge;
 
     const dstNode = graph.nodes[data.dst.node_id];
@@ -603,13 +612,13 @@ function getNetlist(state) {
     const srcNode = graph.nodes[data.src.node_id];
     const srcPortName = srcNode.data.ports[data.src.idx].name;
     data.src.portName = srcPortName;
-  })
+  });
 
-  const result = { 
-    nets, 
+  const result = {
+    nets,
     graph: graphToReturn,
     graphUIData: state.graphUIData,
-    labels: JSON.parse(JSON.stringify(state.labels))
+    labels: JSON.parse(JSON.stringify(state.labels)),
   };
 
   return result;

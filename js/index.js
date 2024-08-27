@@ -16,11 +16,12 @@ import { addNodeAdding } from "./events/addNodeAdding.js";
 import { addWireManipulation } from "./events/addWireManipulation.js";
 import { addNodeDragging } from "./events/addNodeDragging.js";
 import { addLabelManipulation } from "./events/addLabelManipulation.js";
+import { nodes, createBlocks } from "./nodes.js";
 
 const drawLoop = () => {
   const draw = () => {
     render(view(state), document.body);
-  }
+  };
 
   draw();
 
@@ -32,10 +33,9 @@ const drawLoop = () => {
   // requestAnimationFrame(r);
 };
 
-function init() {
+async function init() {
   // drawLoop();
   render(view(state), document.body);
-
 
   const domNode = document.body;
 
@@ -51,9 +51,9 @@ function init() {
   addNodeAdding(listener, state);
   addDropUpload(uploadJSON);
 
-  domNode.addEventListener("keydown", e => {
+  domNode.addEventListener("keydown", (e) => {
     if (e.target.matches("input")) return;
-    
+
     if (e.keyCode === 191) {
       // const container = body.querySelector(".dropdown-container");
       // global_state.openSearch = true;
@@ -65,9 +65,9 @@ function init() {
         state.mutationActions.delete_node(node);
       }
     }
-  })
+  });
 
-  loadUrlParam("src").then(text => {
+  loadUrlParam("src").then((text) => {
     if (!text) return;
     uploadJSON(text);
   });
@@ -81,22 +81,17 @@ function init() {
     state.mutationActions.render();
   }
 
+  const json = await fetch("http://ctb.1337.cx:7761/library").then(
+    async (res) => {
+      const compLib = await res.json();
+      state.componentsLibrary = compLib;
+      state.nodes = createBlocks(compLib.blocks);
 
+      console.log(state.componentsLibrary, state.nodes)
+    },
+  );
 
-
+  console.log(json);
 }
 
 init();
-
-
-
-
-
-
-
-
-
-
-
-
-
