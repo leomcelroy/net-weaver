@@ -7,7 +7,7 @@ export function searchComponents(searchTerm) {
   const blocks = state.componentsLibrary.blocks.filter((comp) => {
     if (
       ["InternalSubcircuit", "InternalBlock"].some((x) =>
-        comp.superClasses.includes(x),
+        comp.superClasses.includes(x)
       )
     ) {
       return false;

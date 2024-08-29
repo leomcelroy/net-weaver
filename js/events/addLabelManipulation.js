@@ -5,7 +5,6 @@ import { showError } from "../showError.js";
 export function addLabelManipulation(listen, state) {
   let from = "";
   let to = "";
-  let currentIndex = "";
 
   listen("mousedown", ".port", (e) => {
     if (state.wireMode !== "LABELS") return;
@@ -92,7 +91,7 @@ export function addLabelManipulation(listen, state) {
       if (
         !toAcceptableLinkTypes.some((type) =>
           fromAcceptableLinkTypes.includes(type),
-        )
+        ) && !toNodeObj.superClasses.includes("PassiveConnector")
       ) {
         const err = `Can't link these types: ${fromAcceptableLinkTypes} to ${toAcceptableLinkTypes}`;
         showError([err], { time: 5000 });
@@ -159,7 +158,6 @@ export function addLabelManipulation(listen, state) {
     function cleanUp() {
       from = "";
       to = "";
-      currentIndex = "";
 
       patchState({
         tempEdge: ["", [0, 0]],

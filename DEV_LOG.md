@@ -9,6 +9,19 @@
 - check names of nets and components to be valid python
 - generated net names should be unique
 
+for connector builder
+if superClasses include "PassiveConnecter"
+when adjusting argParam "length"
+add ports to match length number
+ports have these props
+
+  array: false
+  idx: ?
+  leftRightUpDown: "left"
+  name: ?
+  srcSinkBi: "bi"
+  type: "Passive"
+
 # TODO
 
 if is_array == true and hint_array_direction == sink

@@ -50,12 +50,10 @@ let timeoutId = null;
 let currentErrors = [];
 export function showError(errors, { time = 0 } = {}) {
 
-  let errorModal;
+  let errorModal = document.querySelector(`.error-modal`) || document.createElement('div');
+  
   if (timeoutId) {
     clearTimeout(timeoutId);
-    errorModal = document.querySelector(`.error-modal`);
-  } else {
-    errorModal = document.createElement('div');
   }
 
   currentErrors.push(...errors)
@@ -78,6 +76,7 @@ export function showError(errors, { time = 0 } = {}) {
   .querySelector("[on-close]")
   .addEventListener("click", e => {
     errorModal.remove();
+    currentErrors = [];
   })
 
   document.body.append(errorModal);
