@@ -4,6 +4,7 @@ import { view } from "./views/view.js";
 import { createGraph } from "./createGraph";
 import { topologicalSort } from "./topologicalSort";
 import { nodes } from "./nodes.js";
+import { isValidPythonIdentifier } from "./isValidPythonIdentifier.js";
 
 const r = () => {
   render(view(state), document.body);
@@ -22,7 +23,6 @@ export const state = {
   evaluate,
   componentsLibrary: {
     blocks: [],
-    
   },
   nodes,
   graphUIData: {},
@@ -151,7 +151,26 @@ function drawNode(item, state) {
 
               if (newValue === "" || newValue === null) return;
 
-              node.data.name = newValue;
+              if (!isValidPythonIdentifier(newValue)) {
+                alert("Label names must be valid python identifiers.");
+                return;
+              }
+
+              const existingNames = new Set(
+                Object.values(state.graph.getGraph().nodes).map(
+                  (node) => node.data.name,
+                ),
+              );
+              let name = newValue;
+              let ogName = name;
+
+              let count = 0;
+              while (existingNames.has(name)) {
+                name = `${ogName}_${count}`;
+                count++;
+              }
+
+              node.data.name = name;
 
               state.mutationActions.render();
             }}
@@ -237,7 +256,28 @@ function drawNode(item, state) {
             if (newValue === "" || newValue === null) return;
 
             try {
-              argParam.value = castFunction(newValue);
+              const castValue = castFunction(newValue);
+              argParam.value = castValue;
+
+              console.log(node);
+              if (node.data.superClasses.includes("PassiveConnector")) {
+                const newPorts = [];
+
+                for (let i = 0; i < castValue; i++) {
+                  newPorts.push({
+                    array: false,
+                    idx: i,
+                    leftRightUpDown: "left",
+                    name: `port_${i}`,
+                    srcSinkBi: "bi",
+                    type: "Passive",
+                  });
+                }
+
+                node.data.ports = newPorts;
+
+                node.ports = newPorts.map(() => []);
+              }
             } catch (err) {
               alert(err);
             }
@@ -301,6 +341,20 @@ function evaluate(...nodeIds) {
 function addNode(menuString) {
   const master = state.nodes[menuString];
   const data = JSON.parse(JSON.stringify(master));
+
+  const existingNames = new Set(
+    Object.values(state.graph.getGraph().nodes).map((node) => node.data.name),
+  );
+  let name = data.name;
+  let ogName = name;
+
+  let count = 0;
+  while (existingNames.has(name)) {
+    name = `${ogName}_${count}`;
+    count++;
+  }
+
+  data.name = name;
 
   data.argParams.forEach((param) => {
     param.value = param.default_value;

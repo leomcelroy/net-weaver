@@ -9,6 +9,7 @@ import { showModal } from "./showModal.js";
 import { searchComponents } from "../searchComponents.js";
 import { createSpinner } from "./createSpinner.js";
 import { showError } from "../showError.js";
+import { isValidPythonIdentifier } from "../isValidPythonIdentifier.js";
 
 function getRelative(el0, el1) {
   // Get the top, left coordinates of two elements
@@ -72,7 +73,12 @@ function drawLabel([labelId, label], state) {
       "Please input a label name. Empty string will delete label.",
       labelName,
     );
+
     if (newName === null) return;
+    if (!isValidPythonIdentifier(newName)) {
+      alert("Label names must be valid python identifiers.");
+      return;
+    }
     if (newName === "") {
       const { nodeId, portIdx } = state.labels[labelId];
 
@@ -196,7 +202,11 @@ function drawEdge(edge, state) {
     M ${x0} ${y0}
     C
       ${x0 + xDist * (outLeftOrRight === "left" ? -1 : 1)} ${y0},
-      ${x1 + 15 * (inLeftOrRight === "left" ? -1 : 1) + xDist * (inLeftOrRight === "left" ? -1 : 1)} ${y1},
+      ${
+        x1 +
+        15 * (inLeftOrRight === "left" ? -1 : 1) +
+        xDist * (inLeftOrRight === "left" ? -1 : 1)
+      } ${y1},
       ${x1 + 15 * (inLeftOrRight === "left" ? -1 : 1)} ${y1}
     `;
 
@@ -207,7 +217,9 @@ function drawEdge(edge, state) {
   `;
 
   return svg`
-    <path class="edge" stroke-width=${`${3 * state.dataflow.scale()}px`} vector-effect="non-scaling-stroke" d=${data}/>
+    <path class="edge" stroke-width=${`${
+      3 * state.dataflow.scale()
+    }px`} vector-effect="non-scaling-stroke" d=${data}/>
     <path
       class="edge-arrow"
       data-id=${edge.id}
@@ -254,7 +266,9 @@ function drawTempEdge(edge, state) {
   const data = `M ${x0} ${y0} L ${finalPoint[0]} ${finalPoint[1]}`;
 
   return svg`
-    <path class="edge" stroke-width=${`${3 * state.dataflow.scale()}px`} vector-effect="non-scaling-stroke" d=${data}>
+    <path class="edge" stroke-width=${`${
+      3 * state.dataflow.scale()
+    }px`} vector-effect="non-scaling-stroke" d=${data}>
   `;
 
   function interpolatePts(p1, p2, t) {

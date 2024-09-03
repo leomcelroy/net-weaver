@@ -66,6 +66,8 @@ export function createBlocks(blocks) {
       })),
       argParams: comp.argParams,
     };
+
+    if (comp.superClasses.includes("PassiveConnector")) nodes[type].ports = [];
   });
 
   Object.values(nodes).forEach((n) => {

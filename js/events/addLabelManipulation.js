@@ -91,7 +91,8 @@ export function addLabelManipulation(listen, state) {
       if (
         !toAcceptableLinkTypes.some((type) =>
           fromAcceptableLinkTypes.includes(type),
-        ) && !toNodeObj.superClasses.includes("PassiveConnector")
+        ) &&
+        !toNodeObj.superClasses.includes("PassiveConnector")
       ) {
         const err = `Can't link these types: ${fromAcceptableLinkTypes} to ${toAcceptableLinkTypes}`;
         showError([err], { time: 5000 });
@@ -118,7 +119,7 @@ export function addLabelManipulation(listen, state) {
         state.graph.getNode(toNode).ports.push([]);
       }
 
-      const labelName = state.graph.getNode(fromNode).data.ports[fromPort].name;
+      let labelName = state.graph.getNode(fromNode).data.ports[fromPort].name;
 
       // if label exists for src port use name of label, if not create name
       // if label on dst port, clear label
@@ -138,6 +139,17 @@ export function addLabelManipulation(listen, state) {
         if (to === portKey) {
           delete state.labels[labelId];
         }
+      }
+
+      const existingLabelNames = new Set(
+        Object.values(state.labels).map((l) => l.labelName),
+      );
+
+      let count = 0;
+      let ogName = labelName;
+      while (existingLabelNames.has(labelName)) {
+        labelName = `${ogName}_${count}`;
+        count++;
       }
 
       state.labels[createRandStr(8)] = {

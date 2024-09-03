@@ -1,5 +1,9 @@
 # net-weaver
 
+### Tue, Sep 3, 2024
+
+- indicate if there are no ports on connecter
+
 ### Tue, Aug 27, 2024
 
 - rename all labels of same name
@@ -7,7 +11,7 @@
 - connector builder
 - names of components need to be unique
 - check names of nets and components to be valid python
-- generated net names should be unique
+- [x] generated net names should be unique
 
 for connector builder
 if superClasses include "PassiveConnecter"
