@@ -32,6 +32,8 @@ export const state = {
   searchTerm: "",
   searchResults: [],
   domNode: document.body,
+  server: "https://webedg.uclalemur.com",
+  // server: "http://ctb.1337.cx:7761",
   mutationActions: {
     render: r,
     add_node(menuString) {

@@ -75,7 +75,7 @@ function drawLabel([labelId, label], state) {
     );
 
     if (newName === null) return;
-    if (!isValidPythonIdentifier(newName)) {
+    if (!isValidPythonIdentifier(newName) && newName !== "") {
       alert("Label names must be valid python identifiers.");
       return;
     }
@@ -374,8 +374,7 @@ export function view(state) {
         <div
           class="menu-item btn"
           @click=${async () => {
-            const URL = "https://webedg.uclalemur.com/compile";
-            // const URL = "http://ctb.1337.cx:7761/compile";
+            const URL = `${state.server}/compile`;
 
             const netlist = getNetlist(state);
             console.log("sending", netlist);

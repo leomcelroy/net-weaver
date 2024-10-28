@@ -81,18 +81,15 @@ async function init() {
     state.mutationActions.render();
   }
 
-  const json = await fetch("http://ctb.1337.cx:7761/library").then(
-    async (res) => {
-      console.log("fetched new components")
-      const compLib = await res.json();
-      const old = state.componentsLibrary;
-      state.componentsLibrary = compLib;
-      state.nodes = createBlocks(compLib.blocks);
+  const json = await fetch(`${state.server}/library`).then(async (res) => {
+    console.log("fetched new components");
+    const compLib = await res.json();
+    const old = state.componentsLibrary;
+    state.componentsLibrary = compLib;
+    state.nodes = createBlocks(compLib.blocks);
 
-      console.log({ lib: state.componentsLibrary, nodes: state.nodes})
-    },
-  );
-
+    console.log({ lib: state.componentsLibrary, nodes: state.nodes });
+  });
 }
 
 init();
