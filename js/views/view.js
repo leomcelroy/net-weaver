@@ -71,7 +71,7 @@ function drawLabel([labelId, label], state) {
   const onClick = (e) => {
     const newName = prompt(
       "Please input a label name. Empty string will delete label.",
-      labelName,
+      labelName
     );
 
     if (newName === null) return;
@@ -165,10 +165,10 @@ function drawEdge(edge, state) {
   if (!document.querySelector(".port") || state.dataflow === null) return "";
 
   const el0 = state.domNode.querySelector(
-    `[data-id="${outNode_id}:${outNode_idx}"]`,
+    `[data-id="${outNode_id}:${outNode_idx}"]`
   );
   const el1 = state.domNode.querySelector(
-    `[data-id="${inNode_id}:${inNode_idx}"]`,
+    `[data-id="${inNode_id}:${inNode_idx}"]`
   );
 
   if (!el0 || !el1) return "";
@@ -318,13 +318,13 @@ const filteredNodes = (state) => {
   filteredNodes = filteredNodes
     .filter((x) =>
       x.superClasses.some(
-        (c) => !["InternalBlock", "InternalSubcircuit"].includes(c),
-      ),
+        (c) => !["InternalBlock", "InternalSubcircuit"].includes(c)
+      )
     )
     .filter((comp) => {
       if (
         ["InternalSubcircuit", "InternalBlock"].some((x) =>
-          comp.superClasses.includes(x),
+          comp.superClasses.includes(x)
         )
       ) {
         return false;
@@ -398,12 +398,12 @@ export function view(state) {
 
               if (res.errors.length > 0) {
                 showError(
-                  res.errors.map((e) => `${e.details}:${e.kind}:${e.name}`),
+                  res.errors.map((e) => `${e.details}:${e.kind}:${e.name}`)
                 );
               }
 
               const code = generateSVGPCBcode(res);
-              showModal(code);
+              showModal(code, res);
             } catch (err) {
               spinner.remove();
               showError([JSON.stringify(err)]);
@@ -510,13 +510,13 @@ export function view(state) {
               ${repeat(
                 Object.entries(state.graph.getGraph().nodes),
                 (item) => item[0],
-                (item, index) => state.drawNode(item, state),
+                (item, index) => state.drawNode(item, state)
               )}
               <div class="labels">
                 ${repeat(
                   Object.entries(state.labels),
                   (item) => item[0],
-                  (item, index) => drawLabel(item, state),
+                  (item, index) => drawLabel(item, state)
                 )}
               </div>
 
@@ -527,7 +527,7 @@ export function view(state) {
           <svg class="edges">
             <g>
               ${Object.entries(state.graph.getGraph().edges).map((x) =>
-                drawEdge(x[1], state),
+                drawEdge(x[1], state)
               )}
               ${drawTempEdge(state.tempEdge, state)}
             </g>
