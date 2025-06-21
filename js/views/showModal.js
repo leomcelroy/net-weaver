@@ -94,6 +94,9 @@ export function showModal(code, response) {
         if (img) {
           console.log("Received PNG_RESULT", resId);
           img.src = pngData;
+          img.style.display = "block";
+          const loadingDiv = el.querySelector("#preview-loading");
+          if (loadingDiv) loadingDiv.style.display = "none";
           previewReceived = true;
         }
       }
@@ -215,12 +218,31 @@ export function showModal(code, response) {
         .modal-preview {
           margin: 20px 0;
           text-align: center;
+          position: relative;
         }
 
         .modal-preview img {
           max-width: 100%;
           max-height: 300px;
           border: 1px solid #ccc;
+          display: none; /* hidden until loaded */
+          margin: 0 auto;
+        }
+
+        .preview-loading {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          color: #333;
+          font-family: monospace;
+          margin: 0 auto;
+        }
+        .preview-loading .spinner {
+          width: 30px;
+          height: 30px;
+          border-width: 4px;
         }
 
         .modal-action {
@@ -251,7 +273,11 @@ export function showModal(code, response) {
         <div class="modal-content" @click=${(e) => e.stopPropagation()}>
           <div class="modal-header">Here is the generated SVG-PCB design.</div>
           <div class="modal-preview">
-            <img id="svg-preview-img" alt="Preview loading…" />
+            <div class="preview-loading" id="preview-loading">
+              <div class="spinner"></div>
+              <div>rendering preview…</div>
+            </div>
+            <img id="svg-preview-img" alt="Preview" />
           </div>
 
           <div class="modal-action">
