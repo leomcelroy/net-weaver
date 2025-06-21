@@ -1,5 +1,56 @@
 # net-weaver
 
+### March 10, 2025
+
+- copy paste components
+- label modal
+  - rename all
+  - delete all
+  - delete
+  - rename
+- undo/redo
+- connecting naming logic
+- gpio naming bug
+- kicad netlist interface
+- JSON-PCB export
+- ux
+  - better part naming and descriptions
+  - images
+  - part library site
+- highlight ports
+
+
+- Making e-ink reminder
+  - can't use AA batteries in series
+  - power on the rp2040 xiao?
+
+### Feb. 18, 2025
+
+- Get end to end running
+  - stepper driver board
+- copy paste components
+- label modal
+  - rename all
+  - delete all
+  - delete
+  - rename
+- undo/redo
+- connecting naming logic
+- port type highlighting
+- connector builder?
+- gpio naming bug
+- kicad netlist interface
+- JSON-PCB export
+- ux
+  - better part naming and descriptions
+  - images
+  - part library site
+- longer time
+  - better initial layout
+  - use schematic position
+- support for pre-routed blocks/sub-blocks
+
+
 ### Tue, Sep 3, 2024
 
 - indicate if there are no ports on connecter
