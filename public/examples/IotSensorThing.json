@@ -317,11 +317,7 @@
         "data": {
           "name": "UsbCReceptacle",
           "type": "UsbCReceptacle",
-          "superClasses": [
-            "UsbDeviceConnector",
-            "Connector",
-            "PowerSource"
-          ],
+          "superClasses": ["UsbDeviceConnector", "Connector", "PowerSource"],
           "ports": [
             {
               "name": "pwr",
@@ -364,37 +360,20 @@
             {
               "name": "voltage_out",
               "type": "range",
-              "default_value": [
-                4.75,
-                5.25
-              ],
+              "default_value": [4.75, 5.25],
               "docstring": null,
-              "value": [
-                4.75,
-                5.25
-              ]
+              "value": [4.75, 5.25]
             },
             {
               "name": "current_limits",
               "type": "range",
-              "default_value": [
-                0,
-                0.5
-              ],
+              "default_value": [0, 0.5],
               "docstring": null,
-              "value": [
-                0,
-                0.5
-              ]
+              "value": [0, 0.5]
             }
           ]
         },
-        "ports": [
-          [],
-          [],
-          [],
-          []
-        ],
+        "ports": [[], [], [], []],
         "id": "_VHtVfK9v"
       },
       "_qO3jWOyD": {
@@ -441,28 +420,18 @@
               "type": "range",
               "default_value": null,
               "docstring": "Target output voltage",
-              "value": [
-                3.135,
-                3.465
-              ]
+              "value": [3.135, 3.465]
             }
           ]
         },
-        "ports": [
-          [],
-          [],
-          []
-        ],
+        "ports": [[], [], []],
         "id": "_qO3jWOyD"
       },
       "_Son1wfSx": {
         "data": {
           "name": "Hdc1080",
           "type": "Hdc1080",
-          "superClasses": [
-            "EnvironmentalSensor",
-            "Sensor"
-          ],
+          "superClasses": ["EnvironmentalSensor", "Sensor"],
           "ports": [
             {
               "name": "pwr",
@@ -494,20 +463,14 @@
           ],
           "argParams": []
         },
-        "ports": [
-          [],
-          [],
-          []
-        ],
+        "ports": [[], [], []],
         "id": "_Son1wfSx"
       },
       "_ttCQo2fd": {
         "data": {
           "name": "I2cPullup",
           "type": "I2cPullup",
-          "superClasses": [
-            "Interface"
-          ],
+          "superClasses": ["Interface"],
           "ports": [
             {
               "name": "pwr",
@@ -530,20 +493,14 @@
           ],
           "argParams": []
         },
-        "ports": [
-          [],
-          []
-        ],
+        "ports": [[], []],
         "id": "_ttCQo2fd"
       },
       "_HByp5m9J": {
         "data": {
           "name": "Bme680",
           "type": "Bme680",
-          "superClasses": [
-            "EnvironmentalSensor",
-            "Sensor"
-          ],
+          "superClasses": ["EnvironmentalSensor", "Sensor"],
           "ports": [
             {
               "name": "pwr",
@@ -584,22 +541,14 @@
           ],
           "argParams": []
         },
-        "ports": [
-          [],
-          [],
-          [],
-          []
-        ],
+        "ports": [[], [], [], []],
         "id": "_HByp5m9J"
       },
       "_LgO1uAPj": {
         "data": {
           "name": "Bh1750",
           "type": "Bh1750",
-          "superClasses": [
-            "LightSensor",
-            "Sensor"
-          ],
+          "superClasses": ["LightSensor", "Sensor"],
           "ports": [
             {
               "name": "pwr",
@@ -631,11 +580,7 @@
           ],
           "argParams": []
         },
-        "ports": [
-          [],
-          [],
-          []
-        ],
+        "ports": [[], [], []],
         "id": "_LgO1uAPj"
       }
     },

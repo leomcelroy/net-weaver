@@ -2,57 +2,54 @@
   "nets": [
     [
       {
-        "nodeId": "_plVbZsCG",
-        "portIdx": 13,
-        "name": "_plVbZsCG",
-        "portName": "vusb_out"
-      },
-      {
-        "nodeId": "_HJ3Y8OtL",
-        "portIdx": 2,
-        "name": "_HJ3Y8OtL",
-        "portName": "vdd"
-      }
-    ],
-    [
-      {
-        "nodeId": "_HJ3Y8OtL",
+        "nodeId": "_2EVwVN5P",
         "portIdx": 0,
-        "name": "_HJ3Y8OtL",
+        "name": "_2EVwVN5P",
         "portName": "din"
       },
       {
-        "nodeId": "_plVbZsCG",
-        "portIdx": 14,
-        "name": "_plVbZsCG",
-        "portName": "gpio_14"
+        "nodeId": "_cpZyJ4nf",
+        "portIdx": 13,
+        "name": "_cpZyJ4nf",
+        "portName": "gpio_13"
       }
     ],
     [
       {
-        "nodeId": "_HJ3Y8OtL",
+        "nodeId": "_2EVwVN5P",
+        "portIdx": 2,
+        "name": "_2EVwVN5P",
+        "portName": "vdd"
+      },
+      {
+        "nodeId": "_cpZyJ4nf",
+        "portIdx": 12,
+        "name": "_cpZyJ4nf",
+        "portName": "vusb_out"
+      }
+    ],
+    [
+      {
+        "nodeId": "_2EVwVN5P",
         "portIdx": 3,
-        "name": "_HJ3Y8OtL",
+        "name": "_2EVwVN5P",
         "portName": "gnd"
       },
       {
-        "nodeId": "_plVbZsCG",
-        "portIdx": 11,
-        "name": "_plVbZsCG",
-        "portName": "gnd_out"
+        "nodeId": "_cpZyJ4nf",
+        "portIdx": 6,
+        "name": "_cpZyJ4nf",
+        "portName": "gnd"
       }
     ]
   ],
   "graph": {
     "nodes": {
-      "_plVbZsCG": {
+      "_cpZyJ4nf": {
         "data": {
           "name": "Xiao_Esp32c3",
           "type": "Xiao_Esp32c3",
-          "superClasses": [
-            "IoController",
-            "ProgrammableController"
-          ],
+          "superClasses": ["IoController", "ProgrammableController"],
           "ports": [
             {
               "name": "gpio",
@@ -109,16 +106,16 @@
               "idx": 5
             },
             {
-              "name": "pwr",
+              "name": "gnd",
               "leftRightUpDown": "left",
-              "type": "VoltageSink",
+              "type": "Ground",
               "array": false,
               "srcSinkBi": null,
               "required": false,
               "idx": 6
             },
             {
-              "name": "gnd",
+              "name": "pwr",
               "leftRightUpDown": "left",
               "type": "VoltageSink",
               "array": false,
@@ -128,7 +125,7 @@
             },
             {
               "name": "i2s",
-              "leftRightUpDown": "left",
+              "leftRightUpDown": "right",
               "type": "I2sController",
               "array": true,
               "srcSinkBi": "sink",
@@ -154,7 +151,7 @@
               "idx": 10
             },
             {
-              "name": "gnd_out",
+              "name": "pwr_out",
               "leftRightUpDown": "right",
               "type": "VoltageSource",
               "array": false,
@@ -163,7 +160,7 @@
               "idx": 11
             },
             {
-              "name": "pwr_out",
+              "name": "vusb_out",
               "leftRightUpDown": "right",
               "type": "VoltageSource",
               "array": false,
@@ -172,18 +169,9 @@
               "idx": 12
             },
             {
-              "name": "vusb_out",
-              "leftRightUpDown": "right",
-              "type": "VoltageSource",
+              "name": "gpio_13",
               "array": false,
-              "srcSinkBi": null,
-              "required": false,
-              "idx": 13
-            },
-            {
-              "name": "gpio_14",
-              "array": false,
-              "idx": 14,
+              "idx": 13,
               "leftRightUpDown": "left",
               "srcSinkBi": "bi",
               "type": "DigitalBidir",
@@ -192,34 +180,14 @@
           ],
           "argParams": []
         },
-        "ports": [
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          []
-        ],
-        "id": "_plVbZsCG"
+        "ports": [[], [], [], [], [], [], [], [], [], [], [], [], [], []],
+        "id": "_cpZyJ4nf"
       },
-      "_HJ3Y8OtL": {
+      "_2EVwVN5P": {
         "data": {
           "name": "NeopixelArray",
           "type": "NeopixelArray",
-          "superClasses": [
-            "Light",
-            "HumanInterface"
-          ],
+          "superClasses": ["Light", "HumanInterface"],
           "ports": [
             {
               "name": "din",
@@ -251,7 +219,7 @@
             {
               "name": "gnd",
               "leftRightUpDown": "left",
-              "type": "VoltageSink",
+              "type": "Ground",
               "array": false,
               "srcSinkBi": null,
               "required": true,
@@ -268,57 +236,52 @@
             }
           ]
         },
-        "ports": [
-          [],
-          [],
-          [],
-          []
-        ],
-        "id": "_HJ3Y8OtL"
+        "ports": [[], [], [], []],
+        "id": "_2EVwVN5P"
       }
     },
     "edges": {}
   },
   "graphUIData": {
-    "_plVbZsCG": {
-      "x": 280,
-      "y": 377
+    "_cpZyJ4nf": {
+      "x": 265,
+      "y": 372.3999938964844
     },
-    "_HJ3Y8OtL": {
-      "x": 579,
-      "y": 379
+    "_2EVwVN5P": {
+      "x": 531,
+      "y": 377.3999938964844
     }
   },
   "labels": {
-    "b1OzA4Yh": {
-      "labelName": "vusb_out",
-      "nodeId": "_plVbZsCG",
-      "portIdx": 13
-    },
-    "vV5ZRgTo": {
-      "labelName": "vusb_out",
-      "nodeId": "_HJ3Y8OtL",
-      "portIdx": 2
-    },
-    "AfW67Rtf": {
+    "UETv4ltm": {
       "labelName": "din",
-      "nodeId": "_HJ3Y8OtL",
+      "nodeId": "_2EVwVN5P",
       "portIdx": 0
     },
-    "8vB2cDnz": {
+    "f8yQbq3u": {
       "labelName": "din",
-      "nodeId": "_plVbZsCG",
-      "portIdx": 14
+      "nodeId": "_cpZyJ4nf",
+      "portIdx": 13
     },
-    "ymd1HF62": {
+    "XFAthzFD": {
+      "labelName": "vdd",
+      "nodeId": "_2EVwVN5P",
+      "portIdx": 2
+    },
+    "hNxZJ3PL": {
+      "labelName": "vdd",
+      "nodeId": "_cpZyJ4nf",
+      "portIdx": 12
+    },
+    "6qW442Yl": {
       "labelName": "gnd",
-      "nodeId": "_HJ3Y8OtL",
+      "nodeId": "_2EVwVN5P",
       "portIdx": 3
     },
-    "erg6DLRm": {
+    "lhlH7axr": {
       "labelName": "gnd",
-      "nodeId": "_plVbZsCG",
-      "portIdx": 11
+      "nodeId": "_cpZyJ4nf",
+      "portIdx": 6
     }
   }
 }

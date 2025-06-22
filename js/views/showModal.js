@@ -6,6 +6,7 @@ export function showModal(code, response) {
   const el = document.createElement("div");
 
   const kicadNetlist = response.kicadNetlist;
+  const bomString = response.bom;
 
   document.body.append(el);
 
@@ -62,14 +63,9 @@ export function showModal(code, response) {
   const loadCodeIntoEditor = () => {
     if (!editorIframe) return;
     console.log("Posting LOAD_CODE to SVG-PCB iframe");
+    // Reset any previous preview state before attempting to load new code.
+    previewReceived = false;
     editorIframe.contentWindow.postMessage({ type: "LOAD_CODE", code }, "*");
-
-    // Fallback: if no LOAD_CODE_ACK arrives within 1.5 s, still request PNG
-    setTimeout(() => {
-      if (!previewReceived) {
-        requestPngPreview();
-      }
-    }, 1500);
   };
 
   // Ask the iframe to render a PNG preview and put it in the <img>
@@ -82,6 +78,16 @@ export function showModal(code, response) {
       "*"
     );
 
+    // If the preview is not returned within a reasonable time, give feedback
+    const failSafeTimeout = setTimeout(() => {
+      if (!previewReceived) {
+        const loadingDiv = el.querySelector("#preview-loading");
+        if (loadingDiv) {
+          loadingDiv.innerHTML = `<div style="color:#d44">preview failed</div>`;
+        }
+      }
+    }, 6000);
+
     const handlePng = (e) => {
       const { type, id: resId, pngData } = e.data || {};
       if (
@@ -90,6 +96,7 @@ export function showModal(code, response) {
         resId === requestId
       ) {
         window.removeEventListener("message", handlePng);
+        clearTimeout(failSafeTimeout);
         const img = el.querySelector("#svg-preview-img");
         if (img) {
           console.log("Received PNG_RESULT", resId);
@@ -170,6 +177,20 @@ export function showModal(code, response) {
     URL.revokeObjectURL(url);
   };
 
+  // Download the Bill-of-Materials as a CSV file
+  const downloadBOM = () => {
+    if (!bomString) return;
+    const blob = new Blob([bomString], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "bom.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   render(
     html`
       <style>
@@ -193,8 +214,8 @@ export function showModal(code, response) {
           border-radius: 8px;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
           max-width: 90%;
-          max-height: 90%;
-          overflow-y: auto; /* Allows scrolling */
+          max-height: 80vh; /* ensure modal never exceeds viewport height */
+          overflow-y: auto; /* Allows scrolling within modal when content is taller */
         }
 
         .modal-header {
@@ -203,16 +224,9 @@ export function showModal(code, response) {
           font-weight: bold;
         }
 
+        /* Hide the code block in the modal */
         .modal-code {
-          background-color: #d8d9ce;
-          // border: 1px solid #ddd;
-          border-radius: 4px;
-          padding: 10px;
-          white-space: pre;
-          overflow: auto;
-          max-height: 300px;
-          user-select: text;
-          cursor: text;
+          display: none;
         }
 
         .modal-preview {
@@ -282,9 +296,10 @@ export function showModal(code, response) {
 
           <div class="modal-action">
             <button @click=${copyCode}>Copy Code</button>
+            <button @click=${openSvgPcbNewTab}>Open in SVG-PCB</button>
             <button @click=${downloadCode}>Download Code (.js)</button>
             <button @click=${downloadNetlist}>Download Netlist (.net)</button>
-            <button @click=${openSvgPcbNewTab}>Open in SVG-PCB</button>
+            <button @click=${downloadBOM}>Download BOM (.csv)</button>
           </div>
 
           <pre class="modal-code">${code}</pre>

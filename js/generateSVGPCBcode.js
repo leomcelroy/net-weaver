@@ -1,57 +1,50 @@
 import { kicadParser } from "./kicadParser.js";
 
 export function generateSVGPCBcode(compiledObj) {
-
   const result = [];
 
-  const {
-    kicadFootprints,
-    svgpcbInstantiations,
-    netlist,
-    svgpcbFunctions,
-  } = compiledObj;
+  const { kicadFootprints, svgpcbInstantiations, netlist, svgpcbFunctions } =
+    compiledObj;
 
-  kicadFootprints.forEach(fp => {
+  kicadFootprints.forEach((fp) => {
     const { name, data } = fp;
 
-    const line = `const ${name} = ${JSON.stringify(kicadParser(data))};`
+    const line = `const ${name} = ${JSON.stringify(kicadParser(data))};`;
     result.push(line);
   });
 
-  result.push("")
-  result.push(unindent`
-    const colSpacing = input({
-      name: "row-spacing",
-      type: "slider",
-      min: 0,
-      max: 3,
-      step: 0.1,
-      value: 0.9
-    });
+  result.push("");
+  // result.push(unindent`
+  //   const colSpacing = input({
+  //     name: "row-spacing",
+  //     type: "slider",
+  //     min: 0,
+  //     max: 3,
+  //     step: 0.1,
+  //     value: 0.9
+  //   });
 
-    const rowSpacing = input({
-      name: "col-spacing",
-      type: "slider",
-      min: 0,
-      max: 3,
-      step: 0.1,
-      value: 0.6
-    });
+  //   const rowSpacing = input({
+  //     name: "col-spacing",
+  //     type: "slider",
+  //     min: 0,
+  //     max: 3,
+  //     step: 0.1,
+  //     value: 0.6
+  //   });
+  // `)
+  result.push(`const board = new PCB();`);
+  result.push("");
 
-    const board = new PCB();
-  `)
-  result.push("")
-
-
-  svgpcbInstantiations.forEach(line => {
+  svgpcbInstantiations.forEach((line) => {
     result.push(line);
   });
 
-  result.push("")
+  result.push("");
 
-  result.push(`board.setNetlist(${JSON.stringify(netlist)})`);
+  // result.push(`board.setNetlist(${JSON.stringify(netlist)})`);
 
-  result.push("")
+  result.push("");
 
   result.push(unindent`
     const limit0 = pt(-0.5, -0.6);
@@ -95,7 +88,7 @@ export function generateSVGPCBcode(compiledObj) {
 
   result.push("");
 
-  svgpcbFunctions.forEach(line => {
+  svgpcbFunctions.forEach((line) => {
     result.push(line);
   });
 
@@ -103,16 +96,21 @@ export function generateSVGPCBcode(compiledObj) {
 }
 
 function unindent(strings, ...values) {
-    let fullText = strings.reduce((acc, str, i) => acc + str + (values[i] || ''), '');
+  let fullText = strings.reduce(
+    (acc, str, i) => acc + str + (values[i] || ""),
+    ""
+  );
 
-    fullText = fullText.replace(/^\n+|\n+$/g, '');
+  fullText = fullText.replace(/^\n+|\n+$/g, "");
 
-    let lines = fullText.split('\n');
+  let lines = fullText.split("\n");
 
-    const minIndent = lines.filter(line => line.trim()).reduce((min, line) => {
-        const currentIndent = line.match(/^\s*/)[0].length;
-        return currentIndent < min ? currentIndent : min;
+  const minIndent = lines
+    .filter((line) => line.trim())
+    .reduce((min, line) => {
+      const currentIndent = line.match(/^\s*/)[0].length;
+      return currentIndent < min ? currentIndent : min;
     }, Infinity);
 
-    return lines.map(line => line.substring(minIndent)).join('\n');
+  return lines.map((line) => line.substring(minIndent)).join("\n");
 }

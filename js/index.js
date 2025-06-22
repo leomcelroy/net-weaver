@@ -70,6 +70,7 @@ async function init() {
   loadUrlParam("src").then((text) => {
     if (!text) return;
     uploadJSON(text);
+    centerViewOnNodes(state);
   });
 
   function uploadJSON(json) {
@@ -93,3 +94,44 @@ async function init() {
 }
 
 init();
+
+function centerViewOnNodes(state) {
+  // Center view on bounding box of nodes after render
+  requestAnimationFrame(() => {
+    if (!state.dataflow || typeof state.dataflow.setScaleXY !== "function")
+      return;
+    const positions = Object.values(state.graphUIData);
+    if (positions.length === 0) return;
+
+    // Rough estimates of node dimensions (px)
+    const NODE_WIDTH = 200;
+    const NODE_HEIGHT = 100;
+    const MARGIN = 100; // extra space around the outermost nodes
+    const rightPanelWidth = 350;
+
+    const xExtents = positions.flatMap((p) => [
+      p.x - MARGIN,
+      p.x + NODE_WIDTH + MARGIN,
+    ]);
+    const yExtents = positions.flatMap((p) => [
+      p.y - MARGIN,
+      p.y + NODE_HEIGHT + MARGIN,
+    ]);
+
+    const minX = Math.min(...xExtents);
+    let maxX = Math.max(...xExtents) + rightPanelWidth; // account for toolbox on the right
+    // Ensure extent is still valid
+    if (maxX <= minX) {
+      maxX = minX + 1; // minimal width to avoid divide-by-zero
+    }
+    const minY = Math.min(...yExtents);
+    const maxY = Math.max(...yExtents);
+
+    if (minX === maxX || minY === maxY) return;
+
+    state.dataflow.setScaleXY({
+      x: [minX, maxX],
+      y: [minY, maxY],
+    });
+  });
+}

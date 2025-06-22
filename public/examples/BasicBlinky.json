@@ -9,7 +9,7 @@
       },
       {
         "nodeId": "_L45VcfTC",
-        "portIdx": 14,
+        "portIdx": 13,
         "name": "_L45VcfTC",
         "portName": "gpio_14"
       }
@@ -35,10 +35,7 @@
         "data": {
           "name": "Xiao_Esp32c3",
           "type": "Xiao_Esp32c3",
-          "superClasses": [
-            "IoController",
-            "ProgrammableController"
-          ],
+          "superClasses": ["IoController", "ProgrammableController"],
           "ports": [
             {
               "name": "gpio",
@@ -129,7 +126,7 @@
               "idx": 10
             },
             {
-              "name": "gnd_out",
+              "name": "pwr_out",
               "leftRightUpDown": "right",
               "type": "VoltageSource",
               "array": false,
@@ -137,7 +134,7 @@
               "idx": 11
             },
             {
-              "name": "pwr_out",
+              "name": "vusb_out",
               "leftRightUpDown": "right",
               "type": "VoltageSource",
               "array": false,
@@ -145,17 +142,9 @@
               "idx": 12
             },
             {
-              "name": "vusb_out",
-              "leftRightUpDown": "right",
-              "type": "VoltageSource",
-              "array": false,
-              "srcSinkBi": null,
-              "idx": 13
-            },
-            {
               "name": "gpio_14",
               "array": false,
-              "idx": 14,
+              "idx": 13,
               "leftRightUpDown": "left",
               "srcSinkBi": "bi",
               "type": "DigitalBidir",
@@ -164,33 +153,14 @@
           ],
           "argParams": []
         },
-        "ports": [
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          [],
-          []
-        ],
+        "ports": [[], [], [], [], [], [], [], [], [], [], [], [], [], []],
         "id": "_L45VcfTC"
       },
       "_6u3c3kJZ": {
         "data": {
           "name": "IndicatorLed",
           "type": "IndicatorLed",
-          "superClasses": [
-            "Light",
-            "HumanInterface"
-          ],
+          "superClasses": ["Light", "HumanInterface"],
           "ports": [
             {
               "name": "signal",
@@ -220,22 +190,13 @@
             {
               "name": "current_draw",
               "type": "range",
-              "default_value": [
-                0.001,
-                0.01
-              ],
+              "default_value": [0.001, 0.01],
               "docstring": null,
-              "value": [
-                0.001,
-                0.01
-              ]
+              "value": [0.001, 0.01]
             }
           ]
         },
-        "ports": [
-          [],
-          []
-        ],
+        "ports": [[], []],
         "id": "_6u3c3kJZ"
       }
     },
@@ -260,7 +221,7 @@
     "UnXZ9r2O": {
       "labelName": "signal",
       "nodeId": "_L45VcfTC",
-      "portIdx": 14
+      "portIdx": 13
     },
     "6D5dLTIr": {
       "labelName": "gnd",
@@ -270,7 +231,7 @@
     "1VCsNMlV": {
       "labelName": "gnd",
       "nodeId": "_L45VcfTC",
-      "portIdx": 11
+      "portIdx": 7
     }
   }
 }
